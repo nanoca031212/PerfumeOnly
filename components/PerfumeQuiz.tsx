@@ -188,23 +188,10 @@ const questions: Question[] = [
 const SuccessNotification = ({ show, onClose }: { show: boolean; onClose: () => void }) => {
   const [isVisible, setIsVisible] = useState(false)
   const [isExiting, setIsExiting] = useState(false)
-  const [progress, setProgress] = useState(100)
 
   useEffect(() => {
     if (show) {
       setIsVisible(true)
-      setProgress(100)
-
-      // Update progress every 100ms for smoother animation
-      const progressInterval = setInterval(() => {
-        setProgress(prev => {
-          if (prev <= 0) {
-            clearInterval(progressInterval)
-            return 0
-          }
-          return prev - 2 // Decrease 2% every 100ms = 5 seconds total
-        })
-      }, 100)
 
       const timer = setTimeout(() => {
         setIsExiting(true)
@@ -213,14 +200,12 @@ const SuccessNotification = ({ show, onClose }: { show: boolean; onClose: () => 
           setTimeout(() => {
             onClose()
             setIsExiting(false)
-            setProgress(100) // Reset progress
-          }, 500) // Increased exit animation time
+          }, 400)
         }, 200)
-      }, 5000) // Increased display time to 5 seconds
+      }, 2500) // Reduced display time to 2.5 seconds
 
       return () => {
         clearTimeout(timer)
-        clearInterval(progressInterval)
       }
     }
   }, [show, onClose])
@@ -251,10 +236,6 @@ const SuccessNotification = ({ show, onClose }: { show: boolean; onClose: () => 
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <div className="absolute bottom-0 left-0 h-1 bg-green-300 rounded-b-xl" style={{
-          width: `${progress}%`,
-          transition: 'width 0.1s linear'
-        }}></div>
       </div>
     </div>
   )
@@ -715,7 +696,7 @@ const CompleteHeader = ({ onUSPClick }: { onUSPClick: () => void }) => {
       <div className="w-full bg-[#e7071d] border-b border-gray-200 transition-colors duration-200 py-2 group">
         <div className="flex items-center justify-center space-x-2 px-4">
           <div className="text-sm font-medium text-[#ffffff] uppercase tracking-wide">
-            Take the perfume quiz and get up to £120 off
+            Take the perfume quiz and get up to £120.01 off
           </div>
         </div>
       </div>
@@ -727,7 +708,7 @@ const CompleteHeader = ({ onUSPClick }: { onUSPClick: () => void }) => {
 export default function WWESummerSlamQuiz() {
   const router = useRouter()
   const { addItem, setIsOpen } = useCart()
-  const [gameStarted, setGameStarted] = useState(false);
+  const [gameStarted, setGameStarted] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [correctAnswers, setCorrectAnswers] = useState(0);
@@ -750,48 +731,23 @@ export default function WWESummerSlamQuiz() {
 
   const isPixelsReady = usePixelLoader()
   const { playSound, isInitialized: audioInitialized } = useAudioSystem();
-  const [progressValue, setProgressValue] = useState(100);
-  const progressTimer = useRef<NodeJS.Timeout | null>(null);
 
-  // Remover o useEffect que adiciona os estilos
+  // Rastrear visualização da pergunta quando gameStarted está true
   useEffect(() => {
-    if (progressTimer.current) {
-      clearInterval(progressTimer.current);
-    }
-
-    if (gameStarted && !quizCompleted) {
-      progressTimer.current = setInterval(() => {
-        setProgressValue(prev => {
-          const newValue = prev - 1;
-          if (newValue <= 0) {
-            if (progressTimer.current) {
-              clearInterval(progressTimer.current);
-            }
-            // Avança automaticamente para a próxima pergunta quando o tempo acabar
-            handleAnswer();
-            return 100;
-          }
-          return newValue;
-        });
-      }, 100); // 10 seconds total (100 * 100ms = 10000ms)
-    }
-
-    return () => {
-      if (progressTimer.current) {
-        clearInterval(progressTimer.current);
-      }
-    };
-  }, [gameStarted, currentQuestion, quizCompleted]);
-
-  // Reset progress quando mudar de pergunta
-  useEffect(() => {
-    setProgressValue(100);
-
-    // Rastrear visualização da pergunta quando gameStarted está true
     if (gameStarted && !quizCompleted) {
       trackQuizStep('question_viewed', currentQuestion + 1);
     }
   }, [currentQuestion, gameStarted, quizCompleted]);
+
+  // Avanço automático após selecionar uma resposta
+  useEffect(() => {
+    if (selectedAnswer !== "" && !isSubmitting && !quizCompleted) {
+      const timer = setTimeout(() => {
+        handleAnswer();
+      }, 300); // Reduced delay to 300ms
+      return () => clearTimeout(timer);
+    }
+  }, [selectedAnswer, isSubmitting, quizCompleted]);
 
   // Debug para verificar o estado
   useEffect(() => {
@@ -831,8 +787,13 @@ export default function WWESummerSlamQuiz() {
   const handleBuyNowClick = (selectedKit: string) => {
     trackQuizStep('go_to_store'); // Evento final - ir para a loja
 
-    // Redirecionar para a loja
-    router.push('/');
+    // Redirecionar para a loja, mas apenas se não estivermos nela
+    if (router.asPath !== '/') {
+      router.push('/');
+    } else {
+      // Se já estiver na home, apenas rolar para o topo
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   // Modificar a função de resposta com loading e scroll automático
@@ -863,6 +824,7 @@ export default function WWESummerSlamQuiz() {
 
     // Sempre incrementar o contador, independente da resposta estar correta
     setCorrectAnswers(prev => {
+      if (prev >= questions.length) return prev;
       const newValue = prev + 1;
       console.log('Discount updated:', newValue);
       return newValue;
@@ -884,29 +846,15 @@ export default function WWESummerSlamQuiz() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setQuizCompleted(true)
+        setSelectedAnswer("") // Clear selection even when finishing
         trackQuizStep('quiz_completed'); // Rastrear conclusão do quiz
         // Scroll automático para o topo ao completar quiz
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       setIsSubmitting(false)
-    }, 600)
+    }, 400) // Reduced switch delay to 400ms
   }
 
-  // Modificar nextQuestion com loading
-  const nextQuestion = () => {
-    setIsLoading(true)
-
-    setTimeout(() => {
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion((prev) => prev + 1)
-        setSelectedAnswer("")
-      } else {
-        setQuizCompleted(true)
-        trackQuizStep('quiz_completed'); // Rastrear conclusão do quiz
-      }
-      setIsLoading(false)
-    }, 400)
-  }
 
   const handleRestart = () => {
     trackQuizStep('quiz_restart'); // Rastrear reinício do quiz
@@ -920,8 +868,8 @@ export default function WWESummerSlamQuiz() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const discount = correctAnswers * 20
-  const originalPrice = 170.00
+  const discount = correctAnswers === 6 ? 120.01 : correctAnswers * 20
+  const originalPrice = 200.00
   const finalPrice = Math.max(originalPrice - discount, 79.99)
 
   useTrackVSLView(); // Comentado junto com o VSL
@@ -954,7 +902,7 @@ export default function WWESummerSlamQuiz() {
 
                 <div className="bg-black font-product-sans border-[2px] border-[#f00] p-3 shadow-sm animate-slideIn animated-border">
                   <blockquote className="text-xl md:text-lg text-[#ffffff] text-center leading-relaxed">
-                    "Answer 6 questions about your perfume preferences and get £120 off a set of perfumes."
+                    "Answer 6 questions about your perfume preferences and get £120.01 off a set of perfumes."
                   </blockquote>
                 </div>
 
@@ -1024,38 +972,30 @@ export default function WWESummerSlamQuiz() {
                   <p className="text-sm text-gray-600">Your discount</p>
                   <p className={`text-2xl font-bold text-[#1bca32] transform transition-all duration-500 ${correctAnswers > 0 ? 'scale-125 animate-pulse' : ''
                     }`}>
-                    £{correctAnswers * 20}
+                    £{(correctAnswers === 6 ? 120.01 : correctAnswers * 20).toFixed(2)}
                   </p>
                   <p className="text-xs text-gray-500">Participation reward</p>
                 </div>
               </div>
-              {gameStarted && !quizCompleted && (
-                <div className="progress-container">
-                  <div
-                    className="progress-bar"
-                    style={{ width: `${progressValue}%` }}
-                  />
-                </div>
-              )}
             </div>
 
             <div className="space-y-8">
               <div className="animate-slideIn">
                 {questions[currentQuestion] && (
-                  <div className="bg-white p-6 border border-[#f00] shadow-sm transition-all duration-300 hover:shadow-md mb-4">
+                  <div className="bg-white shadow-sm transition-all duration-300 mb-4">
                     <h3 className="text-xl font-semibold mb-4 text-black border-b border-[#f00] pb-2">{questions[currentQuestion].question}</h3>
 
                     <RadioGroup value={selectedAnswer} onValueChange={setSelectedAnswer} className="space-y-4">
                       {questions[currentQuestion].options.map((option: string, index: number) => (
                         <div
                           key={index}
-                          className={`flex items-center space-x-3 p-4 transition-all duration-200 cursor-pointer bg-white border border-[#f00] ${selectedAnswer === index.toString()
-                            ? 'bg-[#e90a0a] shadow-sm transform scale-105'
-                            : 'bg-black hover:transform hover:scale-105'
+                          className={`flex items-center space-x-3 p-4 transition-all duration-200 cursor-pointer border-2 ${selectedAnswer === index.toString()
+                            ? 'bg-[#e90a0a] border-[#e90a0a] shadow-sm'
+                            : 'bg-gray-50 border-gray-200 hover:border-gray-400 hover:bg-white'
                             }`}
                         >
                           <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                          <Label htmlFor={`option-${index}`} className="flex-1 text-black cursor-pointer font-medium">
+                          <Label htmlFor={`option-${index}`} className={`flex-1 cursor-pointer font-medium text-lg ${selectedAnswer === index.toString() ? 'text-white' : 'text-gray-900'}`}>
                             {option}
                           </Label>
                         </div>
@@ -1064,24 +1004,6 @@ export default function WWESummerSlamQuiz() {
                   </div>
                 )}
 
-                <Button
-                  onClick={handleAnswer}
-                  disabled={!selectedAnswer || isSubmitting}
-                  className={`w-full py-4 mt-3 text-white transition-all duration-200 transform hover:scale-105 ${isSubmitting
-                    ? 'bg-[#f00] cursor-not-allowed'
-                    : 'bg-[#f00] hover:bg-gray-800 hover:shadow-lg'
-                    }`}
-                  size="lg"
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center gap-2">
-                      <LoadingSpinner size="sm" />
-                      Processing...
-                    </div>
-                  ) : (
-                    "Confirm Answer"
-                  )}
-                </Button>
 
                 {/* Discount progress bar instead of quiz progress */}
                 <DiscountProgressBar correctAnswers={correctAnswers} />
@@ -1096,17 +1018,17 @@ export default function WWESummerSlamQuiz() {
 
 // Discount progress bar component
 const DiscountProgressBar = ({ correctAnswers }: { correctAnswers: number }) => {
-  const discount = correctAnswers * 20;
-  const maxDiscount = 120;
+  const discount = correctAnswers === 6 ? 120.01 : correctAnswers * 20;
+  const maxDiscount = 120.01;
   const progressPercentage = (discount / maxDiscount) * 100;
 
   return (
-    <div className="bg- p-4 rounded-lg">
+    <div className="p-4 rounded-lg">
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-600">Discount progress:</span>
         <div>
           <span className="font-semibold">£{discount} /</span>
-          <span className="font-semibold text-red-600">£{maxDiscount}</span>
+          <span className="font-semibold text-red-600">£{maxDiscount.toFixed(2)}</span>
         </div>
       </div>
       <div

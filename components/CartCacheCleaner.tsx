@@ -18,12 +18,12 @@ export default function CartCacheCleaner() {
 
   const performCleanup = () => {
     const results: string[] = [];
-    
+
     try {
       // 1. Limpar localStorage
       const localStorageKeys = Object.keys(localStorage);
       let localStorageCleared = 0;
-      
+
       localStorageKeys.forEach(key => {
         const value = localStorage.getItem(key);
         if (value) {
@@ -41,13 +41,13 @@ export default function CartCacheCleaner() {
       // 2. Limpar sessionStorage
       const sessionStorageKeys = Object.keys(sessionStorage);
       let sessionStorageCleared = 0;
-      
+
       sessionStorageKeys.forEach(key => {
         // Não limpar UTMs - elas são importantes para tracking
         if (key === 'utm_params') {
           return;
         }
-        
+
         const value = sessionStorage.getItem(key);
         if (value) {
           // Verificar se contém IDs obsoletos
@@ -82,7 +82,7 @@ export default function CartCacheCleaner() {
       }
 
       results.push(`✅ Limpeza concluída! ${localStorageCleared + sessionStorageCleared} itens removidos`);
-      
+
     } catch (error) {
       results.push(`❌ Erro durante limpeza: ${error}`);
     }
@@ -92,13 +92,13 @@ export default function CartCacheCleaner() {
 
   const testCorrectUrls = async () => {
     const results: string[] = [...cleanupResults];
-    
+
     try {
       // Testar URLs corretas
       for (const [handle, variantId] of Object.entries(correctMappings)) {
         const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
         const testUrl = `${siteUrl}/cart/${variantId}:1`;
-        
+
         try {
           const response = await fetch(testUrl, { method: 'HEAD' });
           if (response.ok || response.status === 302) {
@@ -135,7 +135,7 @@ export default function CartCacheCleaner() {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center my-4">
           <h2 className="text-xl font-bold">🧹 Cart Cache Cleaner</h2>
           <button
             onClick={() => setIsOpen(false)}
@@ -149,7 +149,7 @@ export default function CartCacheCleaner() {
           <div className="bg-yellow-50 border border-yellow-200 rounded p-4">
             <h3 className="font-semibold text-yellow-800 mb-2">⚠️ Problema Detectado</h3>
             <p className="text-yellow-700 text-sm">
-              O sistema está usando IDs obsoletos que causam erro 410 (Gone). 
+              O sistema está usando IDs obsoletos que causam erro 410 (Gone).
               Este cleaner remove dados em cache e força o uso dos IDs corretos.
             </p>
           </div>

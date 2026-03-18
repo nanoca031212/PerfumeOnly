@@ -10,7 +10,7 @@ interface ShoppingBagProps {
 }
 
 export default function ShoppingBag({ isOpen, onClose }: ShoppingBagProps) {
-  const { items, removeItem, updateQuantity, total } = useCart()
+  const { items, removeItem, updateQuantity, total, totalOriginal } = useCart()
   const router = useRouter()
 
   const panelClasses = `fixed bottom-0 left-0 right-0 max-h-[85vh] bg-white shadow-xl rounded-t-2xl transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-y-0' : 'translate-y-full'
@@ -94,7 +94,10 @@ export default function ShoppingBag({ isOpen, onClose }: ShoppingBagProps) {
                 <div className="flex-grow min-w-0">
                   <h3 className="text-sm font-medium truncate">{item.title}</h3>
                   <p className="text-xs text-gray-500 truncate">{item.subtitle}</p>
-                  <p className="text-sm font-medium mt-1">£{item.price.toFixed(2)}</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <p className="text-sm font-bold text-black">£{item.price.toFixed(2)}</p>
+                    <span className="text-xs line-through text-gray-400">£{(item.originalPrice || 200.00).toFixed(2)}</span>
+                  </div>
 
                   {/* Quantity Controls */}
                   <div className="flex items-center gap-2 mt-2">
@@ -119,7 +122,7 @@ export default function ShoppingBag({ isOpen, onClose }: ShoppingBagProps) {
                 {/* Remove Button */}
                 <button
                   onClick={() => removeItem(item.id)}
-                  className="text-xs text-gray-500 hover:text-gray-700 self-start mt-1"
+                  className="text-xs text-red-500 hover:text-gray-700 self-start mt-1"
                 >
                   Remove
                 </button>
@@ -129,21 +132,29 @@ export default function ShoppingBag({ isOpen, onClose }: ShoppingBagProps) {
         </div>
 
         {/* Footer */}
-        <div className="border-t px-4 py-4 bg-white">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-sm font-medium">Total</span>
-            <span className="text-lg font-bold">£{total.toFixed(2)}</span>
+        <div className="border-t px-4 pb-14 bg-white">
+          <div className="mt-4 space-y-1.5">
+            <div className="flex justify-between items-center text-xs text-gray-500">
+              <span>Original total</span>
+              <span className="line-through">£{totalOriginal.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between items-center text-xs text-green-600 font-medium font-sans">
+              <span>Bundle savings</span>
+              <span>-£{(totalOriginal - total).toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between items-center pt-2 mt-2 border-t border-gray-100">
+              <span className="text-sm font-bold uppercase tracking-tight">Final Price</span>
+              <span className="text-xl font-bold text-gray-900">£{total.toFixed(2)}</span>
+            </div>
           </div>
-
-
 
           <button
             onClick={handleCheckout}
-            className={`w-full bg-black text-white py-3 rounded-full font-medium text-center
-              ${items.length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-900'}`}
+            className={`w-full bg-black text-white py-4 rounded-full font-bold text-center mt-4 transition-all active:scale-95
+              ${items.length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-900 shadow-lg shadow-gray-200'}`}
             disabled={items.length === 0}
           >
-            CHECKOUT • £{total.toFixed(2)}
+            SECURE CHECKOUT • £{total.toFixed(2)}
           </button>
         </div>
       </div>

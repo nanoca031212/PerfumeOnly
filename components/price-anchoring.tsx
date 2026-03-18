@@ -22,7 +22,7 @@ const kits: Kit[] = [
     name: "3 Luxury Perfumes – Exclusive Online Kit",
     wrestler: "Premium",
     price: 79.99,
-    originalPrice: 170.00,
+    originalPrice: 200.00,
     savings: 120.01,
     description: "3 Premium Fragrance Collection",
     items: [
@@ -94,15 +94,15 @@ export default function PriceAnchoring({ correctAnswers, onBuyClick }: PriceAnch
 
   return (
     <div className="bg-white pt-4">
-      <h1 className="text-center text-[#2c2c2c] text-2xl font-bold font-sans mb-4">Unlock Your Exclusive Perfume Deal</h1>
-      <div className="flex justify-center mb-6"><span className="text-sm text-wrap text-center text-gray-500">Answer six quick questions and save up to £120 — available only online, for a limited time.</span></div>
+      <h1 className="text-center text-[#2c2c2c] text-3xl mt-5 font-bold font-sans mb-4">Congratulations! Your Exclusive Deal is Unlocked</h1>
+      <div className="flex justify-center mb-6"><span className="text-sm text-wrap text-center text-gray-500 px-4">You've successfully completed our quiz and secured a £{discount} discount on this exclusive online bundle.</span></div>
 
 
 
 
       {/* New Temu-style Layout */}
-      <div className="flex items-center bg-white justify-between mb-4">
-        <div className="w-20 h-20 overflow-hidden border border-red-600">
+      <div className="flex items-center bg-white justify-start gap-2 mb-2 border border-gray-200">
+        <div className="w-25 h-25 overflow-hidden">
           <Image
             src="/3-caixas.png"
             alt="temu box"
@@ -111,21 +111,17 @@ export default function PriceAnchoring({ correctAnswers, onBuyClick }: PriceAnch
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="text-right mr-4">
+        <div className="text-left ml-1">
           <p className="text-sm text-black">Original Price</p>
           <p className="text-lg line-through font-bold text-[#f73e3e]">£{selectedKitData.originalPrice.toFixed(2)}</p>
         </div>
-      </div>
-
-      <div className="flex justify-between items-center py-2">
-        <span className="text-sm text-gray-900 uppercase tracking-wide font-medium">FINAL PRICE</span>
-        <div className="text-right">
-          <span className="block text-3xl font-semibold text-gray-900">£{finalPrice.toFixed(2)}</span>
-          <span className="text-sm text-[#ca0d0d]">You save £{discount}</span>
+        <div className="text-right flex items-center gap-2 px-4">
+          <span className="block text-3xl font-semibold text-green-600 underline">£{finalPrice.toFixed(2)}</span>
         </div>
       </div>
 
-      <div className="border-t-2 border-[#f00] pt-6">
+
+      <div className="pt-6">
         <h3 className="text-center text-[#2c2c2c] text-2xl font-bold font-sans mb-2">Perfumes we still have in stock:</h3>
 
         <div className="w-full overflow-hidden bg-white">

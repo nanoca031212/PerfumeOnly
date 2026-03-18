@@ -34,7 +34,7 @@ export default function CartUrlTester() {
       const variantId = (stripeVariantMapping as Record<string, string>)[handle];
       const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001';
       const url = `${siteUrl}/cart/${variantId}:1`;
-      
+
       try {
         const response = await fetch(url, { method: 'HEAD' });
         results.push({
@@ -69,7 +69,7 @@ export default function CartUrlTester() {
       const variantId = (stripeVariantMapping as Record<string, string>)[handle];
       const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
       const url = `${siteUrl}/cart/${variantId}:1`;
-      
+
       try {
         const response = await fetch(url, { method: 'HEAD' });
         results.push({
@@ -101,8 +101,8 @@ export default function CartUrlTester() {
   };
 
   const toggleProductSelection = (handle: string) => {
-    setSelectedProducts(prev => 
-      prev.includes(handle) 
+    setSelectedProducts(prev =>
+      prev.includes(handle)
         ? prev.filter(h => h !== handle)
         : [...prev, handle]
     );
@@ -120,7 +120,7 @@ export default function CartUrlTester() {
     <div className="max-w-6xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h1 className="text-3xl font-bold mb-6 text-center">🧪 Cart URL Tester</h1>
-        
+
         <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <h2 className="font-bold text-blue-800 mb-2">📋 Instructions</h2>
           <p className="text-blue-700 mb-2">
@@ -136,7 +136,7 @@ export default function CartUrlTester() {
 
         {/* Product Selection */}
         <div className="mb-6">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center my-4">
             <h3 className="font-bold text-lg">Select Products to Test</h3>
             <div className="space-x-2">
               <button
@@ -153,7 +153,7 @@ export default function CartUrlTester() {
               </button>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 max-h-60 overflow-y-auto border rounded p-4">
             {availableProducts.map((handle) => (
               <label key={handle} className="flex items-center space-x-2 cursor-pointer">
@@ -167,7 +167,7 @@ export default function CartUrlTester() {
               </label>
             ))}
           </div>
-          
+
           <p className="text-sm text-gray-600 mt-2">
             Selected: {selectedProducts.length} / {availableProducts.length}
           </p>
@@ -182,7 +182,7 @@ export default function CartUrlTester() {
           >
             {isLoading ? '🔄 Testing...' : `🧪 Test Selected URLs (${selectedProducts.length})`}
           </button>
-          
+
           <button
             onClick={testAllUrls}
             disabled={isLoading}
@@ -196,7 +196,7 @@ export default function CartUrlTester() {
         {testResults.length > 0 && (
           <div>
             <h3 className="font-bold text-lg mb-4">📊 Test Results</h3>
-            
+
             {/* Summary */}
             <div className="mb-4 p-4 bg-gray-50 rounded-lg">
               <div className="grid grid-cols-3 gap-4 text-center">
@@ -224,13 +224,12 @@ export default function CartUrlTester() {
             {/* Detailed Results */}
             <div className="space-y-2 max-h-96 overflow-y-auto">
               {testResults.map((result, index) => (
-                <div 
-                  key={index} 
-                  className={`p-4 rounded-lg border ${
-                    result.working 
-                      ? 'bg-green-50 border-green-200' 
+                <div
+                  key={index}
+                  className={`p-4 rounded-lg border ${result.working
+                      ? 'bg-green-50 border-green-200'
                       : 'bg-red-50 border-red-200'
-                  }`}
+                    }`}
                 >
                   <div className="flex justify-between items-start">
                     <div className="flex-1">

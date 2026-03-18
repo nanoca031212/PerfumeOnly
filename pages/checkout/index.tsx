@@ -14,7 +14,7 @@ import FooterTPS from '@/components/layout/FooterTPS';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 export default function CheckoutPage() {
-    const { items, total } = useCart();
+    const { items, total, totalOriginal } = useCart();
     const { utmParams } = useUTM();
     const pixel = usePixel();
     const [clientSecret, setClientSecret] = useState('');
@@ -149,6 +149,9 @@ export default function CheckoutPage() {
                                 <div className="flex-1">
                                     <h3 className="font-medium text-gray-900">{item.title}</h3>
                                     <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+                                    <div className="flex items-center gap-2 mt-1">
+                                        <span className="text-xs line-through text-gray-400">£{(item.originalPrice || 200.00).toFixed(2)}</span>
+                                    </div>
                                 </div>
                                 <div className="text-right">
                                     <p className="font-bold text-gray-900">£{item.price.toFixed(2)}</p>
@@ -156,9 +159,19 @@ export default function CheckoutPage() {
                             </div>
                         ))}
                     </div>
-                    <div className="border-t mt-4 pt-4 flex justify-between items-center">
-                        <span className="font-bold text-lg">Total</span>
-                        <span className="font-bold text-lg">£{total.toFixed(2)}</span>
+                    <div className="border-t mt-4 pt-4 space-y-2">
+                        <div className="flex justify-between items-center text-sm text-gray-500">
+                            <span>Original total</span>
+                            <span className="line-through">£{totalOriginal.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between items-center text-sm text-green-600 font-medium">
+                            <span>Bundle savings</span>
+                            <span>-£{(totalOriginal - total).toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between items-center pt-2 border-t border-gray-100">
+                            <span className="font-bold text-lg text-gray-900">Final Price</span>
+                            <span className="font-bold text-2xl text-green-600">£{total.toFixed(2)}</span>
+                        </div>
                     </div>
                 </div>
 
@@ -170,7 +183,7 @@ export default function CheckoutPage() {
                 )}
 
                 {step === 'contact' ? (
-                    <div className="bg-white p-6 rounded-lg shadow-sm pb-10">
+                    <div className="bg-gray-50 p-6 rounded-lg shadow-sm pb-20">
                         <h2 className="text-xl font-bold mb-6">Contact Information</h2>
                         <form onSubmit={handleContactSubmit} className="space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

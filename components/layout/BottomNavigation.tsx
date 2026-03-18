@@ -30,10 +30,10 @@ export default function BottomNavigation({ className = '' }: BottomNavigationPro
     const handleScroll = () => {
       // Clear existing timeout
       clearTimeout(timeoutId)
-      
+
       // Show navigation
       setIsVisible(true)
-      
+
       // Hide after 3 seconds of no scrolling
       timeoutId = setTimeout(() => {
         setIsVisible(false)
@@ -45,7 +45,7 @@ export default function BottomNavigation({ className = '' }: BottomNavigationPro
     timeoutId = setTimeout(() => setIsVisible(false), 3000)
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
       clearTimeout(timeoutId)
@@ -103,81 +103,80 @@ export default function BottomNavigation({ className = '' }: BottomNavigationPro
 
   return (
     <>
-    <nav 
-      className={`fixed bottom-0 left-0 right-0 bg-gray-chip border-t border-gray-200 
-                 transition-transform duration-300 z-50 ${
-                   isVisible ? 'translate-y-0' : 'translate-y-full'
-                 } ${className}`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-around py-2">
-          {navigationItems.map((item) => {
-            const Icon = item.icon
-            
-            if (item.onClick) {
-              return (
-                <button
-                  key={item.label}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    console.log('Button clicked')
-                    item.onClick?.()
-                  }}
-                  type="button"
-                  className="flex flex-col items-center justify-center py-2 px-3 text-center min-w-[60px]
+      <nav
+        className={`fixed bottom-0 left-0 right-0 bg-gray-chip border-t border-gray-200 
+                 transition-transform duration-300 z-50 ${isVisible ? 'translate-y-0 mb-5' : 'translate-y-full'
+          } ${className}`}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-around py-2">
+            {navigationItems.map((item) => {
+              const Icon = item.icon
+
+              if (item.onClick) {
+                return (
+                  <button
+                    key={item.label}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      console.log('Button clicked')
+                      item.onClick?.()
+                    }}
+                    type="button"
+                    className="flex flex-col items-center justify-center py-2 px-3 text-center min-w-[60px]
                            hover:bg-gray-200 transition-colors rounded-lg group cursor-pointer"
+                  >
+                    <div className="relative mb-1">
+                      <Icon className="h-5 w-5 text-black group-hover:text-gray-700" />
+
+                      {/* Badge for cart count */}
+                      {item.count !== null && item.count > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-tps-red text-white text-xs 
+                                     rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                          {item.count > 99 ? '99+' : item.count}
+                        </span>
+                      )}
+                    </div>
+
+                    <span className="text-xs text-black font-medium leading-tight">
+                      {item.label}
+                    </span>
+                  </button>
+                )
+              }
+
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="flex flex-col items-center justify-center py-2 px-3 text-center min-w-[60px]
+                         hover:bg-gray-200 transition-colors rounded-lg group"
                 >
                   <div className="relative mb-1">
                     <Icon className="h-5 w-5 text-black group-hover:text-gray-700" />
-                    
+
                     {/* Badge for cart count */}
                     {item.count !== null && item.count > 0 && (
                       <span className="absolute -top-2 -right-2 bg-tps-red text-white text-xs 
-                                     rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                                   rounded-full h-5 w-5 flex items-center justify-center font-bold">
                         {item.count > 99 ? '99+' : item.count}
                       </span>
                     )}
                   </div>
-                  
+
                   <span className="text-xs text-black font-medium leading-tight">
                     {item.label}
                   </span>
-                </button>
+                </Link>
               )
-            }
-
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="flex flex-col items-center justify-center py-2 px-3 text-center min-w-[60px]
-                         hover:bg-gray-200 transition-colors rounded-lg group"
-              >
-                <div className="relative mb-1">
-                  <Icon className="h-5 w-5 text-black group-hover:text-gray-700" />
-                  
-                  {/* Badge for cart count */}
-                  {item.count !== null && item.count > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-tps-red text-white text-xs 
-                                   rounded-full h-5 w-5 flex items-center justify-center font-bold">
-                      {item.count > 99 ? '99+' : item.count}
-                    </span>
-                  )}
-                </div>
-                
-                <span className="text-xs text-black font-medium leading-tight">
-                  {item.label}
-                </span>
-              </Link>
-            )
-          })}
+            })}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
       {/* Login Modal */}
-      <LoginModal 
+      <LoginModal
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
         onLogin={(loggedUser) => {

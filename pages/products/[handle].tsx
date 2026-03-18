@@ -47,22 +47,22 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
       // Importar os mapeamentos do Stripe
       const stripeVariantMapping = await import('@/data/stripe_variant_mapping.json');
       const stripeProductMapping = await import('@/data/stripe_product_mapping.json');
-      
+
       // Buscar o ID do Stripe para este produto com type assertion
       const variantMapping = stripeVariantMapping.default as Record<string, string>;
       const productMapping = stripeProductMapping.default as Record<string, { price_id: string }>;
-      
+
       let stripeId = variantMapping[product.handle];
-      
+
       // Se não encontrar no mapeamento de variantes, tentar no mapeamento de produtos
       if (!stripeId && productMapping[product.handle]) {
         stripeId = productMapping[product.handle].price_id;
       }
-      
+
       if (!stripeId) {
         throw new Error(`Stripe ID not found for product: ${product.handle}`);
       }
-      
+
       const cartItem = {
         id: product.id,
         handle: product.handle, // Usar o handle como identificador
@@ -70,9 +70,10 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
         title: product.title,
         subtitle: `Eau de Parfum Spray - 100ML`,
         price: typeof product.price.regular === 'string' ? parseFloat(product.price.regular) : product.price.regular,
+        originalPrice: 200.00,
         image: Array.isArray(product.images) ? product.images[0] : product.images.main[0]
       };
-      
+
       addItem(cartItem, quantity);
     } catch (error) {
       console.error('Error adding product to cart:', error);
@@ -88,13 +89,13 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
     <Layout hidePromoBanner={false} hideMagentaBanner={true}>
       <Head>
         <title>{`${product.seo?.title || product.title} | Perfumes UK`}</title>
-        <meta 
-          name="description" 
-          content={product.seo?.description || product.description} 
+        <meta
+          name="description"
+          content={product.seo?.description || product.description}
         />
-        <meta 
-          name="keywords" 
-          content={product.seo?.keywords?.join(', ') || product.tags.join(', ')} 
+        <meta
+          name="keywords"
+          content={product.seo?.keywords?.join(', ') || product.tags.join(', ')}
         />
         <meta property="og:title" content={product.title} />
         <meta property="og:description" content={product.description} />
@@ -127,15 +128,15 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 px-4 pb-8 bg-white!important">
           {/* Product Images */}
           <div className="flex flex-col items-center">
-                          {/* Main Image */}
-              <div className="aspect-square bg-white rounded-lg overflow-hidden max-w-[500px] w-full">
-                {allImages.length > 0 ? (
-                  <Image
-                    src={allImages[selectedImage]}
-                    alt={product.title}
-                    width={500}
-                    height={500}
-                    className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
+            {/* Main Image */}
+            <div className="aspect-square bg-white rounded-lg overflow-hidden max-w-[500px] w-full">
+              {allImages.length > 0 ? (
+                <Image
+                  src={allImages[selectedImage]}
+                  alt={product.title}
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
                   priority
                 />
               ) : (
@@ -182,7 +183,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
                 <div className="flex items-center gap-2 whitespace-nowrap">
                   <span>Product code: {product.sku}</span>
                   <span>|</span>
-                  <span>RRP £170.00</span>
+                  <span>RRP £200.00</span>
                   <span>|</span>
                 </div>
                 <span className="text-[#666666]">£ {product.price.regular} PER 100ml</span>
@@ -199,16 +200,16 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[20px] text-gray-500">50ML - </span>
                 <span className="text-[25px] font-medium text-[#e0001b]">£{product.price.regular}</span>
-                <span className="text-[15px] text-black">Save £{(170 - parseFloat(product.price.regular.toString())).toFixed(2)}</span>
+                <span className="text-[15px] text-black">Save £{(200 - parseFloat(product.price.regular.toString())).toFixed(2)}</span>
                 <div className="flex ml-2">
                   {[1, 2, 3, 4, 4.5].map((star, idx) => (
-                    <Star 
+                    <Star
                       key={idx}
                       className={`h-4 w-4 ${star === 4.5 ? 'fill-[50%]' : 'fill-current'} text-black`}
                     />
                   ))}
                 </div>
-              </div>           
+              </div>
 
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex border border-gray-300">
@@ -222,7 +223,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
                 </button>
               </div>
 
-              <button 
+              <button
                 onClick={handleAddToCart}
                 className="w-full bg-black text-white py-3 mb-4 uppercase tracking-wide font-medium"
               >
@@ -254,26 +255,26 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
 
             {/* Description */}
             <div className="my-8">
-                <div className="font-bold mb-4 text-lg">Product Description</div>
-                <div className="space-y-4 text-sm text-gray-700">
-                  <p>
-                    Experience luxury at an exceptional value with our exclusive Multi-Brand Promotion. These carefully curated fragrance sets, originally priced at <span className="font-bold text-black line-through">£170.00</span>, are now available for just <span className="font-bold text-black">£{product.price.regular}</span>, offering you a remarkable savings.
-                  </p>
-                  
-                  <p>
-                    Each set has been thoughtfully assembled to showcase the finest fragrances from world-renowned luxury brands. Our selection process ensures that every combination delivers a harmonious blend of scents, perfect for any occasion or preference.
-                  </p>
+              <div className="font-bold mb-4 text-lg">Product Description</div>
+              <div className="space-y-4 text-sm text-gray-700">
+                <p>
+                  Experience luxury at an exceptional value with our exclusive Multi-Brand Promotion. These carefully curated fragrance sets, originally priced at <span className="font-bold text-black line-through">£200.00</span>, are now available for just <span className="font-bold text-black">£{product.price.regular}</span>, offering you a remarkable savings.
+                </p>
 
-                  <div className="mt-6">
-                    <p className="font-medium mb-2">Set Contents:</p>
-                    <div dangerouslySetInnerHTML={{ __html: product.description_html || '' }} />
-                  </div>
+                <p>
+                  Each set has been thoughtfully assembled to showcase the finest fragrances from world-renowned luxury brands. Our selection process ensures that every combination delivers a harmonious blend of scents, perfect for any occasion or preference.
+                </p>
 
-                  <p className="mt-4">
-                    This limited-time offer represents an unprecedented opportunity to acquire premium fragrances at a fraction of their regular retail price. Each fragrance in the set maintains its full-size integrity and authentic luxury quality.
-                  </p>
+                <div className="mt-6">
+                  <p className="font-medium mb-2">Set Contents:</p>
+                  <div dangerouslySetInnerHTML={{ __html: product.description_html || '' }} />
                 </div>
+
+                <p className="mt-4">
+                  This limited-time offer represents an unprecedented opportunity to acquire premium fragrances at a fraction of their regular retail price. Each fragrance in the set maintains its full-size integrity and authentic luxury quality.
+                </p>
               </div>
+            </div>
           </div>
 
           {/* Related Products Section */}
@@ -282,7 +283,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
               <h2 className="text-2xl font-bold mb-8 text-center">You May Also Like</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {relatedProducts?.slice(0, 8).map((relatedProduct, index) => (
-                  <ProductCardTPS 
+                  <ProductCardTPS
                     key={relatedProduct.id}
                     product={relatedProduct}
                     priority={index < 4}
@@ -424,7 +425,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const products = getAllProducts()
-  
+
   const paths = products.map((product: Product) => ({
     params: { handle: product.handle }
   }))
@@ -437,7 +438,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const handle = params?.handle as string
-  
+
   if (!handle) {
     return {
       notFound: true
@@ -456,8 +457,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const allProducts = getAllProducts()
   const relatedProducts = allProducts
     .filter((p: Product) => p.id !== product.id) // Excluir o produto atual
-    .filter((p: Product) => 
-      p.category === product.category || 
+    .filter((p: Product) =>
+      p.category === product.category ||
       p.brands?.some((b: string) => product.brands?.includes(b))
     )
     .slice(0, 8) // Limitar a 8 produtos relacionados

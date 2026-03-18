@@ -36,7 +36,7 @@ export default function ProductCardTPS({ product, className = '', priority = fal
     }
     return price.toFixed(2)
   }
-  
+
   const hasDiscount = product.price.discount_percent > 0
 
   // Rating (placeholder - 4 de 5 estrelas)
@@ -65,8 +65,8 @@ export default function ProductCardTPS({ product, className = '', priority = fal
   return (
     <div className={`bg-white flex flex-col h-full ${className}`}>
       {/* Product Link - flex container para espaçamento uniforme */}
-      <Link 
-        href={`/products/${product.handle}`} 
+      <Link
+        href={`/products/${product.handle}`}
         className="flex flex-col flex-grow"
         onClick={handleViewContent}
         suppressHydrationWarning
@@ -76,10 +76,10 @@ export default function ProductCardTPS({ product, className = '', priority = fal
           {/* Viewers Counter */}
           {product.popularity > 0 && (
             <div className="absolute top-2 left-2 bg-white/80 backdrop-blur-sm text-xs py-1 px-2 rounded-full z-10">
-              {product.popularity} others viewed<br/>in last 8 hrs
+              {product.popularity} others viewed<br />in last 8 hrs
             </div>
           )}
-          
+
           {/* Product Image */}
           {!imageError ? (
             <div className="aspect-square relative">
@@ -99,7 +99,7 @@ export default function ProductCardTPS({ product, className = '', priority = fal
             </div>
           )}
 
-           {/* Promotional Banner */}
+          {/* Promotional Banner */}
           <div className="bg-white border border-black text-center text-xs py-1 mb-2">
             UP TO 75% OFF APPLIED AT CHECKOUT
           </div>
@@ -122,7 +122,7 @@ export default function ProductCardTPS({ product, className = '', priority = fal
               <span className="text-xs font-bold">NEW</span>
             </div>
           )}
-          
+
           {/* Free Tester Badge */}
           {product.tags?.includes('tester') && (
             <div className="absolute top-2 right-2 bg-white border border-black rounded-full w-16 h-16 flex items-center justify-center">
@@ -139,7 +139,7 @@ export default function ProductCardTPS({ product, className = '', priority = fal
 
         {/* Product Info - flex grow para empurrar botão para baixo */}
         <div className="text-center space-y-2 flex flex-col flex-grow">
-          
+
           {/* Brand */}
           <div className="text-sm font-bold uppercase tracking-wide text-[#333333] mb-1">
             {primaryBrand}
@@ -166,10 +166,10 @@ export default function ProductCardTPS({ product, className = '', priority = fal
             <div className="flex flex-col">
               <div className="flex items-center gap-2 text-sm mt-1">
                 <span className="text-gray-500">£{formatPrice(product.price.regular)}</span>
-                <span className="text-vetps-red font-bold">Save £{(170 - parseFloat(product.price.regular.toString())).toFixed(2)}</span>
+                <span className="text-vetps-red font-bold">Save £120.01</span>
               </div>
             </div>
-            
+
             {/* Sponsored Tag if applicable */}
             {product.featured && (
               <div className="text-xs text-gray-500">
@@ -182,7 +182,7 @@ export default function ProductCardTPS({ product, className = '', priority = fal
 
       {/* CTA Button - sempre na parte inferior */}
       <div className="mt-4">
-        <Link 
+        <Link
           href={`/products/${product.handle}`}
           className="block w-full bg-black rounded-[4px] text-white py-3 text-x1 font-thin uppercase tracking-wide
                    hover:bg-gray-900 transition-colors duration-200 text-center"

@@ -15,6 +15,7 @@ interface CartItem {
   price: number
   image: string
   quantity: number
+  originalPrice?: number
 }
 
 interface CartContextType {
@@ -26,6 +27,7 @@ interface CartContextType {
   isOpen: boolean
   setIsOpen: (isOpen: boolean) => void
   total: number
+  totalOriginal: number
   initiateCheckout: () => void
   utm_campaign: string | null
 }
@@ -138,6 +140,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         isOpen,
         setIsOpen,
         total,
+        totalOriginal: items.reduce((sum, item) => sum + ((item.originalPrice || item.price) * item.quantity), 0),
         initiateCheckout,
         utm_campaign: utmParams.utm_campaign || null
       }}
