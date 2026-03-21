@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const bodyUtms = req.body?.utmParams || {};
     const queryUtms: any = {};
     const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'src', 'sck', 'xcod'];
-    
+
     utmKeys.forEach(key => {
       if (req.query[key]) {
         queryUtms[key] = req.query[key];
@@ -23,11 +23,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log('📦 UTMs consolidadas:', utmParams);
 
     const origin = process.env.NEXT_PUBLIC_SITE_URL || 'https://theperfumeuk.shop';
-    
+
     // Extrair dados para rastreamento (Facebook CAPI)
     const fbp = req.cookies._fbp || '';
     const fbc = req.cookies._fbc || '';
-    
+
     // Criar objeto de metadados base
     const rawMetadata: any = {
       utm_campaign: utmParams.utm_campaign,
@@ -56,7 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           price_data: {
             currency: 'gbp',
             product: 'prod_UAKeoXZR8FR5Qg',
-            unit_amount: 7999,
+            unit_amount: 4999,
           },
           quantity: 1,
         },
@@ -95,9 +95,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({ url: finalUrl });
   } catch (error: any) {
     console.error('Erro ao criar sessão de checkout:', error);
-    return res.status(error.statusCode || 500).json({ 
-      error: 'Erro ao criar checkout', 
-      details: error.message 
+    return res.status(error.statusCode || 500).json({
+      error: 'Erro ao criar checkout',
+      details: error.message
     });
   }
 }

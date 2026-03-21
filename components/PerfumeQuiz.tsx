@@ -868,9 +868,9 @@ export default function WWESummerSlamQuiz() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const discount = correctAnswers === 6 ? 120.01 : correctAnswers * 20
-  const originalPrice = 200.00
-  const finalPrice = Math.max(originalPrice - discount, 79.99)
+  const discount = correctAnswers === 6 ? 130.00 : correctAnswers * 20
+  const originalPrice = 179.99
+  const finalPrice = Math.max(originalPrice - discount, 49.99)
 
   useTrackVSLView(); // Comentado junto com o VSL
 
