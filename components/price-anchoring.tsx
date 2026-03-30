@@ -26,9 +26,9 @@ const kits: Kit[] = [
     savings: 120.00,
     description: "3 Premium Fragrance Collection",
     items: [
-      "Elegant Rose & Bergamot (50ml)",
-      "Mysterious Oud & Vanilla (50ml)",
-      "Fresh Citrus & Cedar (50ml)",
+      "Elegant Rose & Bergamot (100ml)",
+      "Mysterious Oud & Vanilla (100ml)",
+      "Fresh Citrus & Cedar (100ml)",
       "Premium Gift Box",
       "Exclusive Online Access",
       "Limited Time Offer"

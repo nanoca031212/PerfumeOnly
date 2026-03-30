@@ -198,7 +198,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
             {/* Price and Size Selection */}
             <div className="w-full mb-2">
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-[20px] text-gray-500">50ML - </span>
+                <span className="text-[20px] text-gray-500">100ML - </span>
                 <span className="text-[25px] font-medium text-[#e0001b]">£{product.price.regular}</span>
                 <span className="text-[15px] text-black">Save £{(169.99 - parseFloat(product.price.regular.toString())).toFixed(2)}</span>
                 <div className="flex ml-2">
