@@ -3,25 +3,26 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { Product } from '@/types/product'
 import { getAllProducts, getProductByHandle } from '@/lib/products'
-// Import removido - função não existe mais
 import { useUTM } from '@/hooks/useUTM'
 import Layout from '@/components/layout/Layout'
 import PromotionalCarousel from '@/components/ui/PromotionalCarousel'
 import ProductCardTPS from '@/components/products/ProductCardTPS'
-import { ArrowLeft, Heart, ShoppingBag, Star, Minus, Plus, Share2, ChevronLeft, ChevronRight } from 'lucide-react'
+import BundleSelector, { BundleSelection } from '@/components/products/BundleSelector'
+import { Heart, Star } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import ReviewSection from '@/components/products/ReviewSection'
 import Link from 'next/link'
 import Image from 'next/image'
+
 interface ProductPageProps {
   product: Product
   relatedProducts: Product[]
+  allProducts: Product[]
 }
 
-export default function ProductPage({ product, relatedProducts }: ProductPageProps) {
+export default function ProductPage({ product, relatedProducts, allProducts }: ProductPageProps) {
   const { addItem } = useCart()
   const [selectedImage, setSelectedImage] = useState(0)
-  const [quantity, setQuantity] = useState(1)
   const [isWishlisted, setIsWishlisted] = useState(false)
   const { utmParams } = useUTM()
 
@@ -38,47 +39,28 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
     }
   })().filter(Boolean)
 
-  const handleQuantityChange = (delta: number) => {
-    setQuantity(prev => Math.max(1, prev + delta))
-  }
-
-  const handleAddToCart = async () => {
+  const handleBundleAddToCart = async (selection: BundleSelection) => {
     try {
-      // Importar os mapeamentos do Stripe
-      const stripeVariantMapping = await import('@/data/stripe_variant_mapping.json');
       const stripeProductMapping = await import('@/data/stripe_product_mapping.json');
-
-      // Buscar o ID do Stripe para este produto com type assertion
-      const variantMapping = stripeVariantMapping.default as Record<string, string>;
       const productMapping = stripeProductMapping.default as Record<string, { price_id: string }>;
 
-      let stripeId = variantMapping[product.handle];
-
-      // Se não encontrar no mapeamento de variantes, tentar no mapeamento de produtos
-      if (!stripeId && productMapping[product.handle]) {
-        stripeId = productMapping[product.handle].price_id;
+      // Add each fragrance in the bundle as a cart item
+      for (const frag of selection.fragrances) {
+        const stripeId = productMapping[frag.handle]?.price_id || ''
+        const cartItem = {
+          id: frag.id,
+          handle: frag.handle,
+          stripeId,
+          title: frag.title,
+          subtitle: `Eau de Parfum Spray - 100ML`,
+          price: selection.totalPrice / selection.fragrances.length,
+          originalPrice: (selection.totalPrice / selection.fragrances.length) * 3, // Estimated UK RRP
+          image: Array.isArray(frag.images) ? frag.images[0] : (frag.images as any)?.main?.[0] || ''
+        }
+        addItem(cartItem, 1)
       }
-
-      // Se ainda não encontrou, o produto ainda não foi registrado no Stripe
-      // — o item vai para o carrinho e o erro aparecerá no checkout
-      if (!stripeId) {
-        console.warn(`Stripe ID not found for product: ${product.handle} — item added without price_id`);
-      }
-
-      const cartItem = {
-        id: product.id,
-        handle: product.handle,
-        stripeId: stripeId || '',
-        title: product.title,
-        subtitle: `Eau de Parfum Spray - 100ML`,
-        price: typeof product.price.regular === 'string' ? parseFloat(product.price.regular) : product.price.regular,
-        originalPrice: 169.99,
-        image: Array.isArray(product.images) ? product.images[0] : (product.images as any).main?.[0] || ''
-      };
-
-      addItem(cartItem, quantity);
     } catch (error) {
-      console.error('Error adding product to cart:', error);
+      console.error('Error adding bundle to cart:', error)
     }
   }
 
@@ -185,7 +167,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
                 <div className="flex items-center gap-2 whitespace-nowrap">
                   <span>Product code: {product.sku}</span>
                   <span>|</span>
-                  <span>RRP £169.99</span>
+                  <span>RRP £{product.price.original_price || 169.99}</span>
                   <span>|</span>
                 </div>
                 <span className="text-[#666666]">£ {product.price.regular} PER 100ml</span>
@@ -193,45 +175,16 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
             </div>
 
             {/* Discount Banner */}
-            <div className="border border-black w-full text-center py-2 mb-6">
-              <span className="font-light text-black">UP TO 70% OFF APPLIED AT CHECKOUT</span>
+            <div className="border border-black w-full font-bold text-center py-2 mb-4">
+              <span className="font-bold  text-black">Pick any 3 fragrances you love for only £49.99</span>
             </div>
 
-            {/* Price and Size Selection */}
-            <div className="w-full mb-2">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[15px] text-gray-500">100ML - </span>
-                <span className="text-[25px] font-medium text-[#e0001b]">£{product.price.regular}</span>
-                <span className="text-[15px] text-black">Save £{(169.99 - parseFloat(product.price.regular.toString())).toFixed(2)}</span>
-                <div className="flex ml-2">
-                  {[1, 2, 3, 4, 4.5].map((star, idx) => (
-                    <Star
-                      key={idx}
-                      className={`h-4 w-4 ${star === 4.5 ? 'fill-[50%]' : 'fill-current'} text-black`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4 mb-6">
-                <div className="flex border border-gray-300">
-                  <button onClick={() => handleQuantityChange(-1)} className="px-4 py-2 text-xl">-</button>
-                  <div className="px-4 py-2 border-x border-gray-300">{quantity}</div>
-                  <button onClick={() => handleQuantityChange(1)} className="px-4 py-2 text-xl">+</button>
-                </div>
-                <button className="flex items-center gap-2">
-                  <Heart size={20} />
-                  <span>Add to wishlist</span>
-                </button>
-              </div>
-
-              <button
-                onClick={handleAddToCart}
-                className="w-full bg-black text-white py-3 mb-4 uppercase tracking-wide font-medium"
-              >
-                Add to bag
-              </button>
-            </div>
+            {/* Bundle Selector */}
+            <BundleSelector
+              currentProduct={product}
+              allProducts={allProducts}
+              onAddToCart={handleBundleAddToCart}
+            />
 
 
             {/* Delivery Options */}
@@ -260,7 +213,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
               <div className="font-bold mb-4 text-lg">Product Description</div>
               <div className="space-y-4 text-sm text-gray-700">
                 <p>
-                  Experience luxury at an exceptional value with our exclusive Multi-Brand Promotion. These carefully curated fragrance sets, originally priced at <span className="font-bold text-black line-through">£169.99</span>, are now available for just <span className="font-bold text-black">£{product.price.regular}</span>, offering you a remarkable savings.
+                  Experience luxury at an exceptional value with our exclusive Multi-Brand Promotion. These premium fragrances, with UK market prices up to <span className="font-bold text-black line-through">£{product.price.original_price || 290.00}</span>, are now available starting from just <span className="font-bold text-black">£{product.price.regular}</span>, offering you a remarkable savings.
                 </p>
 
                 <p>
@@ -455,21 +408,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  // Obter produtos relacionados (mesma categoria ou marca)
+  // Obter todos os produtos para o Bundle Selector
   const allProducts = getAllProducts()
   const relatedProducts = allProducts
-    .filter((p: Product) => p.id !== product.id) // Excluir o produto atual
+    .filter((p: Product) => p.id !== product.id)
     .filter((p: Product) =>
       p.category === product.category ||
       p.brands?.some((b: string) => product.brands?.includes(b))
     )
-    .slice(0, 8) // Limitar a 8 produtos relacionados
+    .slice(0, 8)
 
   return {
     props: {
       product,
-      relatedProducts
+      relatedProducts,
+      allProducts
     },
-    revalidate: 3600 // Revalidar a cada hora
+    revalidate: 3600
   }
 }

@@ -3,12 +3,12 @@
     {
       "id": "1",
       "handle": "212-men-carolina-herrera-edt",
-      "title": "212 Men Carolina Herrera Edt",
+      "title": "212 Men",
       "description": "Experience the luxurious scent of 212 Men Carolina Herrera Edt. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>212 Men Carolina Herrera Edt</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0001",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -38,18 +38,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.474Z",
-      "updated_at": "2026-04-14T01:23:43.474Z"
+      "created_at": "2026-04-14T04:27:55.211Z",
+      "updated_at": "2026-04-14T04:27:55.214Z"
     },
     {
       "id": "2",
       "handle": "alien-eau-de-parfum",
-      "title": "Alien Eau de Parfum",
+      "title": "Mugler Alien Eau Extraordinaire Mugler",
       "description": "Experience the luxurious scent of Alien Eau de Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Alien Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0002",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -78,8 +78,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.476Z",
-      "updated_at": "2026-04-14T01:23:43.476Z"
+      "created_at": "2026-04-14T04:27:55.215Z",
+      "updated_at": "2026-04-14T04:27:55.215Z"
     },
     {
       "id": "3",
@@ -89,7 +89,7 @@
       "description_html": "<div class=\"product-description\"><h3>Amadeirado Floral Fragrância Marcante</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0003",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -118,18 +118,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.477Z",
-      "updated_at": "2026-04-14T01:23:43.477Z"
+      "created_at": "2026-04-14T04:27:55.216Z",
+      "updated_at": "2026-04-14T04:27:55.216Z"
     },
     {
       "id": "4",
       "handle": "angel-eau-de-toilette",
-      "title": "Angel Eau de Toilette",
+      "title": "Mugler Angel Mugler",
       "description": "Experience the luxurious scent of Angel Eau de Toilette. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Angel Eau de Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0004",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -158,8 +158,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.478Z",
-      "updated_at": "2026-04-14T01:23:43.478Z"
+      "created_at": "2026-04-14T04:27:55.217Z",
+      "updated_at": "2026-04-14T04:27:55.217Z"
     },
     {
       "id": "5",
@@ -169,7 +169,7 @@
       "description_html": "<div class=\"product-description\"><h3>Angel Mugler Les Perfuma Corps</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0005",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -198,18 +198,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.479Z",
-      "updated_at": "2026-04-14T01:23:43.479Z"
+      "created_at": "2026-04-14T04:27:55.219Z",
+      "updated_at": "2026-04-14T04:27:55.219Z"
     },
     {
       "id": "6",
       "handle": "armaf-club-de-nuit-intense",
-      "title": "Armaf Club De Nuit Intense",
+      "title": "Armaf Club de Nuit Intense Man Armaf",
       "description": "Experience the luxurious scent of Armaf Club De Nuit Intense. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Armaf Club De Nuit Intense</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0006",
       "price": {
-        "regular": 49.99,
+        "regular": 25.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -240,8 +240,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.482Z",
-      "updated_at": "2026-04-14T01:23:43.482Z"
+      "created_at": "2026-04-14T04:27:55.236Z",
+      "updated_at": "2026-04-14T04:27:55.236Z"
     },
     {
       "id": "7",
@@ -251,7 +251,7 @@
       "description_html": "<div class=\"product-description\"><h3>Armani Beauty  Sì Eau de Parfum Refilável</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0007",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -280,8 +280,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.483Z",
-      "updated_at": "2026-04-14T01:23:43.483Z"
+      "created_at": "2026-04-14T04:27:55.237Z",
+      "updated_at": "2026-04-14T04:27:55.237Z"
     },
     {
       "id": "8",
@@ -291,7 +291,7 @@
       "description_html": "<div class=\"product-description\"><h3>Armani Beauty Eau pour Homme Pour homme</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0008",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -322,18 +322,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.486Z",
-      "updated_at": "2026-04-14T01:23:43.486Z"
+      "created_at": "2026-04-14T04:27:55.265Z",
+      "updated_at": "2026-04-14T04:27:55.265Z"
     },
     {
       "id": "9",
       "handle": "armani-beauty-stronger-with-you-intensely",
-      "title": "Armani Beauty Stronger With You Intensely",
+      "title": "Emporio Armani Stronger With You",
       "description": "Experience the luxurious scent of Armani Beauty Stronger With You Intensely. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Armani Beauty Stronger With You Intensely</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0009",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -363,8 +363,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.488Z",
-      "updated_at": "2026-04-14T01:23:43.488Z"
+      "created_at": "2026-04-14T04:27:55.272Z",
+      "updated_at": "2026-04-14T04:27:55.272Z"
     },
     {
       "id": "10",
@@ -374,7 +374,7 @@
       "description_html": "<div class=\"product-description\"><h3>Armani Code Giorgio Armani</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0010",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -406,8 +406,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.490Z",
-      "updated_at": "2026-04-14T01:23:43.490Z"
+      "created_at": "2026-04-14T04:27:55.289Z",
+      "updated_at": "2026-04-14T04:27:55.289Z"
     },
     {
       "id": "11",
@@ -417,7 +417,7 @@
       "description_html": "<div class=\"product-description\"><h3>Azzaro Pour Homme Eau De Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0011",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -448,18 +448,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.493Z",
-      "updated_at": "2026-04-14T01:23:43.493Z"
+      "created_at": "2026-04-14T04:27:55.298Z",
+      "updated_at": "2026-04-14T04:27:55.298Z"
     },
     {
       "id": "12",
       "handle": "bad-boy-extreme-eau-de-parfum",
-      "title": "Bad Boy Extreme Eau de Parfum",
+      "title": "Bad Boy Carolina Herrera",
       "description": "Experience the luxurious scent of Bad Boy Extreme Eau de Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Bad Boy Extreme Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0012",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -489,18 +489,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.494Z",
-      "updated_at": "2026-04-14T01:23:43.494Z"
+      "created_at": "2026-04-14T04:27:55.306Z",
+      "updated_at": "2026-04-14T04:27:55.306Z"
     },
     {
       "id": "13",
       "handle": "black-opium-eau-de-parfum",
-      "title": "Black Opium Eau de Parfum",
+      "title": "YSL Black Opium Yves Saint Laurent",
       "description": "Experience the luxurious scent of Black Opium Eau de Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Black Opium Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0013",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -529,18 +529,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.496Z",
-      "updated_at": "2026-04-14T01:23:43.496Z"
+      "created_at": "2026-04-14T04:27:55.322Z",
+      "updated_at": "2026-04-14T04:27:55.322Z"
     },
     {
       "id": "14",
       "handle": "bleu-de-chanel-eau-de-toilette",
-      "title": "Bleu De Chanel Eau De Toilette",
+      "title": "Bleu de Chanel Chanel",
       "description": "Experience the luxurious scent of Bleu De Chanel Eau De Toilette. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Bleu De Chanel Eau De Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0014",
       "price": {
-        "regular": 49.99,
+        "regular": 28.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -570,8 +570,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.498Z",
-      "updated_at": "2026-04-14T01:23:43.498Z"
+      "created_at": "2026-04-14T04:27:55.324Z",
+      "updated_at": "2026-04-14T04:27:55.324Z"
     },
     {
       "id": "15",
@@ -581,7 +581,7 @@
       "description_html": "<div class=\"product-description\"><h3>Bleu De Chanel Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0015",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -611,8 +611,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.499Z",
-      "updated_at": "2026-04-14T01:23:43.499Z"
+      "created_at": "2026-04-14T04:27:55.327Z",
+      "updated_at": "2026-04-14T04:27:55.327Z"
     },
     {
       "id": "16",
@@ -622,7 +622,7 @@
       "description_html": "<div class=\"product-description\"><h3>Boss The Scent Hugo Boss</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0016",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -652,18 +652,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.501Z",
-      "updated_at": "2026-04-14T01:23:43.501Z"
+      "created_at": "2026-04-14T04:27:55.367Z",
+      "updated_at": "2026-04-14T04:27:55.367Z"
     },
     {
       "id": "17",
       "handle": "bottled-infinite",
-      "title": "Bottled Infinite",
+      "title": "Boss Bottled Infinite Hugo Boss",
       "description": "Experience the luxurious scent of Bottled Infinite. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Bottled Infinite</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0017",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -694,8 +694,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.503Z",
-      "updated_at": "2026-04-14T01:23:43.503Z"
+      "created_at": "2026-04-14T04:27:55.374Z",
+      "updated_at": "2026-04-14T04:27:55.374Z"
     },
     {
       "id": "18",
@@ -705,7 +705,7 @@
       "description_html": "<div class=\"product-description\"><h3>Burberry Her Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0018",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -735,18 +735,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.505Z",
-      "updated_at": "2026-04-14T01:23:43.505Z"
+      "created_at": "2026-04-14T04:27:55.376Z",
+      "updated_at": "2026-04-14T04:27:55.376Z"
     },
     {
       "id": "19",
       "handle": "bvlgari-man-in-black-parfum",
-      "title": "Bvlgari Man In Black Parfum",
+      "title": "Bulgari In Black Bulgari",
       "description": "Experience the luxurious scent of Bvlgari Man In Black Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Bvlgari Man In Black Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0019",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -776,18 +776,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.506Z",
-      "updated_at": "2026-04-14T01:23:43.506Z"
+      "created_at": "2026-04-14T04:27:55.379Z",
+      "updated_at": "2026-04-14T04:27:55.379Z"
     },
     {
       "id": "20",
       "handle": "byredo-rose-of-no-man-s-land",
-      "title": "Byredo Rose Of No Man's Land",
+      "title": "Byredo Rose of No Man's Land Byredo",
       "description": "Experience the luxurious scent of Byredo Rose Of No Man's Land. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Byredo Rose Of No Man's Land</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0020",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -818,18 +818,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.508Z",
-      "updated_at": "2026-04-14T01:23:43.508Z"
+      "created_at": "2026-04-14T04:27:55.382Z",
+      "updated_at": "2026-04-14T04:27:55.382Z"
     },
     {
       "id": "21",
       "handle": "carolina-herrera-212-vip-black",
-      "title": "Carolina Herrera 212 Vip Black",
+      "title": "Miss 212 Carolina Herrera",
       "description": "Experience the luxurious scent of Carolina Herrera 212 Vip Black. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Carolina Herrera 212 Vip Black</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0021",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -859,18 +859,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.510Z",
-      "updated_at": "2026-04-14T01:23:43.510Z"
+      "created_at": "2026-04-14T04:27:55.384Z",
+      "updated_at": "2026-04-14T04:27:55.384Z"
     },
     {
       "id": "22",
       "handle": "carolina-herrera-212-vip-rose",
-      "title": "Carolina Herrera 212 Vip Rose",
+      "title": "212 VIP Rose Carolina Herrera",
       "description": "Experience the luxurious scent of Carolina Herrera 212 Vip Rose. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Carolina Herrera 212 Vip Rose</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0022",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -899,18 +899,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.511Z",
-      "updated_at": "2026-04-14T01:23:43.511Z"
+      "created_at": "2026-04-14T04:27:55.385Z",
+      "updated_at": "2026-04-14T04:27:55.385Z"
     },
     {
       "id": "23",
       "handle": "carolina-herrera-good",
-      "title": "Carolina Herrera Good",
+      "title": "Good Girl Carolina Herrera",
       "description": "Experience the luxurious scent of Carolina Herrera Good. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Carolina Herrera Good</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0023",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -940,18 +940,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.512Z",
-      "updated_at": "2026-04-14T01:23:43.512Z"
+      "created_at": "2026-04-14T04:27:55.402Z",
+      "updated_at": "2026-04-14T04:27:55.402Z"
     },
     {
       "id": "24",
       "handle": "chlo-eau-de-parfum",
-      "title": "Chloé Eau De Parfum",
+      "title": "Chloe Signature Chloe",
       "description": "Experience the luxurious scent of Chloé Eau De Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Chloé Eau De Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0024",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -980,18 +980,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.513Z",
-      "updated_at": "2026-04-14T01:23:43.513Z"
+      "created_at": "2026-04-14T04:27:55.403Z",
+      "updated_at": "2026-04-14T04:27:55.403Z"
     },
     {
       "id": "25",
       "handle": "coco-mademoiselle-eau-de-parfum",
-      "title": "Coco Mademoiselle Eau de Parfum",
+      "title": "Coco Mademoiselle Chanel",
       "description": "Experience the luxurious scent of Coco Mademoiselle Eau de Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Coco Mademoiselle Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0025",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1021,18 +1021,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.515Z",
-      "updated_at": "2026-04-14T01:23:43.515Z"
+      "created_at": "2026-04-14T04:27:55.405Z",
+      "updated_at": "2026-04-14T04:27:55.405Z"
     },
     {
       "id": "26",
       "handle": "creed-aventus",
-      "title": "Creed Aventus",
+      "title": "Creed Aventus Creed",
       "description": "Experience the luxurious scent of Creed Aventus. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Creed Aventus</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0026",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1062,18 +1062,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.517Z",
-      "updated_at": "2026-04-14T01:23:43.517Z"
+      "created_at": "2026-04-14T04:27:55.421Z",
+      "updated_at": "2026-04-14T04:27:55.421Z"
     },
     {
       "id": "27",
       "handle": "creed-love-in-white",
-      "title": "Creed Love In White",
+      "title": "Creed Love in White Creed",
       "description": "Experience the luxurious scent of Creed Love In White. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Creed Love In White</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0027",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1102,18 +1102,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.518Z",
-      "updated_at": "2026-04-14T01:23:43.518Z"
+      "created_at": "2026-04-14T04:27:55.423Z",
+      "updated_at": "2026-04-14T04:27:55.423Z"
     },
     {
       "id": "28",
       "handle": "de-nicho-layton",
-      "title": "De Nicho Layton",
+      "title": "Parfums de Marly Layton",
       "description": "Experience the luxurious scent of De Nicho Layton. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>De Nicho Layton</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0028",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1121,9 +1121,9 @@
       },
       "category": "Fragrances",
       "brands": [
-        "Premium Fragrance"
+        "Parfums de Marly"
       ],
-      "primary_brand": "Premium Fragrance",
+      "primary_brand": "Parfums de Marly",
       "tags": [
         "perfume",
         "uk",
@@ -1143,18 +1143,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.519Z",
-      "updated_at": "2026-04-14T01:23:43.519Z"
+      "created_at": "2026-04-14T04:27:55.424Z",
+      "updated_at": "2026-04-14T04:27:55.424Z"
     },
     {
       "id": "29",
       "handle": "dior-hypnotic-poison-eau-de-toillete",
-      "title": "Dior Hypnotic Poison Eau De Toillete",
+      "title": "Dior Hypnotic Poison Dior",
       "description": "Experience the luxurious scent of Dior Hypnotic Poison Eau De Toillete. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Dior Hypnotic Poison Eau De Toillete</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0029",
       "price": {
-        "regular": 49.99,
+        "regular": 28.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1184,18 +1184,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.520Z",
-      "updated_at": "2026-04-14T01:23:43.520Z"
+      "created_at": "2026-04-14T04:27:55.438Z",
+      "updated_at": "2026-04-14T04:27:55.438Z"
     },
     {
       "id": "30",
       "handle": "dior-j-adore-l-or-essence-de-parfum",
-      "title": "Dior J'adore L'or Essence De Parfum",
+      "title": "Dior J'adore Dior",
       "description": "Experience the luxurious scent of Dior J'adore L'or Essence De Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Dior J'adore L'or Essence De Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0030",
       "price": {
-        "regular": 49.99,
+        "regular": 28.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1224,18 +1224,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.521Z",
-      "updated_at": "2026-04-14T01:23:43.521Z"
+      "created_at": "2026-04-14T04:27:55.439Z",
+      "updated_at": "2026-04-14T04:27:55.439Z"
     },
     {
       "id": "31",
       "handle": "dior-sauvage-eau-de-toilette",
-      "title": "Dior Sauvage Eau de Toilette",
+      "title": "Dior Sauvage Dior",
       "description": "Experience the luxurious scent of Dior Sauvage Eau de Toilette. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Dior Sauvage Eau de Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0031",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1264,18 +1264,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.522Z",
-      "updated_at": "2026-04-14T01:23:43.522Z"
+      "created_at": "2026-04-14T04:27:55.445Z",
+      "updated_at": "2026-04-14T04:27:55.445Z"
     },
     {
       "id": "32",
       "handle": "dolce-gabbana-light-blue-eau-de-toilette",
-      "title": "Dolce & Gabbana Light Blue Eau de Toilette",
+      "title": "D&G Light Blue",
       "description": "Experience the luxurious scent of Dolce & Gabbana Light Blue Eau de Toilette. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Dolce & Gabbana Light Blue Eau de Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0032",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1306,8 +1306,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.523Z",
-      "updated_at": "2026-04-14T01:23:43.523Z"
+      "created_at": "2026-04-14T04:27:55.446Z",
+      "updated_at": "2026-04-14T04:27:55.446Z"
     },
     {
       "id": "33",
@@ -1317,7 +1317,7 @@
       "description_html": "<div class=\"product-description\"><h3>Eau de Parfum Guerlain L'Homme Idéal L'Intense</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0033",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1348,18 +1348,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.525Z",
-      "updated_at": "2026-04-14T01:23:43.525Z"
+      "created_at": "2026-04-14T04:27:55.461Z",
+      "updated_at": "2026-04-14T04:27:55.461Z"
     },
     {
       "id": "34",
-      "handle": "ferrari-black-masculino-eau-de-toilette",
-      "title": "Ferrari Black Masculino Eau De Toilette",
-      "description": "Experience the luxurious scent of Ferrari Black Masculino Eau De Toilette. Premium authentic fragrance with fast delivery in the UK.",
-      "description_html": "<div class=\"product-description\"><h3>Ferrari Black Masculino Eau De Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
+      "handle": "ferrari-black-eau-de-toilette",
+      "title": "Ferrari Black Ferrari",
+      "description": "Experience the luxurious scent of Ferrari Black Eau De Toilette. Premium authentic fragrance with fast delivery in the UK.",
+      "description_html": "<div class=\"product-description\"><h3>Ferrari Black Eau De Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0034",
       "price": {
-        "regular": 49.99,
+        "regular": 25.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1378,29 +1378,29 @@
         "ferrari"
       ],
       "images": [
-        "/assets/products/fragrances/Ferrari%20Black%20Masculino%20Eau%20De%20Toilette/D_NQ_NP_695045-MLU78051960219_072024-O (2).jpg",
-        "/assets/products/fragrances/Ferrari%20Black%20Masculino%20Eau%20De%20Toilette/D_NQ_NP_695045-MLU78051960219_072024-O.jpg"
+        "/assets/products/fragrances/Ferrari%20Black%20Eau%20De%20Toilette/D_NQ_NP_695045-MLU78051960219_072024-O (2).jpg",
+        "/assets/products/fragrances/Ferrari%20Black%20Eau%20De%20Toilette/D_NQ_NP_695045-MLU78051960219_072024-O.jpg"
       ],
       "is_combo": false,
       "featured": false,
       "popularity": 0,
       "status": "active",
-      "slug": "ferrari-black-masculino-eau-de-toilette",
+      "slug": "ferrari-black-eau-de-toilette",
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.526Z",
-      "updated_at": "2026-04-14T01:23:43.526Z"
+      "created_at": "2026-04-14T04:27:55.469Z",
+      "updated_at": "2026-04-14T04:27:55.469Z"
     },
     {
       "id": "35",
       "handle": "frederic-malle-portrait-of-a-lady-perfume",
-      "title": "Frederic Malle Portrait Of A Lady Perfume",
+      "title": "Frederic Malle Portrait of a Lady Frederic Malle",
       "description": "Experience the luxurious scent of Frederic Malle Portrait Of A Lady Perfume. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Frederic Malle Portrait Of A Lady Perfume</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0035",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1430,8 +1430,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.528Z",
-      "updated_at": "2026-04-14T01:23:43.528Z"
+      "created_at": "2026-04-14T04:27:55.484Z",
+      "updated_at": "2026-04-14T04:27:55.484Z"
     },
     {
       "id": "36",
@@ -1441,7 +1441,7 @@
       "description_html": "<div class=\"product-description\"><h3>French Avenue Royal Blend Extrait De Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0036",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1472,8 +1472,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.531Z",
-      "updated_at": "2026-04-14T01:23:43.531Z"
+      "created_at": "2026-04-14T04:27:55.499Z",
+      "updated_at": "2026-04-14T04:27:55.499Z"
     },
     {
       "id": "37",
@@ -1483,7 +1483,7 @@
       "description_html": "<div class=\"product-description\"><h3>Gentleman Réserve Privée Givenchy</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0037",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1512,18 +1512,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.532Z",
-      "updated_at": "2026-04-14T01:23:43.532Z"
+      "created_at": "2026-04-14T04:27:55.501Z",
+      "updated_at": "2026-04-14T04:27:55.501Z"
     },
     {
       "id": "38",
       "handle": "giorgio-armani-acqua-di-gi-profondo",
-      "title": "Giorgio Armani Acqua Di Giò Profondo",
+      "title": "Acqua di Gio Profondo Giorgio Armani",
       "description": "Experience the luxurious scent of Giorgio Armani Acqua Di Giò Profondo. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Giorgio Armani Acqua Di Giò Profondo</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0038",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1555,18 +1555,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.535Z",
-      "updated_at": "2026-04-14T01:23:43.535Z"
+      "created_at": "2026-04-14T04:27:55.509Z",
+      "updated_at": "2026-04-14T04:27:55.509Z"
     },
     {
       "id": "39",
       "handle": "giorgio-armani-si-eau-de-parfum",
-      "title": "Giorgio Armani Si Eau De Parfum",
+      "title": "Giorgio Armani Si Giorgio Armani",
       "description": "Experience the luxurious scent of Giorgio Armani Si Eau De Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Giorgio Armani Si Eau De Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0039",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1596,18 +1596,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.536Z",
-      "updated_at": "2026-04-14T01:23:43.536Z"
+      "created_at": "2026-04-14T04:27:55.515Z",
+      "updated_at": "2026-04-14T04:27:55.515Z"
     },
     {
       "id": "40",
       "handle": "givenchy-amarige",
-      "title": "Givenchy Amarige",
+      "title": "Givenchy Amarige Givenchy",
       "description": "Experience the luxurious scent of Givenchy Amarige. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Givenchy Amarige</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0040",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1637,18 +1637,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.538Z",
-      "updated_at": "2026-04-14T01:23:43.538Z"
+      "created_at": "2026-04-14T04:27:55.517Z",
+      "updated_at": "2026-04-14T04:27:55.517Z"
     },
     {
       "id": "41",
       "handle": "givenchy-gentleman-society-ambr-e",
-      "title": "Givenchy Gentleman Society Ambrée",
+      "title": "Givenchy Gentleman Givenchy",
       "description": "Experience the luxurious scent of Givenchy Gentleman Society Ambrée. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Givenchy Gentleman Society Ambrée</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0041",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1678,18 +1678,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.540Z",
-      "updated_at": "2026-04-14T01:23:43.540Z"
+      "created_at": "2026-04-14T04:27:55.522Z",
+      "updated_at": "2026-04-14T04:27:55.522Z"
     },
     {
       "id": "42",
       "handle": "gucci-flora-gorgeous-gardenia-eau-de-parfum",
-      "title": "Gucci Flora Gorgeous Gardenia Eau De Parfum",
+      "title": "Gucci Flora Gorgeous Gardenia Gucci",
       "description": "Experience the luxurious scent of Gucci Flora Gorgeous Gardenia Eau De Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Gucci Flora Gorgeous Gardenia Eau De Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0042",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1719,18 +1719,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.542Z",
-      "updated_at": "2026-04-14T01:23:43.542Z"
+      "created_at": "2026-04-14T04:27:55.546Z",
+      "updated_at": "2026-04-14T04:27:55.546Z"
     },
     {
       "id": "43",
       "handle": "gucci-guilty-pour-homme-eau-de-parfum",
-      "title": "Gucci Guilty Pour Homme Eau de Parfum",
+      "title": "Gucci Guilty Pour Homme Gucci",
       "description": "Experience the luxurious scent of Gucci Guilty Pour Homme Eau de Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Gucci Guilty Pour Homme Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0043",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1759,8 +1759,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.543Z",
-      "updated_at": "2026-04-14T01:23:43.543Z"
+      "created_at": "2026-04-14T04:27:55.548Z",
+      "updated_at": "2026-04-14T04:27:55.548Z"
     },
     {
       "id": "44",
@@ -1770,7 +1770,7 @@
       "description_html": "<div class=\"product-description\"><h3>Hugo Boss Perfume Bottled</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0044",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1800,18 +1800,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.545Z",
-      "updated_at": "2026-04-14T01:23:43.545Z"
+      "created_at": "2026-04-14T04:27:55.550Z",
+      "updated_at": "2026-04-14T04:27:55.550Z"
     },
     {
       "id": "45",
       "handle": "initio-oud-for-greatness",
-      "title": "Initio Oud for Greatness",
+      "title": "Initio Oud for Greatness Initio",
       "description": "Experience the luxurious scent of Initio Oud for Greatness. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Initio Oud for Greatness</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0045",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1840,18 +1840,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.546Z",
-      "updated_at": "2026-04-14T01:23:43.546Z"
+      "created_at": "2026-04-14T04:27:55.579Z",
+      "updated_at": "2026-04-14T04:27:55.579Z"
     },
     {
       "id": "46",
       "handle": "invictus-de-paco-rabanne-eau-de-toilette",
-      "title": "Invictus De Paco Rabanne Eau De Toilette",
+      "title": "Invictus Paco Rabanne",
       "description": "Experience the luxurious scent of Invictus De Paco Rabanne Eau De Toilette. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Invictus De Paco Rabanne Eau De Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0046",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1882,18 +1882,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.548Z",
-      "updated_at": "2026-04-14T01:23:43.548Z"
+      "created_at": "2026-04-14T04:27:55.605Z",
+      "updated_at": "2026-04-14T04:27:55.605Z"
     },
     {
       "id": "47",
       "handle": "invictus-legend",
-      "title": "Invictus Legend",
+      "title": "Emporio Armani Stronger With You",
       "description": "Experience the luxurious scent of Invictus Legend. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Invictus Legend</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0047",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1901,9 +1901,9 @@
       },
       "category": "Fragrances",
       "brands": [
-        "Invictus"
+        "Armani"
       ],
-      "primary_brand": "Invictus",
+      "primary_brand": "Armani",
       "tags": [
         "perfume",
         "uk",
@@ -1924,8 +1924,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.551Z",
-      "updated_at": "2026-04-14T01:23:43.551Z"
+      "created_at": "2026-04-14T04:27:55.618Z",
+      "updated_at": "2026-04-14T04:27:55.618Z"
     },
     {
       "id": "48",
@@ -1935,7 +1935,7 @@
       "description_html": "<div class=\"product-description\"><h3>Invictus Victory Paco Rabanne Edp</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0048",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -1967,18 +1967,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.553Z",
-      "updated_at": "2026-04-14T01:23:43.553Z"
+      "created_at": "2026-04-14T04:27:55.630Z",
+      "updated_at": "2026-04-14T04:27:55.630Z"
     },
     {
       "id": "49",
       "handle": "jean-paul-gaultier",
-      "title": "Jean Paul Gaultier",
+      "title": "Jean Paul Gaultier Le Male Jean Paul Gaultier",
       "description": "Experience the luxurious scent of Jean Paul Gaultier. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Jean Paul Gaultier</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0049",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2007,8 +2007,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.554Z",
-      "updated_at": "2026-04-14T01:23:43.554Z"
+      "created_at": "2026-04-14T04:27:55.631Z",
+      "updated_at": "2026-04-14T04:27:55.631Z"
     },
     {
       "id": "50",
@@ -2018,7 +2018,7 @@
       "description_html": "<div class=\"product-description\"><h3>Jean Paul Gaultier Le Male Elixir</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0050",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2049,18 +2049,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.556Z",
-      "updated_at": "2026-04-14T01:23:43.557Z"
+      "created_at": "2026-04-14T04:27:55.759Z",
+      "updated_at": "2026-04-14T04:27:55.759Z"
     },
     {
       "id": "51",
       "handle": "jean-paul-gaultier-scandal",
-      "title": "Jean Paul Gaultier Scandal",
+      "title": "Jean Paul Gaultier Scandal H.",
       "description": "Experience the luxurious scent of Jean Paul Gaultier Scandal. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Jean Paul Gaultier Scandal</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0051",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2089,18 +2089,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.558Z",
-      "updated_at": "2026-04-14T01:23:43.558Z"
+      "created_at": "2026-04-14T04:27:55.760Z",
+      "updated_at": "2026-04-14T04:27:55.760Z"
     },
     {
       "id": "52",
       "handle": "jean-paul-gaultier-ultra-male-eau-de-toilette-intense",
-      "title": "Jean Paul Gaultier Ultra Male Eau de Toilette Intense",
+      "title": "Paco Rabanne Ultra Male",
       "description": "Experience the luxurious scent of Jean Paul Gaultier Ultra Male Eau de Toilette Intense. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Jean Paul Gaultier Ultra Male Eau de Toilette Intense</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0052",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2108,9 +2108,9 @@
       },
       "category": "Fragrances",
       "brands": [
-        "Jean"
+        "Paco Rabanne"
       ],
-      "primary_brand": "Jean",
+      "primary_brand": "Paco Rabanne",
       "tags": [
         "perfume",
         "uk",
@@ -2130,8 +2130,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.560Z",
-      "updated_at": "2026-04-14T01:23:43.560Z"
+      "created_at": "2026-04-14T04:27:55.762Z",
+      "updated_at": "2026-04-14T04:27:55.762Z"
     },
     {
       "id": "53",
@@ -2141,7 +2141,7 @@
       "description_html": "<div class=\"product-description\"><h3>Kenzo Homme Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0053",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2171,18 +2171,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.562Z",
-      "updated_at": "2026-04-14T01:23:43.562Z"
+      "created_at": "2026-04-14T04:27:55.764Z",
+      "updated_at": "2026-04-14T04:27:55.764Z"
     },
     {
       "id": "54",
       "handle": "l-interdit-eau-de-parfum",
-      "title": "L'interdit Eau De Parfum",
+      "title": "Givenchy L'Interdit Givenchy",
       "description": "Experience the luxurious scent of L'interdit Eau De Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>L'interdit Eau De Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0054",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2212,8 +2212,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.564Z",
-      "updated_at": "2026-04-14T01:23:43.564Z"
+      "created_at": "2026-04-14T04:27:55.782Z",
+      "updated_at": "2026-04-14T04:27:55.782Z"
     },
     {
       "id": "55",
@@ -2223,7 +2223,7 @@
       "description_html": "<div class=\"product-description\"><h3>Lancôme La Nuit Trésor Fem</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0055",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2254,18 +2254,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.567Z",
-      "updated_at": "2026-04-14T01:23:43.567Z"
+      "created_at": "2026-04-14T04:27:55.817Z",
+      "updated_at": "2026-04-14T04:27:55.817Z"
     },
     {
       "id": "56",
       "handle": "lanc-me-la-vie-est-belle-vanille-nude",
-      "title": "Lancôme La Vie Est Belle Vanille Nude",
+      "title": "La Vie Est Belle Lancome",
       "description": "Experience the luxurious scent of Lancôme La Vie Est Belle Vanille Nude. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Lancôme La Vie Est Belle Vanille Nude</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0056",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2294,18 +2294,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.568Z",
-      "updated_at": "2026-04-14T01:23:43.568Z"
+      "created_at": "2026-04-14T04:27:55.818Z",
+      "updated_at": "2026-04-14T04:27:55.818Z"
     },
     {
       "id": "57",
       "handle": "le-labo-santal-33",
-      "title": "Le Labo Santal 33",
+      "title": "Le Labo Santal 33 Le Labo",
       "description": "Experience the luxurious scent of Le Labo Santal 33. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Le Labo Santal 33</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0057",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2336,18 +2336,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.569Z",
-      "updated_at": "2026-04-14T01:23:43.569Z"
+      "created_at": "2026-04-14T04:27:55.829Z",
+      "updated_at": "2026-04-14T04:27:55.829Z"
     },
     {
       "id": "58",
       "handle": "libre-eau-de-parfum-da-yves-saint-laurent",
-      "title": "Libre Eau de Parfum da Yves Saint Laurent",
+      "title": "Libre Yves Saint Laurent",
       "description": "Experience the luxurious scent of Libre Eau de Parfum da Yves Saint Laurent. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Libre Eau de Parfum da Yves Saint Laurent</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0058",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2378,18 +2378,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.570Z",
-      "updated_at": "2026-04-14T01:23:43.571Z"
+      "created_at": "2026-04-14T04:27:55.830Z",
+      "updated_at": "2026-04-14T04:27:55.830Z"
     },
     {
       "id": "59",
       "handle": "louis-vuitton-imagination",
-      "title": "Louis Vuitton Imagination",
+      "title": "Louis Vuitton Imagination Louis Vuitton",
       "description": "Experience the luxurious scent of Louis Vuitton Imagination. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Louis Vuitton Imagination</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0059",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2419,8 +2419,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.572Z",
-      "updated_at": "2026-04-14T01:23:43.572Z"
+      "created_at": "2026-04-14T04:27:55.851Z",
+      "updated_at": "2026-04-14T04:27:55.851Z"
     },
     {
       "id": "60",
@@ -2430,7 +2430,7 @@
       "description_html": "<div class=\"product-description\"><h3>M. Micallef GnTonic</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0060",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2461,18 +2461,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.574Z",
-      "updated_at": "2026-04-14T01:23:43.574Z"
+      "created_at": "2026-04-14T04:27:55.853Z",
+      "updated_at": "2026-04-14T04:27:55.853Z"
     },
     {
       "id": "61",
       "handle": "marc-jacobs-perfect-eau-de-toilette",
-      "title": "Marc Jacobs Perfect Eau de Toilette",
+      "title": "Marc Jacobs Perfect Marc Jacobs",
       "description": "Experience the luxurious scent of Marc Jacobs Perfect Eau de Toilette. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Marc Jacobs Perfect Eau de Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0061",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2502,8 +2502,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.576Z",
-      "updated_at": "2026-04-14T01:23:43.576Z"
+      "created_at": "2026-04-14T04:27:55.874Z",
+      "updated_at": "2026-04-14T04:27:55.874Z"
     },
     {
       "id": "62",
@@ -2513,7 +2513,7 @@
       "description_html": "<div class=\"product-description\"><h3>Million Gold for Her</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0062",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2542,8 +2542,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.578Z",
-      "updated_at": "2026-04-14T01:23:43.578Z"
+      "created_at": "2026-04-14T04:27:55.876Z",
+      "updated_at": "2026-04-14T04:27:55.876Z"
     },
     {
       "id": "63",
@@ -2553,7 +2553,7 @@
       "description_html": "<div class=\"product-description\"><h3>Montblanc Explorer Extreme Eau De</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0063",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2583,8 +2583,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.580Z",
-      "updated_at": "2026-04-14T01:23:43.580Z"
+      "created_at": "2026-04-14T04:27:55.887Z",
+      "updated_at": "2026-04-14T04:27:55.887Z"
     },
     {
       "id": "64",
@@ -2594,7 +2594,7 @@
       "description_html": "<div class=\"product-description\"><h3>Montblanc Signature Absolue</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0064",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2623,18 +2623,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.581Z",
-      "updated_at": "2026-04-14T01:23:43.581Z"
+      "created_at": "2026-04-14T04:27:55.888Z",
+      "updated_at": "2026-04-14T04:27:55.888Z"
     },
     {
       "id": "65",
       "handle": "moschino-toy-boy",
-      "title": "Moschino Toy Boy",
+      "title": "Moschino Toy Boy Moschino",
       "description": "Experience the luxurious scent of Moschino Toy Boy. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Moschino Toy Boy</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0065",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2664,18 +2664,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.582Z",
-      "updated_at": "2026-04-14T01:23:43.582Z"
+      "created_at": "2026-04-14T04:27:55.906Z",
+      "updated_at": "2026-04-14T04:27:55.906Z"
     },
     {
       "id": "66",
       "handle": "nuit-d-issey-da-marca-issey-miyake",
-      "title": "Nuit d'Issey da marca Issey Miyake",
+      "title": "Issey Miyake Nuit d'Issey",
       "description": "Experience the luxurious scent of Nuit d'Issey da marca Issey Miyake. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Nuit d'Issey da marca Issey Miyake</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0066",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2704,18 +2704,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.583Z",
-      "updated_at": "2026-04-14T01:23:43.583Z"
+      "created_at": "2026-04-14T04:27:55.915Z",
+      "updated_at": "2026-04-14T04:27:55.915Z"
     },
     {
       "id": "67",
       "handle": "one-million-paco-rabanne",
-      "title": "One Million Paco Rabanne",
+      "title": "1 Million Parfum Paco Rabanne",
       "description": "Experience the luxurious scent of One Million Paco Rabanne. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>One Million Paco Rabanne</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0067",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2746,8 +2746,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.585Z",
-      "updated_at": "2026-04-14T01:23:43.585Z"
+      "created_at": "2026-04-14T04:27:55.928Z",
+      "updated_at": "2026-04-14T04:27:55.928Z"
     },
     {
       "id": "68",
@@ -2757,7 +2757,7 @@
       "description_html": "<div class=\"product-description\"><h3>Orientica Royal Bleu Eau De Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0068",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2788,8 +2788,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.588Z",
-      "updated_at": "2026-04-14T01:23:43.588Z"
+      "created_at": "2026-04-14T04:27:55.983Z",
+      "updated_at": "2026-04-14T04:27:55.983Z"
     },
     {
       "id": "69",
@@ -2799,7 +2799,7 @@
       "description_html": "<div class=\"product-description\"><h3>Paco Rabanne Olympéa</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0069",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2829,18 +2829,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.590Z",
-      "updated_at": "2026-04-14T01:23:43.590Z"
+      "created_at": "2026-04-14T04:27:55.988Z",
+      "updated_at": "2026-04-14T04:27:55.988Z"
     },
     {
       "id": "70",
       "handle": "paco-rabanne-phantom",
-      "title": "Paco Rabanne Phantom",
+      "title": "Paco Rabanne Phantom Paco Rabanne",
       "description": "Experience the luxurious scent of Paco Rabanne Phantom. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Paco Rabanne Phantom</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0070",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2870,8 +2870,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.591Z",
-      "updated_at": "2026-04-14T01:23:43.591Z"
+      "created_at": "2026-04-14T04:27:55.998Z",
+      "updated_at": "2026-04-14T04:27:55.998Z"
     },
     {
       "id": "71",
@@ -2881,7 +2881,7 @@
       "description_html": "<div class=\"product-description\"><h3>Paradoxe Prada</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0071",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2910,18 +2910,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.592Z",
-      "updated_at": "2026-04-14T01:23:43.592Z"
+      "created_at": "2026-04-14T04:27:56.012Z",
+      "updated_at": "2026-04-14T04:27:56.012Z"
     },
     {
       "id": "72",
       "handle": "prada-luna-rossa-black",
-      "title": "Prada Luna Rossa Black",
+      "title": "Prada Luna Rossa Black Prada",
       "description": "Experience the luxurious scent of Prada Luna Rossa Black. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Prada Luna Rossa Black</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0072",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2951,18 +2951,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.594Z",
-      "updated_at": "2026-04-14T01:23:43.594Z"
+      "created_at": "2026-04-14T04:27:56.027Z",
+      "updated_at": "2026-04-14T04:27:56.027Z"
     },
     {
       "id": "73",
       "handle": "pure-xs-paco-rabanne-edt",
-      "title": "Pure Xs Paco Rabanne Edt",
+      "title": "Paco Rabanne Pure XS",
       "description": "Experience the luxurious scent of Pure Xs Paco Rabanne Edt. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Pure Xs Paco Rabanne Edt</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0073",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -2994,18 +2994,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.596Z",
-      "updated_at": "2026-04-14T01:23:43.596Z"
+      "created_at": "2026-04-14T04:27:56.030Z",
+      "updated_at": "2026-04-14T04:27:56.030Z"
     },
     {
       "id": "74",
       "handle": "rabanne-fame-edp",
-      "title": "Rabanne Fame Edp",
+      "title": "Fame Paco Rabanne",
       "description": "Experience the luxurious scent of Rabanne Fame Edp. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Rabanne Fame Edp</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0074",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3034,8 +3034,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.597Z",
-      "updated_at": "2026-04-14T01:23:43.597Z"
+      "created_at": "2026-04-14T04:27:56.031Z",
+      "updated_at": "2026-04-14T04:27:56.031Z"
     },
     {
       "id": "75",
@@ -3045,7 +3045,7 @@
       "description_html": "<div class=\"product-description\"><h3>Rabanne Phantom Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0075",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3076,8 +3076,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.599Z",
-      "updated_at": "2026-04-14T01:23:43.599Z"
+      "created_at": "2026-04-14T04:27:56.034Z",
+      "updated_at": "2026-04-14T04:27:56.034Z"
     },
     {
       "id": "76",
@@ -3087,7 +3087,7 @@
       "description_html": "<div class=\"product-description\"><h3>Scandal Pour Homme</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0076",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3117,18 +3117,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.601Z",
-      "updated_at": "2026-04-14T01:23:43.601Z"
+      "created_at": "2026-04-14T04:27:56.066Z",
+      "updated_at": "2026-04-14T04:27:56.066Z"
     },
     {
       "id": "77",
       "handle": "silver-scent-intense-jacques-bogart-eau-de-toilette",
-      "title": "Silver Scent Intense Jacques Bogart Eau de Toilette",
+      "title": "Silver Scent Jacques Bogart",
       "description": "Experience the luxurious scent of Silver Scent Intense Jacques Bogart Eau de Toilette. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Silver Scent Intense Jacques Bogart Eau de Toilette</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0077",
       "price": {
-        "regular": 49.99,
+        "regular": 25.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3159,18 +3159,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.603Z",
-      "updated_at": "2026-04-14T01:23:43.603Z"
+      "created_at": "2026-04-14T04:27:56.068Z",
+      "updated_at": "2026-04-14T04:27:56.068Z"
     },
     {
       "id": "78",
       "handle": "the-only-one-da-marca-dolce-gabbana",
-      "title": "The Only One da marca Dolce&Gabbana",
+      "title": "D&G The Only One",
       "description": "Experience the luxurious scent of The Only One da marca Dolce&Gabbana. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>The Only One da marca Dolce&Gabbana</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0078",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3178,9 +3178,9 @@
       },
       "category": "Fragrances",
       "brands": [
-        "The"
+        "Dolce & Gabbana"
       ],
-      "primary_brand": "The",
+      "primary_brand": "Dolce & Gabbana",
       "tags": [
         "perfume",
         "uk",
@@ -3201,18 +3201,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.605Z",
-      "updated_at": "2026-04-14T01:23:43.605Z"
+      "created_at": "2026-04-14T04:27:56.136Z",
+      "updated_at": "2026-04-14T04:27:56.136Z"
     },
     {
       "id": "79",
       "handle": "tom-ford-beauty-tobacco-vanille-eau",
-      "title": "Tom Ford Beauty Tobacco Vanille Eau",
+      "title": "Tom Ford Tobacco Vanille",
       "description": "Experience the luxurious scent of Tom Ford Beauty Tobacco Vanille Eau. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Tom Ford Beauty Tobacco Vanille Eau</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0079",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3220,15 +3220,16 @@
       },
       "category": "Fragrances",
       "brands": [
-        "Tom"
+        "Tom Ford"
       ],
-      "primary_brand": "Tom",
+      "primary_brand": "Tom Ford",
       "tags": [
         "perfume",
         "uk",
         "premium",
         "fragrance",
-        "tom"
+        "tom ford",
+        "masculine"
       ],
       "images": [
         "/assets/products/fragrances/Tom%20Ford%20Beauty%20Tobacco%20Vanille%20Eau/D_NQ_NP_642895-CBT92693353741_092025-O.jpg",
@@ -3242,18 +3243,19 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.607Z",
-      "updated_at": "2026-04-14T01:23:43.607Z"
+      "created_at": "2026-04-14T04:27:56.139Z",
+      "updated_at": "2026-04-14T04:27:56.139Z",
+      "gender": "male"
     },
     {
       "id": "80",
       "handle": "valentino-donna-born-in-roma-intense-eau-de",
-      "title": "Valentino Donna Born In Roma Intense Eau De",
+      "title": "Valentino Donna Born in Roma Valentino",
       "description": "Experience the luxurious scent of Valentino Donna Born In Roma Intense Eau De. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Valentino Donna Born In Roma Intense Eau De</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0080",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3282,18 +3284,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.608Z",
-      "updated_at": "2026-04-14T01:23:43.608Z"
+      "created_at": "2026-04-14T04:27:56.160Z",
+      "updated_at": "2026-04-14T04:27:56.160Z"
     },
     {
       "id": "81",
       "handle": "valentino-uomo-born-in-roma",
-      "title": "Valentino Uomo Born In Roma",
+      "title": "Valentino Uomo Valentino",
       "description": "Experience the luxurious scent of Valentino Uomo Born In Roma. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Valentino Uomo Born In Roma</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0081",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3322,18 +3324,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.609Z",
-      "updated_at": "2026-04-14T01:23:43.609Z"
+      "created_at": "2026-04-14T04:27:56.189Z",
+      "updated_at": "2026-04-14T04:27:56.189Z"
     },
     {
       "id": "82",
       "handle": "versace-dylan-blue-eau",
-      "title": "Versace Dylan Blue Eau",
+      "title": "Dylan Blue Versace",
       "description": "Experience the luxurious scent of Versace Dylan Blue Eau. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Versace Dylan Blue Eau</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0082",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3362,18 +3364,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.610Z",
-      "updated_at": "2026-04-14T01:23:43.610Z"
+      "created_at": "2026-04-14T04:27:56.191Z",
+      "updated_at": "2026-04-14T04:27:56.191Z"
     },
     {
       "id": "83",
       "handle": "versace-dylan-turquoise",
-      "title": "Versace Dylan Turquoise",
+      "title": "Dylan Turquoise Versace",
       "description": "Experience the luxurious scent of Versace Dylan Turquoise. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Versace Dylan Turquoise</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0083",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3403,18 +3405,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.611Z",
-      "updated_at": "2026-04-14T01:23:43.611Z"
+      "created_at": "2026-04-14T04:27:56.221Z",
+      "updated_at": "2026-04-14T04:27:56.221Z"
     },
     {
       "id": "84",
       "handle": "versace-eros-eau-de-parfum",
-      "title": "Versace Eros Eau de Parfum",
+      "title": "Versace Eros Versace",
       "description": "Experience the luxurious scent of Versace Eros Eau de Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Versace Eros Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0084",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3444,18 +3446,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.613Z",
-      "updated_at": "2026-04-14T01:23:43.613Z"
+      "created_at": "2026-04-14T04:27:56.287Z",
+      "updated_at": "2026-04-14T04:27:56.287Z"
     },
     {
       "id": "85",
       "handle": "versace-eros-energy-eau-de-parfum",
-      "title": "Versace Eros Energy Eau de Parfum",
+      "title": "Y Eau de Parfum Yves Saint Laurent",
       "description": "Experience the luxurious scent of Versace Eros Energy Eau de Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Versace Eros Energy Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0085",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3485,8 +3487,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.614Z",
-      "updated_at": "2026-04-14T01:23:43.614Z"
+      "created_at": "2026-04-14T04:27:56.334Z",
+      "updated_at": "2026-04-14T04:27:56.334Z"
     },
     {
       "id": "86",
@@ -3496,7 +3498,7 @@
       "description_html": "<div class=\"product-description\"><h3>Versace Eros Pour Femme</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0086",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3526,18 +3528,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.616Z",
-      "updated_at": "2026-04-14T01:23:43.616Z"
+      "created_at": "2026-04-14T04:27:56.340Z",
+      "updated_at": "2026-04-14T04:27:56.340Z"
     },
     {
       "id": "87",
       "handle": "xerjoff-erba-pura-eau-de-parfum",
-      "title": "Xerjoff Erba Pura Eau De Parfum",
+      "title": "Xerjoff Erba Pura Xerjoff",
       "description": "Experience the luxurious scent of Xerjoff Erba Pura Eau De Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Xerjoff Erba Pura Eau De Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0087",
       "price": {
-        "regular": 49.99,
+        "regular": 29.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3566,18 +3568,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.617Z",
-      "updated_at": "2026-04-14T01:23:43.617Z"
+      "created_at": "2026-04-14T04:27:56.341Z",
+      "updated_at": "2026-04-14T04:27:56.341Z"
     },
     {
       "id": "88",
       "handle": "y-elixir-ysl-parfum-intense",
-      "title": "Y Elixir Ysl Parfum Intense",
+      "title": "Y by YSL",
       "description": "Experience the luxurious scent of Y Elixir Ysl Parfum Intense. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Y Elixir Ysl Parfum Intense</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0088",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3585,16 +3587,16 @@
       },
       "category": "Fragrances",
       "brands": [
-        "Premium Fragrance"
+        "Yves Saint Laurent"
       ],
-      "primary_brand": "Premium Fragrance",
+      "primary_brand": "Yves Saint Laurent",
       "tags": [
         "perfume",
         "uk",
         "premium",
         "fragrance",
-        "premium",
-        "fragrance"
+        "ysl",
+        "yves saint laurent"
       ],
       "images": [
         "/assets/products/fragrances/Y%20Elixir%20Ysl%20Parfum%20Intense/D_NQ_NP_2X_830943-MLU70843599884_082023-F.jpg"
@@ -3607,8 +3609,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.618Z",
-      "updated_at": "2026-04-14T01:23:43.618Z"
+      "created_at": "2026-04-14T04:27:56.360Z",
+      "updated_at": "2026-04-14T04:27:56.360Z"
     },
     {
       "id": "89",
@@ -3618,7 +3620,7 @@
       "description_html": "<div class=\"product-description\"><h3>Y Le Parfum da marca Yves Saint Laurent</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0089",
       "price": {
-        "regular": 49.99,
+        "regular": 26.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3651,18 +3653,18 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.621Z",
-      "updated_at": "2026-04-14T01:23:43.621Z"
+      "created_at": "2026-04-14T04:27:56.407Z",
+      "updated_at": "2026-04-14T04:27:56.407Z"
     },
     {
       "id": "90",
       "handle": "yves-saint-laurent-mon-paris-eau-de-parfum",
-      "title": "Yves Saint Laurent Mon Paris Eau de Parfum",
+      "title": "Mon Paris Yves Saint Laurent",
       "description": "Experience the luxurious scent of Yves Saint Laurent Mon Paris Eau de Parfum. Premium authentic fragrance with fast delivery in the UK.",
       "description_html": "<div class=\"product-description\"><h3>Yves Saint Laurent Mon Paris Eau de Parfum</h3><p>An exceptional fragrance offering unprecedented value and luxury. Perfect for those who appreciate premium scents.</p></div>",
       "sku": "FRAG-0090",
       "price": {
-        "regular": 49.99,
+        "regular": 27.0,
         "sale": null,
         "on_sale": false,
         "discount_percent": 0,
@@ -3693,8 +3695,8 @@
       "categories": [
         "Fragrances"
       ],
-      "created_at": "2026-04-14T01:23:43.622Z",
-      "updated_at": "2026-04-14T01:23:43.622Z"
+      "created_at": "2026-04-14T04:27:56.409Z",
+      "updated_at": "2026-04-14T04:27:56.409Z"
     }
   ]
 }

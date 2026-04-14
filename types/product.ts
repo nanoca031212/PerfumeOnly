@@ -1,6 +1,7 @@
 export interface Price {
   regular: string | number;
   sale?: string | number;
+  original_price?: string | number;
   on_sale: boolean;
   discount_percent: number;
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Star } from 'lucide-react'
 import { Product } from '@/types/product'
 import { usePixel } from '@/hooks/usePixel'
@@ -50,6 +51,10 @@ export default function ProductCardTPS({ product, className = '', priority = fal
     ))
   }
 
+  const router = useRouter()
+  const { bundleSlot, returnTo } = router.query
+  const isSelectionMode = typeof bundleSlot === 'string' && typeof returnTo === 'string'
+
   // Função para rastrear visualização do produto
   const handleViewContent = () => {
     pixel.viewContent({
@@ -62,15 +67,35 @@ export default function ProductCardTPS({ product, className = '', priority = fal
     })
   }
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (isSelectionMode) {
+      e.preventDefault()
+      const slotIndex = parseInt(bundleSlot as string)
+      
+      try {
+        const stored = localStorage.getItem('bundleState')
+        const state = stored ? JSON.parse(stored) : { packType: 'single', selections: [null, null, null] }
+        if (!state.selections) state.selections = [null, null, null]
+        
+        state.selections[slotIndex] = product
+        localStorage.setItem('bundleState', JSON.stringify(state))
+      } catch (err) {}
+      
+      router.push(returnTo as string)
+    } else {
+      handleViewContent()
+    }
+  }
+
+  const CardWrapper = isSelectionMode ? 'button' : Link
+  const cardProps = isSelectionMode 
+    ? { onClick: handleCardClick, className: "flex flex-col flex-grow text-left" }
+    : { href: `/products/${product.handle}`, onClick: handleViewContent, className: "flex flex-col flex-grow", suppressHydrationWarning: true }
+
   return (
     <div className={`bg-white flex flex-col h-full ${className}`}>
       {/* Product Link - flex container para espaçamento uniforme */}
-      <Link
-        href={`/products/${product.handle}`}
-        className="flex flex-col flex-grow"
-        onClick={handleViewContent}
-        suppressHydrationWarning
-      >
+      <CardWrapper {...(cardProps as any)}>
         {/* Image Container */}
         <div className="relative bg-white mb-3">
           {/* Viewers Counter */}
@@ -100,8 +125,8 @@ export default function ProductCardTPS({ product, className = '', priority = fal
           )}
 
           {/* Promotional Banner */}
-          <div className="bg-white border border-black text-center text-xs py-1 mb-2">
-            UP TO 70% OFF APPLIED AT CHECKOUT
+          <div className="bg-white border border-black text-center font-bold text-xs py-1 mb-2">
+            Pick any 3 fragrances you love for only £49.99
           </div>
 
           {/* Badge - Canto superior direito */}
@@ -159,7 +184,9 @@ export default function ProductCardTPS({ product, className = '', priority = fal
             <div className="flex flex-col">
               <div className="flex items-center justify-center gap-2 text-sm">
                 <span className="text-black text-lg font-bold">£{formatPrice(product.price.regular)}</span>
-                <span className="text-gray-700 line-through text-xs">£169.99</span>
+                <span className="text-gray-700 line-through text-xs">
+                  £{formatPrice(product.price.original_price || 169.99)}
+                </span>
 
               </div>
             </div>
@@ -172,19 +199,29 @@ export default function ProductCardTPS({ product, className = '', priority = fal
             )}
           </div>
         </div>
-      </Link>
+      </CardWrapper>
 
       {/* CTA Button - sempre na parte inferior */}
       <div className="mt-4">
-        <Link
-          href={`/products/${product.handle}`}
-          className="block w-full bg-black rounded-[4px] text-white py-3 text-x1 font-thin uppercase tracking-wide
-                   hover:bg-gray-900 transition-colors duration-200 text-center"
-          onClick={handleViewContent}
-          suppressHydrationWarning
-        >
-          VIEW DETAILS
-        </Link>
+        {isSelectionMode ? (
+          <button
+            onClick={handleCardClick}
+            className="block w-full bg-black rounded-[4px] text-white py-3 text-x1 font-bold uppercase tracking-wide
+                     hover:bg-gray-900 transition-colors duration-200 text-center"
+          >
+            SELECT
+          </button>
+        ) : (
+          <Link
+            href={`/products/${product.handle}`}
+            className="block w-full bg-black rounded-[4px] text-white py-3 text-x1 font-thin uppercase tracking-wide
+                     hover:bg-gray-900 transition-colors duration-200 text-center"
+            onClick={handleViewContent}
+            suppressHydrationWarning
+          >
+            VIEW DETAILS
+          </Link>
+        )}
       </div>
     </div>
   )
