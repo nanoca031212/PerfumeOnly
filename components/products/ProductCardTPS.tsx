@@ -140,16 +140,9 @@ export default function ProductCardTPS({ product, className = '', priority = fal
         {/* Product Info - flex grow para empurrar botão para baixo */}
         <div className="text-center space-y-2 flex flex-col flex-grow">
 
-          {/* Brand */}
-          <div className="text-sm font-bold uppercase tracking-wide text-[#333333]">
-            {primaryBrand}
-          </div>
-
-          {/* Product Name - altura fixa para uniformidade */}
-          <h3 className="text-sm text-black leading-tight h-12 flex items-center justify-center text-center px-1">
-            <span className="line-clamp-2">
-              {product.title.replace(primaryBrand + ' ', '')}
-            </span>
+          {/* Product Name - full title from folder name */}
+          <h3 className="text-sm font-bold text-black leading-tight flex items-center justify-center text-center px-1">
+            {product.title}
           </h3>
 
           {/* Product Type */}

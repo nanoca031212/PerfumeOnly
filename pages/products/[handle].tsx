@@ -59,19 +59,21 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
         stripeId = productMapping[product.handle].price_id;
       }
 
+      // Se ainda não encontrou, o produto ainda não foi registrado no Stripe
+      // — o item vai para o carrinho e o erro aparecerá no checkout
       if (!stripeId) {
-        throw new Error(`Stripe ID not found for product: ${product.handle}`);
+        console.warn(`Stripe ID not found for product: ${product.handle} — item added without price_id`);
       }
 
       const cartItem = {
         id: product.id,
-        handle: product.handle, // Usar o handle como identificador
-        stripeId: stripeId, // ID do preço no Stripe
+        handle: product.handle,
+        stripeId: stripeId || '',
         title: product.title,
         subtitle: `Eau de Parfum Spray - 100ML`,
         price: typeof product.price.regular === 'string' ? parseFloat(product.price.regular) : product.price.regular,
         originalPrice: 169.99,
-        image: Array.isArray(product.images) ? product.images[0] : product.images.main[0]
+        image: Array.isArray(product.images) ? product.images[0] : (product.images as any).main?.[0] || ''
       };
 
       addItem(cartItem, quantity);
@@ -176,7 +178,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
                 Multi-Brand Promotion
               </h1>
               <h2 className="text-[22px] leading-none font-bold text-black mb-2">
-                {product.title.replace(product.primary_brand || product.brands?.[0] || '', '').trim()}
+                {product.title}
               </h2>
               <p className="text-black font-medium">Eau de Parfum Spray</p>
               <div className="flex flex-wrap items-center gap-2 text-[13px] text-[#666666] mb-4">
