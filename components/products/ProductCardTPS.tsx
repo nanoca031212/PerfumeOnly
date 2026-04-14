@@ -113,6 +113,7 @@ export default function ProductCardTPS({ product, className = '', priority = fal
                 alt={product.title}
                 fill
                 className="object-contain"
+                style={product.image_scale ? { transform: `scale(${product.image_scale})`, transition: 'transform 0.2s' } : undefined}
                 priority={priority}
                 onError={() => setImageError(true)}
                 sizes="(max-width: 640px) 50vw, 33vw"

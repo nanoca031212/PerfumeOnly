@@ -37,6 +37,7 @@ export interface Product {
   sku?: string;
   primary_brand?: string;
   gender?: string;
+  image_scale?: number;
 }
 
 export interface ProductImages {

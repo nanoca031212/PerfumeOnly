@@ -121,6 +121,7 @@ export default function ProductPage({ product, relatedProducts, allProducts }: P
                   width={500}
                   height={500}
                   className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
+                  style={product.image_scale ? { transform: `scale(${product.image_scale})` } : undefined}
                   priority
                 />
               ) : (

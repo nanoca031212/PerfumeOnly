@@ -206,7 +206,7 @@ export default function BundleSelector({
                       }`}
                     >
                       {isSelected && (
-                        <div className="w-[90%] h-[90%]  rounded-full bg-black" />
+                        <div className="w-4 h-4 flex items-center justify-center rounded-full bg-black" />
                       )}
                     </div>
 

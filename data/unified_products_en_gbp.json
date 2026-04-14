@@ -1390,7 +1390,8 @@
         "Fragrances"
       ],
       "created_at": "2026-04-14T04:27:55.469Z",
-      "updated_at": "2026-04-14T04:27:55.469Z"
+      "updated_at": "2026-04-14T04:27:55.469Z",
+      "image_scale": 0.85
     },
     {
       "id": "35",
@@ -3697,6 +3698,49 @@
       ],
       "created_at": "2026-04-14T04:27:56.409Z",
       "updated_at": "2026-04-14T04:27:56.409Z"
+    },
+    {
+      "id": "91",
+      "handle": "paco-rabanne-one-million",
+      "title": "1 Million Paco Rabanne",
+      "description": "Experience the luxurious scent of 1 Million Paco Rabanne. Premium authentic fragrance with fast delivery in the UK.",
+      "description_html": "<div class=\"product-description\"><h3>1 Million Paco Rabanne</h3><p>An exceptional fragrance offering unprecedented value and luxury.</p></div>",
+      "sku": "FRAG-0091",
+      "price": {
+        "regular": 27.0,
+        "sale": null,
+        "original_price": 72.0,
+        "on_sale": false,
+        "discount_percent": 0,
+        "currency": "GBP"
+      },
+      "category": "Fragrances",
+      "brands": [
+        "Paco Rabanne"
+      ],
+      "primary_brand": "Paco Rabanne",
+      "tags": [
+        "perfume",
+        "uk",
+        "premium",
+        "fragrance",
+        "paco rabanne",
+        "masculine"
+      ],
+      "images": [
+        "/assets/products/fragrances/Paco%20Rabanne%20One%20Million/D_NQ_NP_2X_638976-MLB92862010987_092025-F.jpg"
+      ],
+      "is_combo": false,
+      "featured": false,
+      "popularity": 0,
+      "status": "active",
+      "slug": "paco-rabanne-one-million",
+      "categories": [
+        "Fragrances"
+      ],
+      "gender": "male",
+      "created_at": "2026-04-14T23:19:26.119957Z",
+      "updated_at": "2026-04-14T23:19:26.119957Z"
     }
   ]
 }
