@@ -81,7 +81,12 @@ export default function ProductCardTPS({ product, className = '', priority = fal
         localStorage.setItem('bundleState', JSON.stringify(state))
       } catch (err) {}
       
-      router.push(returnTo as string)
+      if (slotIndex === 0) {
+        // If selecting the primary fragrance, go to its product page
+        router.push(`/products/${product.handle}`)
+      } else {
+        router.push(returnTo as string)
+      }
     } else {
       handleViewContent()
     }

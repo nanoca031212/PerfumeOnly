@@ -47,19 +47,34 @@ const unitPrice = Number(currentProduct.price.regular) || 26.00;
       try {
         const state = JSON.parse(stored);
         if (state.packType) {
-            // Migration check: if old packType, default to single
-            if (state.packType === "duo" || state.packType === "trio_old") {
-                setSelectedPack("single");
-            } else {
-                setSelectedPack(state.packType);
-            }
+          // Migration check: if old packType, default to single
+          if (state.packType === "duo" || state.packType === "trio_old") {
+            setSelectedPack("single");
+          } else {
+            setSelectedPack(state.packType);
+          }
         }
 
-        const selections = state.selections || [currentProduct, null, null, null, null];
-        if (!selections[0]) selections[0] = currentProduct;
+        const selections = state.selections
+          ? [...state.selections]
+          : [currentProduct, null, null, null, null];
+
+        // Always force current product as first selection
+        selections[0] = currentProduct;
+
         // Pad to 5 if needed
         while (selections.length < 5) selections.push(null);
+
         setFragranceSelections(selections);
+
+        // Update localStorage to keep it consistent
+        localStorage.setItem(
+          "bundleState",
+          JSON.stringify({
+            packType: state.packType || "single",
+            selections: selections,
+          }),
+        );
       } catch {}
     } else {
       setFragranceSelections([currentProduct, null, null, null, null]);
