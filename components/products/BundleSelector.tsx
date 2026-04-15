@@ -35,7 +35,7 @@ export default function BundleSelector({
   const packCount =
     selectedPack === "single" ? 1 : selectedPack === "trio" ? 3 : 5;
 
-  const unitPrice = currentProduct.price.regular || 26.00;
+const unitPrice = Number(currentProduct.price.regular) || 26.00;
   const SINGLE_ORIGINAL = unitPrice * 2.5; // Showing a premium original price
   const TRIO_ORIGINAL = unitPrice * 3 * 2; 
   const PENTA_ORIGINAL = unitPrice * 5 * 2;
