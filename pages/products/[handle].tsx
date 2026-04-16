@@ -95,7 +95,7 @@ export default function ProductPage({
           price: selection.totalPrice / selection.fragrances.length,
           originalPrice:
             (selection.totalPrice / selection.fragrances.length) * 3, // Estimated UK RRP
-          regularPrice: frag.price.regular,
+          regularPrice: Number(frag.price.regular) || undefined,
           image: Array.isArray(frag.images)
             ? frag.images[0]
             : (frag.images as any)?.main?.[0] || "",
