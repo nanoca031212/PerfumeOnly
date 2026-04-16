@@ -20,6 +20,8 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string,
 );
 
+import { getPromoTarget, calculateTimeLeft } from "@/lib/timer";
+
 export default function CheckoutPage() {
   const { items, total, totalOriginal } = useCart();
   const { utmParams } = useUTM();
@@ -43,28 +45,20 @@ export default function CheckoutPage() {
     seconds: 0,
   });
 
+  // Synchronized Countdown timer logic
   useEffect(() => {
-    // Alvo: Hoje + 24h a partir de agora
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 1);
+    const target = getPromoTarget();
+    
+    // Initial calculation
+    setTimeLeft(calculateTimeLeft(target));
 
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-
-      if (distance < 0) {
+      const remaining = calculateTimeLeft(target);
+      setTimeLeft(remaining);
+      
+      if (remaining.days === 0 && remaining.hours === 0 && remaining.minutes === 0 && remaining.seconds === 0) {
         clearInterval(timer);
-        return;
       }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        ),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
     }, 1000);
 
     return () => clearInterval(timer);

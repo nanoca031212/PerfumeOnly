@@ -16,6 +16,7 @@ interface CartItem {
   image: string
   quantity: number
   originalPrice?: number
+  regularPrice?: number
 }
 
 interface CartContextType {
@@ -105,20 +106,40 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }
 
   const removeItem = (id: number) => {
-    setItems(items => items.filter(item => item.id !== id))
+    setItems(items => {
+      const filtered = items.filter(item => item.id !== id);
+      // Se um item for removido, a promoção (bundle) é quebrada, então volta os preços aos regulares
+      return filtered.map(item => ({
+        ...item,
+        price: item.regularPrice || item.price
+      }));
+    });
   }
 
   const updateQuantity = (id: number, delta: number) => {
     setItems(prevItems => {
       const itemToUpdate = prevItems.find(item => item.id === id);
+      const isDecrease = delta < 0;
+
       if (itemToUpdate && itemToUpdate.quantity + delta <= 0) {
-        return prevItems.filter(item => item.id !== id);
+        const filtered = prevItems.filter(item => item.id !== id);
+        return filtered.map(item => ({
+          ...item,
+          price: item.regularPrice || item.price
+        }));
       }
-      return prevItems.map(item =>
-        item.id === id
-          ? { ...item, quantity: Math.max(0, Math.min(10, item.quantity + delta)) }
-          : item
-      );
+
+      return prevItems.map(item => {
+        if (item.id === id) {
+          return { 
+            ...item, 
+            quantity: Math.max(0, Math.min(10, item.quantity + delta)),
+            price: isDecrease ? (item.regularPrice || item.price) : item.price 
+          };
+        }
+        // Se diminuir qualquer item da bag, o bundle é quebrado para todos os itens
+        return isDecrease ? { ...item, price: item.regularPrice || item.price } : item;
+      });
     });
   }
 

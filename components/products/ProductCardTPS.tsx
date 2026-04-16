@@ -136,16 +136,7 @@ export default function ProductCardTPS({ product, className = '', priority = fal
           </div>
 
           {/* Badge - Canto superior direito */}
-          {hasDiscount && (
-            <div className="absolute top-2 right-2 bg-white border border-black rounded-full w-16 h-16 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-xs font-bold leading-tight">UP TO</div>
-                <div className="text-sm font-bold leading-tight">{product.price.discount_percent}% OFF</div>
-                <div className="text-xs leading-tight">APPLIED AT</div>
-                <div className="text-xs leading-tight">CHECKOUT</div>
-              </div>
-            </div>
-          )}
+        
 
           {/* New/Tester Badge */}
           {product.new_arrival && !hasDiscount && (

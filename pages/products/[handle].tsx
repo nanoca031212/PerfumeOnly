@@ -15,6 +15,7 @@ import { useCart } from "@/contexts/CartContext";
 import ReviewSection from "@/components/products/ReviewSection";
 import Link from "next/link";
 import Image from "next/image";
+import { getPromoTarget, calculateTimeLeft } from "@/lib/timer";
 
 interface ProductPageProps {
   product: Product;
@@ -31,62 +32,29 @@ export default function ProductPage({
   const [selectedImage, setSelectedImage] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
+  const { utmParams } = useUTM();
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
+
+  // Synchronized Countdown timer logic
   useEffect(() => {
-    // Alvo: Hoje + 24h a partir de agora
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 1);
+    const target = getPromoTarget();
+    
+    // Initial calculation
+    setTimeLeft(calculateTimeLeft(target));
 
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-
-      if (distance < 0) {
+      const remaining = calculateTimeLeft(target);
+      setTimeLeft(remaining);
+      
+      if (remaining.days === 0 && remaining.hours === 0 && remaining.minutes === 0 && remaining.seconds === 0) {
         clearInterval(timer);
-        return;
       }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        ),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  // Countdown timer logic
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        const totalSeconds =
-          prev.days * 86400 +
-          prev.hours * 3600 +
-          prev.minutes * 60 +
-          prev.seconds -
-          1;
-
-        if (totalSeconds <= 0) {
-          clearInterval(timer);
-          return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-        }
-
-        return {
-          days: Math.floor(totalSeconds / 86400),
-          hours: Math.floor((totalSeconds % 86400) / 3600),
-          minutes: Math.floor((totalSeconds % 3600) / 60),
-          seconds: totalSeconds % 60,
-        };
-      });
     }, 1000);
 
     return () => clearInterval(timer);
@@ -127,6 +95,7 @@ export default function ProductPage({
           price: selection.totalPrice / selection.fragrances.length,
           originalPrice:
             (selection.totalPrice / selection.fragrances.length) * 3, // Estimated UK RRP
+          regularPrice: frag.price.regular,
           image: Array.isArray(frag.images)
             ? frag.images[0]
             : (frag.images as any)?.main?.[0] || "",
