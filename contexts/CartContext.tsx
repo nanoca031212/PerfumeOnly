@@ -119,7 +119,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const updateQuantity = (id: number, delta: number) => {
     setItems(prevItems => {
       const itemToUpdate = prevItems.find(item => item.id === id);
-      const isDecrease = delta < 0;
 
       if (itemToUpdate && itemToUpdate.quantity + delta <= 0) {
         const filtered = prevItems.filter(item => item.id !== id);
@@ -134,11 +133,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
           return { 
             ...item, 
             quantity: Math.max(0, Math.min(10, item.quantity + delta)),
-            price: isDecrease ? (item.regularPrice || item.price) : item.price 
+            price: item.regularPrice || item.price 
           };
         }
-        // Se diminuir qualquer item da bag, o bundle é quebrado para todos os itens
-        return isDecrease ? { ...item, price: item.regularPrice || item.price } : item;
+        // Qualquer modificação de quantidade no carrinho quebra as regras do pacote
+        return { ...item, price: item.regularPrice || item.price };
       });
     });
   }

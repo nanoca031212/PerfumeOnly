@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Pencil, Trash2 } from "lucide-react";
 import { Product } from "@/types/product";
 
 interface BundleSelectorProps {
@@ -81,15 +81,37 @@ const unitPrice = Number(currentProduct.price.regular) || 26.00;
     }
   }, [currentProduct]);
 
-  // When selectedPack changes via user click, we don't automatically clear everything unless they just clicked it right now.
   const handlePackSelect = (packId: "single" | "trio" | "penta") => {
+    const isNewPack = selectedPack !== packId;
     setSelectedPack(packId);
-    const newSelections = [currentProduct, null, null, null, null];
-    setFragranceSelections(newSelections);
+    
+    let finalSelections = [...fragranceSelections];
+    let slotToFill = 1;
+
+    if (isNewPack) {
+      finalSelections = [currentProduct, null, null, null, null];
+    } else {
+      const pCount = packId === "trio" ? 3 : packId === "penta" ? 5 : 1;
+      for (let i = 1; i < pCount; i++) {
+        if (!finalSelections[i]) {
+          slotToFill = i;
+          break;
+        }
+      }
+    }
+
+    setFragranceSelections(finalSelections);
     localStorage.setItem(
       "bundleState",
-      JSON.stringify({ packType: packId, selections: newSelections }),
+      JSON.stringify({ packType: packId, selections: finalSelections }),
     );
+
+    if (packId !== "single") {
+      const returnTo = window.location.pathname + window.location.search;
+      router.push(
+        `/?bundleSlot=${slotToFill}&returnTo=${encodeURIComponent(returnTo)}`,
+      );
+    }
   };
 
   const updateFragrance = (index: number, product: Product) => {
@@ -100,6 +122,18 @@ const unitPrice = Number(currentProduct.price.regular) || 26.00;
       "bundleState",
       JSON.stringify({ packType: selectedPack, selections: newSelections }),
     );
+  };
+
+  const handleRemoveScent = (index: number) => {
+    if (index === 0) return;
+    const newSelections = [...fragranceSelections];
+    newSelections[index] = null;
+    setFragranceSelections(newSelections);
+    localStorage.setItem(
+      "bundleState",
+      JSON.stringify({ packType: selectedPack, selections: newSelections }),
+    );
+    window.dispatchEvent(new Event("bundleStateUpdated"));
   };
 
   const openPicker = (slotIndex: number) => {
@@ -261,9 +295,9 @@ const unitPrice = Number(currentProduct.price.regular) || 26.00;
 
                         return (
                           <div key={idx} className="relative">
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1.5 sm:gap-2">
                               {/* Thumbnail */}
-                              <div className="w-12 h-12 bg-[#f1f1f1] border border-[#d4d4d4] rounded flex-shrink-0 overflow-hidden">
+                              <div className="w-11 h-11 sm:w-12 sm:h-12 bg-[#f1f1f1] border border-[#d4d4d4] rounded flex-shrink-0 overflow-hidden">
                                 {chosen && (
                                   <Image
                                     src={getImageUrl(chosen)}
@@ -278,24 +312,39 @@ const unitPrice = Number(currentProduct.price.regular) || 26.00;
                               {/* Navigate-to-picker Button */}
                               <button
                                 onClick={() => openPicker(idx)}
-                                className="flex-1 flex items-center justify-between bg-[#d4d4d4] border border-[#333] hover:border-white transition-colors px-3 py-1.5 rounded-xl text-left"
+                                className="flex-1 flex items-center justify-between min-w-0 bg-[#d4d4d4] border border-[#333] hover:opacity-90 hover:border-white transition-all px-2 sm:px-3 py-1.5 rounded-xl text-left"
                               >
-                                <div>
-                                  <div className="text-black/70 text-[9px] font-bold uppercase tracking-widest">
+                                <div className="min-w-0 flex-1">
+                                  <div className="text-black/70 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest truncate">
                                     SELECT FRAGRANCE
                                   </div>
-                                  <div className="text-black text-[12px] font-bold truncate max-w-[200px]">
+                                  <div className="text-black text-[11px] sm:text-[12px] font-bold truncate">
                                     {chosen
                                       ? chosen.title.toUpperCase()
                                       : "CHOOSE YOUR FRAGRANCE..."}
                                   </div>
                                 </div>
-                                <ChevronRight className="w-4 h-4 text-[#888] flex-shrink-0 ml-2" />
+                                <ChevronRight className="w-4 h-4 text-[#888] flex-shrink-0 ml-1 sm:ml-2" />
                               </button>
 
-                              {/* Size Badge */}
-                              <div className="bg-[#d4d4d4] font-bold text-black text-[11px] px-2 py-2.5 rounded flex-shrink-0">
-                                100ML
+                              {/* Action Buttons */}
+                              <div className="flex items-center gap-1 flex-shrink-0">
+                                <button
+                                  onClick={(e) => { e.preventDefault(); openPicker(idx); }}
+                                  className="w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] rounded-xl bg-[#d4d4d4] flex items-center justify-center text-black border border-[#333] hover:opacity-90 hover:border-white transition-all"
+                                  title="Edit"
+                                >
+                                  <Pencil className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                </button>
+                                {idx > 0 && (
+                                  <button
+                                    onClick={(e) => { e.preventDefault(); handleRemoveScent(idx); }}
+                                    className="w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] rounded-xl bg-[#d4d4d4] flex items-center justify-center text-[#E00030] border border-[#333] hover:opacity-90 hover:border-[#E00030] transition-all"
+                                    title="Remove"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                  </button>
+                                )}
                               </div>
                             </div>
                           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -18,7 +18,28 @@ export default function ProductCardTPS({
   priority = false,
 }: ProductCardTPSProps) {
   const [imageError, setImageError] = useState(false);
+  const [selectionCount, setSelectionCount] = useState(0);
   const pixel = usePixel();
+
+  const calculateSelectionCount = () => {
+    try {
+      const stored = localStorage.getItem("bundleState");
+      if (stored) {
+        const state = JSON.parse(stored);
+        if (state && Array.isArray(state.selections)) {
+          const count = state.selections.filter((p: any) => p && p.id === product.id).length;
+          setSelectionCount(count);
+        }
+      }
+    } catch (e) {}
+  };
+
+  useEffect(() => {
+    calculateSelectionCount();
+    const handleBundleChange = () => calculateSelectionCount();
+    window.addEventListener("bundleStateUpdated", handleBundleChange);
+    return () => window.removeEventListener("bundleStateUpdated", handleBundleChange);
+  }, [product.id]);
 
   // Extrair URL da imagem principal
   const getMainImageUrl = () => {
@@ -90,17 +111,78 @@ export default function ProductCardTPS({
 
         state.selections[slotIndex] = product;
         localStorage.setItem("bundleState", JSON.stringify(state));
+        window.dispatchEvent(new Event("bundleStateUpdated"));
       } catch (err) {}
 
+      let updatedReturnTo = returnTo as string;
       if (slotIndex === 0) {
-        // If selecting the primary fragrance, go to its product page
-        router.push(`/products/${product.handle}`);
+        updatedReturnTo = `/products/${product.handle}`;
+      }
+
+      let nextEmptySlot = -1;
+      try {
+        const stored = localStorage.getItem("bundleState");
+        if (stored) {
+          const state = JSON.parse(stored);
+          const pCount = state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 1;
+          for (let i = 0; i < pCount; i++) {
+            if (!state.selections[i]) {
+              nextEmptySlot = i;
+              break;
+            }
+          }
+        }
+      } catch (e) {}
+
+      if (nextEmptySlot !== -1) {
+        router.push(`/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(updatedReturnTo)}`, undefined, { shallow: true, scroll: false });
       } else {
-        router.push(returnTo as string);
+        router.push(updatedReturnTo);
       }
     } else {
       handleViewContent();
     }
+  };
+
+  const handleRemoveClick = (e: React.MouseEvent) => {
+    if (!isSelectionMode) return;
+    e.preventDefault();
+
+    try {
+      const stored = localStorage.getItem("bundleState");
+      if (stored) {
+        const state = JSON.parse(stored);
+        if (state && Array.isArray(state.selections)) {
+          let removed = false;
+          // Remove highest index instance of this product
+          for (let i = state.selections.length - 1; i >= 0; i--) {
+            if (state.selections[i] && state.selections[i].id === product.id) {
+              state.selections[i] = null;
+              removed = true;
+              break;
+            }
+          }
+
+          if (removed) {
+            localStorage.setItem("bundleState", JSON.stringify(state));
+            window.dispatchEvent(new Event("bundleStateUpdated"));
+
+            let nextEmptySlot = -1;
+            const pCount = state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 1;
+            for (let i = 0; i < pCount; i++) {
+              if (!state.selections[i]) {
+                nextEmptySlot = i;
+                break;
+              }
+            }
+
+            if (nextEmptySlot !== -1) {
+              router.push(`/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(returnTo as string)}`, undefined, { shallow: true, scroll: false });
+            }
+          }
+        }
+      }
+    } catch (err) {}
   };
 
   const CardWrapper = isSelectionMode ? "button" : Link;
@@ -122,6 +204,11 @@ export default function ProductCardTPS({
       <CardWrapper {...(cardProps as any)}>
         {/* Image Container */}
         <div className="relative bg-white mb-3">
+          {selectionCount > 0 && isSelectionMode && (
+            <div className="absolute -top-2 -right-2 bg-black text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm shadow-md z-20 border-2 border-white">
+              {selectionCount}
+            </div>
+          )}
           {/* Viewers Counter */}
           {product.popularity > 0 && (
             <div className="absolute top-2 left-2 bg-white/80 backdrop-blur-sm text-xs py-1 px-2 rounded-full z-10">
@@ -229,13 +316,22 @@ export default function ProductCardTPS({
       {/* CTA Button - sempre na parte inferior */}
       <div className="mt-4">
         {isSelectionMode ? (
-          <button
-            onClick={handleCardClick}
-            className="block w-full bg-black rounded-[4px] text-white py-3 text-x1 font-bold uppercase tracking-wide
-                     hover:bg-gray-900 transition-colors duration-200 text-center"
-          >
-            SELECT
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={handleCardClick}
+              className="flex-1 bg-black rounded-[4px] text-white py-3 px-2 text-sm font-bold uppercase tracking-wide hover:bg-gray-900 transition-colors duration-200 text-center"
+            >
+              SELECT
+            </button>
+            {selectionCount > 0 && (
+              <button
+                onClick={handleRemoveClick}
+                className="flex-1 bg-[#d4d4d4] rounded-[4px] text-black py-3 px-2 text-sm font-bold uppercase tracking-wide hover:bg-gray-300 transition-colors duration-200 text-center"
+              >
+                REMOVE
+              </button>
+            )}
+          </div>
         ) : (
           <Link
             href={`/products/${product.handle}`}

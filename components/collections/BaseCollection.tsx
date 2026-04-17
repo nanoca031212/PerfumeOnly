@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/router'
+import { Info } from 'lucide-react'
 import { Product } from '@/types/product'
 import Layout from '@/components/layout/Layout'
 import ProductCardTPS from '@/components/products/ProductCardTPS'
@@ -22,6 +24,47 @@ export default function BaseCollection({
   // Se houver uma função de filtro, aplica ela nos produtos iniciais
   const baseProducts = filterFunction ? initialProducts.filter(filterFunction) : initialProducts
   const [products, setProducts] = useState(baseProducts)
+  
+  const router = useRouter()
+  const { bundleSlot, returnTo } = router.query
+  const isSelectionMode = typeof bundleSlot === 'string' && typeof returnTo === 'string'
+
+  const [remaining, setRemaining] = useState(0)
+  const [packName, setPackName] = useState("")
+  const [showAlert, setShowAlert] = useState(false)
+  const [baseProductId, setBaseProductId] = useState<number | null>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const calculateRemaining = () => {
+    try {
+      const stored = localStorage.getItem("bundleState")
+      if (stored) {
+        const state = JSON.parse(stored)
+        if (state && Array.isArray(state.selections)) {
+          if (state.selections[0]) setBaseProductId(state.selections[0].id)
+          const pCount = state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 1
+          let filled = 0
+          for (let i = 0; i < pCount; i++) {
+            if (state.selections[i]) filled++
+          }
+          setRemaining(pCount - filled)
+          setPackName(state.packType === "trio" ? "3 Perfumes" : state.packType === "penta" ? "5 Perfumes" : "1 Perfume")
+
+          setShowAlert(true)
+          if (timeoutRef.current) clearTimeout(timeoutRef.current)
+          timeoutRef.current = setTimeout(() => setShowAlert(false), 3000)
+        }
+      }
+    } catch (e) {}
+  }
+
+  useEffect(() => {
+    if (isSelectionMode) {
+      calculateRemaining()
+      window.addEventListener("bundleStateUpdated", calculateRemaining)
+      return () => window.removeEventListener("bundleStateUpdated", calculateRemaining)
+    }
+  }, [isSelectionMode])
   
   // Usar filtros baseados em sessão UTM
   const { sessionFilters, isLoaded } = useSessionFilters()
@@ -198,6 +241,25 @@ export default function BaseCollection({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
+      {/* Toast Alert */}
+      {isSelectionMode && showAlert && packName && (
+        <div className="fixed bottom-4 right-4 z-[100] md:bottom-8 md:right-8 transition-opacity duration-500 animate-in fade-in slide-in-from-bottom-4">
+          <div role="alert" className="relative w-[320px] rounded-xl border border-gray-200 bg-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] text-gray-900
+                                       [&>svg~*]:pl-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-gray-900">
+            <Info className="h-5 w-5" />
+            <h5 className="mb-1 font-semibold leading-none tracking-tight text-sm">
+              Bundle {packName}
+            </h5>
+            <div className="text-sm text-gray-500 mt-1">
+              {remaining > 0 
+                ? `You need to add ${remaining} more perfume${remaining > 1 ? 's' : ''} to complete your bundle.`
+                : `Excellent! Returning to checkout...`
+              }
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* List Controls */}
       <ListControls 
         resultsCount={products.length}
@@ -211,13 +273,23 @@ export default function BaseCollection({
         <div className="container mx-auto">
           {/* Grid de produtos - 2 colunas mobile com altura uniforme */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 auto-rows-fr">
-            {products.map((product, index) => (
-              <ProductCardTPS 
-                key={product.id}
-                product={product}
-                priority={index < 4} // Priorizar primeiras 4 imagens
-              />
-            ))}
+            {(() => {
+              const displayProducts = [...products];
+              if (isSelectionMode && baseProductId) {
+                const baseIdx = displayProducts.findIndex(p => p.id === baseProductId);
+                if (baseIdx > 0) {
+                  const [baseProduct] = displayProducts.splice(baseIdx, 1);
+                  displayProducts.unshift(baseProduct);
+                }
+              }
+              return displayProducts.map((product, index) => (
+                <ProductCardTPS 
+                  key={product.id}
+                  product={product}
+                  priority={index < 4} // Priorizar primeiras 4 imagens
+                />
+              ));
+            })()}
           </div>
         </div>
       </section>
