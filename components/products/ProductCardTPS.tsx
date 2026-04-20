@@ -29,22 +29,25 @@ export default function ProductCardTPS({
         if (state && Array.isArray(state.selections)) {
           // Get only non-null selections to determine continuous order
           const nonNullSelections = state.selections.filter((p: any) => p);
-          
+
           const indices = nonNullSelections
-            .map((p: any, idx: number) => (p.id === product.id ? idx + 1 : null))
+            .map((p: any, idx: number) =>
+              p.id === product.id ? idx + 1 : null,
+            )
             .filter((idx: number | null) => idx !== null) as number[];
 
           setSelectionIndices(indices.join(", "));
         }
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   useEffect(() => {
     calculateSelectionCount();
     const handleBundleChange = () => calculateSelectionCount();
     window.addEventListener("bundleStateUpdated", handleBundleChange);
-    return () => window.removeEventListener("bundleStateUpdated", handleBundleChange);
+    return () =>
+      window.removeEventListener("bundleStateUpdated", handleBundleChange);
   }, [product.id]);
 
   // Extrair URL da imagem principal
@@ -118,7 +121,7 @@ export default function ProductCardTPS({
         state.selections[slotIndex] = product;
         localStorage.setItem("bundleState", JSON.stringify(state));
         window.dispatchEvent(new Event("bundleStateUpdated"));
-      } catch (err) { }
+      } catch (err) {}
 
       let updatedReturnTo = returnTo as string;
       if (slotIndex === 0) {
@@ -130,7 +133,8 @@ export default function ProductCardTPS({
         const stored = localStorage.getItem("bundleState");
         if (stored) {
           const state = JSON.parse(stored);
-          const pCount = state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 1;
+          const pCount =
+            state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 1;
           for (let i = 0; i < pCount; i++) {
             if (!state.selections[i]) {
               nextEmptySlot = i;
@@ -138,10 +142,14 @@ export default function ProductCardTPS({
             }
           }
         }
-      } catch (e) { }
+      } catch (e) {}
 
       if (nextEmptySlot !== -1) {
-        router.push(`/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(updatedReturnTo)}`, undefined, { shallow: true, scroll: false });
+        router.push(
+          `/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(updatedReturnTo)}`,
+          undefined,
+          { shallow: true, scroll: false },
+        );
       } else {
         const separator = updatedReturnTo.includes("?") ? "&" : "?";
         router.push(`${updatedReturnTo}${separator}scroll=bundle`);
@@ -175,7 +183,12 @@ export default function ProductCardTPS({
             window.dispatchEvent(new Event("bundleStateUpdated"));
 
             let nextEmptySlot = -1;
-            const pCount = state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 1;
+            const pCount =
+              state.packType === "trio"
+                ? 3
+                : state.packType === "penta"
+                  ? 5
+                  : 1;
             for (let i = 0; i < pCount; i++) {
               if (!state.selections[i]) {
                 nextEmptySlot = i;
@@ -184,26 +197,33 @@ export default function ProductCardTPS({
             }
 
             if (nextEmptySlot !== -1) {
-              router.push(`/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(returnTo as string)}`, undefined, { shallow: true, scroll: false });
+              router.push(
+                `/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(returnTo as string)}`,
+                undefined,
+                { shallow: true, scroll: false },
+              );
             }
           }
         }
       }
-    } catch (err) { }
+    } catch (err) {}
   };
 
   const CardWrapper = isSelectionMode ? "button" : Link;
   const cardProps = isSelectionMode
     ? {
-      onClick: handleCardClick,
-      className: "flex flex-col flex-grow text-left",
-    }
+        onClick: handleCardClick,
+        className: "flex flex-col flex-grow text-left",
+      }
     : {
-      href: router.pathname === "/" ? `/products/${product.handle}?reset=true` : `/products/${product.handle}`,
-      onClick: handleViewContent,
-      className: "flex flex-col flex-grow",
-      suppressHydrationWarning: true,
-    };
+        href:
+          router.pathname === "/"
+            ? `/products/${product.handle}?reset=true`
+            : `/products/${product.handle}`,
+        onClick: handleViewContent,
+        className: "flex flex-col flex-grow",
+        suppressHydrationWarning: true,
+      };
 
   return (
     <div className={`bg-white flex flex-col h-full ${className}`}>
@@ -236,9 +256,9 @@ export default function ProductCardTPS({
                 style={
                   product.image_scale
                     ? {
-                      transform: `scale(${product.image_scale})`,
-                      transition: "transform 0.2s",
-                    }
+                        transform: `scale(${product.image_scale})`,
+                        transition: "transform 0.2s",
+                      }
                     : undefined
                 }
                 priority={priority}
@@ -321,7 +341,7 @@ export default function ProductCardTPS({
       </CardWrapper>
 
       {/* CTA Button - sempre na parte inferior */}
-      <div className="mt-4">
+      <div className="mt-4 flex flex-col gap-2">
         {isSelectionMode ? (
           <div className="flex gap-2">
             <button
@@ -341,13 +361,32 @@ export default function ProductCardTPS({
           </div>
         ) : (
           <Link
-            href={router.pathname === "/" ? `/products/${product.handle}?reset=true` : `/products/${product.handle}`}
+            href={
+              router.pathname === "/"
+                ? `/products/${product.handle}?reset=true`
+                : `/products/${product.handle}`
+            }
             className="block w-full bg-black rounded-[4px] text-white py-3 text-x1 font-thin uppercase tracking-wide
                      hover:bg-gray-900 transition-colors duration-200 text-center"
             onClick={handleViewContent}
             suppressHydrationWarning
           >
-            VIEW DETAILS
+            VIEW Promotion
+          </Link>
+        )}
+        {!isSelectionMode && (
+          <Link
+            href={
+              router.pathname === "/"
+                ? `/detailsProdutc/${product.handle}?reset=true`
+                : `/detailsProdutc/${product.handle}`
+            }
+            className="block w-full border border-black text-black rounded-[4px] py-3 text-x1 font-thin uppercase tracking-wide
+                       hover:bg-gray-900 transition-colors hover:text-white duration-200 text-center"
+            onClick={handleViewContent}
+            suppressHydrationWarning
+          >
+            details
           </Link>
         )}
       </div>
