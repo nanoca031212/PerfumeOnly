@@ -369,7 +369,7 @@ export default function CheckoutPage() {
                 className="w-full bg-black text-white py-4 px-4 rounded-md hover:bg-gray-800 transition-colors font-bold text-lg mt-6 flex justify-center items-center gap-2"
               >
                 <ShoppingBag className="w-6 h-6" />
-                View order
+                View Order
               </button>
             </form>
           </div>
