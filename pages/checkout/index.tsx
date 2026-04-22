@@ -48,15 +48,20 @@ export default function CheckoutPage() {
   // Synchronized Countdown timer logic
   useEffect(() => {
     const target = getPromoTarget();
-    
+
     // Initial calculation
     setTimeLeft(calculateTimeLeft(target));
 
     const timer = setInterval(() => {
       const remaining = calculateTimeLeft(target);
       setTimeLeft(remaining);
-      
-      if (remaining.days === 0 && remaining.hours === 0 && remaining.minutes === 0 && remaining.seconds === 0) {
+
+      if (
+        remaining.days === 0 &&
+        remaining.hours === 0 &&
+        remaining.minutes === 0 &&
+        remaining.seconds === 0
+      ) {
         clearInterval(timer);
       }
     }, 1000);
@@ -364,7 +369,7 @@ export default function CheckoutPage() {
                 className="w-full bg-black text-white py-4 px-4 rounded-md hover:bg-gray-800 transition-colors font-bold text-lg mt-6 flex justify-center items-center gap-2"
               >
                 <ShoppingBag className="w-6 h-6" />
-                Buy Now
+                View order
               </button>
             </form>
           </div>
