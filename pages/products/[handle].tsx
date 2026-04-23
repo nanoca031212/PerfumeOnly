@@ -16,6 +16,7 @@ import ReviewSection from "@/components/products/ReviewSection";
 import Link from "next/link";
 import Image from "next/image";
 import { getPromoTarget, calculateTimeLeft } from "@/lib/timer";
+import { useRouter } from "next/router";
 
 interface ProductPageProps {
   product: Product;
@@ -29,10 +30,21 @@ export default function ProductPage({
   allProducts,
 }: ProductPageProps) {
   const { addItem } = useCart();
+  const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const { utmParams } = useUTM();
+
+  // Clear bundleState when coming from homepage (VIEW PROMOTION link adds ?reset=true)
+  useEffect(() => {
+    if (router.query.reset === "true") {
+      try {
+        localStorage.removeItem("bundleState");
+        window.dispatchEvent(new Event("bundleStateUpdated"));
+      } catch (e) {}
+    }
+  }, [router.query.reset]);
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,

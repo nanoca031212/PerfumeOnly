@@ -32,7 +32,7 @@ export default function BaseCollection({
   const { bundleSlot, returnTo } = router.query;
   const isSelectionMode =
     typeof bundleSlot === "string" && typeof returnTo === "string";
-  const { isOpen: isBagOpen } = useCart();
+  const { isOpen: isBagOpen, setIsOpen: setBagOpen } = useCart();
 
   const [remaining, setRemaining] = useState(0);
   const [packName, setPackName] = useState("");
@@ -373,12 +373,12 @@ export default function BaseCollection({
             <Info className="h-5 w-5" />
             <h5 className="mb-1 font-semibold leading-none tracking-tight text-sm">
               {selectedCount === 5
-                ? "Maximum Discount Reached!!"
+                ? "🎉 Desconto Máximo Atingido!"
                 : selectedCount === 4
-                  ? "Mix & match any 5 fragrances — £99.99 for all five"
-                  : selectedCount >= 3
-                    ? "Discount Unlocked!"
-                    : "Mix & match any 3 fragrances — £49.99 for all three"}
+                  ? "Continue adicionando!"
+                  : selectedCount === 3
+                    ? "🎉 Desconto Desbloqueado!"
+                    : "Mix & match — 3 perfumes por £49.99"}
             </h5>
             <div className="text-sm text-gray-500 mt-1">
               {selectedCount < 3
@@ -386,7 +386,7 @@ export default function BaseCollection({
                 : selectedCount === 3
                   ? `Congratulations, you've unlocked the discount 3 perfumes for 49.99. Select more 2 perfumes to unlock the maximum discount.`
                   : selectedCount === 4
-                    ? `1 discount missing.`
+                    ? `1 more perfume to unlock the maximum discount.`
                     : `Congratulations, you've unlocked the maximum discount!`}
             </div>
           </div>
@@ -414,7 +414,8 @@ export default function BaseCollection({
             return (
               <div
                 key={index}
-                className="bg-white border border-gray-300 rounded-xl p-1 shadow-[0_10px_40px_rgba(0,0,0,0.1)] relative animate-in fade-in slide-in-from-bottom-12 duration-500 ease-out transition-all"
+                onClick={() => setBagOpen(true)}
+                className="bg-white border border-gray-300 rounded-xl p-1 shadow-[0_10px_40px_rgba(0,0,0,0.1)] relative animate-in fade-in slide-in-from-bottom-12 duration-500 ease-out transition-all cursor-pointer hover:scale-105"
                 style={{
                   zIndex: 100 - index,
                   transform: `translateY(${collapseTranslate}px)`,

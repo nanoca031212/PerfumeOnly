@@ -22,7 +22,7 @@ export default function ProductCardTPS({
   const [selectionIndices, setSelectionIndices] = useState<string>("");
   const pixel = usePixel();
   const [isBundleEmpty, setIsBundleEmpty] = useState(true);
-  const { addItem, clearCart } = useCart();
+  const { addItem, clearCart, setIsOpen } = useCart();
 
   const calculateSelectionCount = () => {
     try {
@@ -169,12 +169,14 @@ export default function ProductCardTPS({
       localStorage.setItem("bundleState", JSON.stringify(state));
       window.dispatchEvent(new Event("bundleStateUpdated"));
 
-      // Auto-checkout when reaching 5 items on the homepage
+      // Always update cart silently when selecting on the homepage
       const finalSelections: any[] = state.selections || [];
       const finalCount = finalSelections.filter((p: any) => p !== null).length;
-      if (finalCount === 5 && !isSelectionMode) {
-        // Pass selections directly to avoid race condition with localStorage
+      if (!isSelectionMode) {
         await addBundleToCart(finalSelections, state.packType);
+        if (finalCount === 5) {
+          setIsOpen(true);
+        }
       }
 
       if (isSelectionMode && returnTo) {
@@ -207,7 +209,7 @@ export default function ProductCardTPS({
     } catch (err) {}
   };
 
-  const handleRemoveClick = (e: React.MouseEvent) => {
+  const handleRemoveClick = async (e: React.MouseEvent) => {
     e.preventDefault();
 
     try {
@@ -228,6 +230,11 @@ export default function ProductCardTPS({
           if (removed) {
             localStorage.setItem("bundleState", JSON.stringify(state));
             window.dispatchEvent(new Event("bundleStateUpdated"));
+
+            // Sync cart: rebuild with remaining selections and correct prices
+            if (!isSelectionMode) {
+              await addBundleToCart(state.selections, state.packType);
+            }
 
             if (isSelectionMode && returnTo) {
               let nextEmptySlot = -1;
@@ -263,29 +270,56 @@ export default function ProductCardTPS({
       const nonNullSelections = selections.filter((p: any) => p !== null);
       if (nonNullSelections.length === 0) return;
 
-      let totalPrice = 49.99;
-      if (packType === "penta" || nonNullSelections.length === 5) totalPrice = 99.99;
-      else if (packType === "single") {
-        totalPrice = Number(nonNullSelections[0]?.price?.regular) || 26.0;
-      }
-
       clearCart();
 
       const stripeProductMapping = await import("@/data/stripe_product_mapping.json");
       const productMapping = stripeProductMapping.default as Record<string, { price_id: string }>;
 
-      for (const frag of nonNullSelections) {
+      const count = nonNullSelections.length;
+
+      for (let i = 0; i < count; i++) {
+        const frag = nonNullSelections[i];
         if (!frag) continue;
+
         const stripeId = productMapping[frag.handle]?.price_id || "";
+        const regularPrice = Number(frag.price?.regular) || 26.0;
+        const originalPrice = Number(frag.price?.original_price) || regularPrice * 2;
+
+        let itemPrice: number;
+        let itemOriginalPrice: number;
+
+        if (count <= 2) {
+          // 1-2 perfumes: preço cheio
+          itemPrice = regularPrice;
+          itemOriginalPrice = originalPrice;
+        } else if (count === 3) {
+          // 3 perfumes: £49.99 dividido por 3
+          itemPrice = 49.99 / 3;
+          itemOriginalPrice = regularPrice;
+        } else if (count === 4) {
+          // 4 perfumes: primeiros 3 com desconto de £49.99, 4º no preço cheio
+          if (i < 3) {
+            itemPrice = 49.99 / 3;
+            itemOriginalPrice = regularPrice;
+          } else {
+            itemPrice = regularPrice;
+            itemOriginalPrice = originalPrice;
+          }
+        } else {
+          // 5 perfumes: £99.99 dividido por 5
+          itemPrice = 99.99 / 5;
+          itemOriginalPrice = regularPrice;
+        }
+
         const cartItem = {
           id: frag.id,
           handle: frag.handle,
           stripeId,
           title: frag.title,
           subtitle: "Eau de Parfum Spray - 100ML",
-          price: totalPrice / nonNullSelections.length,
-          originalPrice: (totalPrice / nonNullSelections.length) * 3,
-          regularPrice: Number(frag.price?.regular) || undefined,
+          price: itemPrice,
+          originalPrice: itemOriginalPrice,
+          regularPrice,
           image: Array.isArray(frag.images)
             ? frag.images[0]
             : (frag.images as any)?.main?.[0] || "/images/placeholder-product.jpg",
@@ -304,6 +338,7 @@ export default function ProductCardTPS({
       if (!stored) { router.push("/checkout"); return; }
       const state = JSON.parse(stored);
       await addBundleToCart(state.selections || [], state.packType);
+      setIsOpen(true);
     } catch (err) {
       console.error(err);
       router.push("/checkout");
@@ -480,7 +515,7 @@ export default function ProductCardTPS({
               className="block w-full bg-white !border !border-solid !border-black rounded-[4px] text-black font-medium py-3 text-x1 uppercase tracking-wide
                        hover:bg-gray-900 hover:text-white  transition-colors duration-300 text-center"
             >
-              FINALIZAR PEDIDO
+              finish order
             </button>
           )
         )}

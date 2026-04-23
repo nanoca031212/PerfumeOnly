@@ -102,17 +102,30 @@ export function CartProvider({ children }: { children: ReactNode }) {
       // Adicionar novo item
       return [...prevItems, { ...itemWithStripeId, quantity }]
     })
-    setIsOpen(true)
   }
+
+  const recalculateBundlePrices = (items: CartItem[]): CartItem[] => {
+    const count = items.length;
+    return items.map((item, i) => {
+      const regularPrice = item.regularPrice || item.price;
+      let newPrice: number;
+      if (count <= 2) {
+        newPrice = regularPrice;
+      } else if (count === 3) {
+        newPrice = 49.99 / 3;
+      } else if (count === 4) {
+        newPrice = i < 3 ? 49.99 / 3 : regularPrice;
+      } else {
+        newPrice = 99.99 / 5;
+      }
+      return { ...item, price: newPrice };
+    });
+  };
 
   const removeItem = (id: number) => {
     setItems(items => {
       const filtered = items.filter(item => item.id !== id);
-      // Se um item for removido, a promoção (bundle) é quebrada, então volta os preços aos regulares
-      return filtered.map(item => ({
-        ...item,
-        price: item.regularPrice || item.price
-      }));
+      return recalculateBundlePrices(filtered);
     });
   }
 
@@ -122,10 +135,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
       if (itemToUpdate && itemToUpdate.quantity + delta <= 0) {
         const filtered = prevItems.filter(item => item.id !== id);
-        return filtered.map(item => ({
-          ...item,
-          price: item.regularPrice || item.price
-        }));
+        return recalculateBundlePrices(filtered);
       }
 
       return prevItems.map(item => {
