@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { Star } from "lucide-react";
 import { Product } from "@/types/product";
 import { usePixel } from "@/hooks/usePixel";
+import { useCart } from "@/contexts/CartContext";
 
 interface ProductCardTPSProps {
   product: Product;
@@ -20,6 +21,8 @@ export default function ProductCardTPS({
   const [imageError, setImageError] = useState(false);
   const [selectionIndices, setSelectionIndices] = useState<string>("");
   const pixel = usePixel();
+  const [isBundleEmpty, setIsBundleEmpty] = useState(true);
+  const { addItem, clearCart } = useCart();
 
   const calculateSelectionCount = () => {
     try {
@@ -30,6 +33,8 @@ export default function ProductCardTPS({
           // Get only non-null selections to determine continuous order
           const nonNullSelections = state.selections.filter((p: any) => p);
 
+          setIsBundleEmpty(nonNullSelections.length === 0);
+
           const indices = nonNullSelections
             .map((p: any, idx: number) =>
               p.id === product.id ? idx + 1 : null,
@@ -37,9 +42,15 @@ export default function ProductCardTPS({
             .filter((idx: number | null) => idx !== null) as number[];
 
           setSelectionIndices(indices.join(", "));
+        } else {
+          setIsBundleEmpty(true);
         }
+      } else {
+        setIsBundleEmpty(true);
       }
-    } catch (e) {}
+    } catch (e) {
+      setIsBundleEmpty(true);
+    }
   };
 
   useEffect(() => {
@@ -106,61 +117,97 @@ export default function ProductCardTPS({
     });
   };
 
-  const handleCardClick = (e: React.MouseEvent) => {
-    if (isSelectionMode) {
-      e.preventDefault();
-      const slotIndex = parseInt(bundleSlot as string);
+  const handleCardClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    handleViewContent();
 
-      try {
-        const stored = localStorage.getItem("bundleState");
-        const state = stored
-          ? JSON.parse(stored)
-          : { packType: "single", selections: [null, null, null] };
-        if (!state.selections) state.selections = [null, null, null];
+    try {
+      const stored = localStorage.getItem("bundleState");
+      let state = stored
+        ? JSON.parse(stored)
+        : { packType: "trio", selections: [null, null, null] };
+      if (!state.selections) state.selections = [null, null, null];
 
-        state.selections[slotIndex] = product;
-        localStorage.setItem("bundleState", JSON.stringify(state));
-        window.dispatchEvent(new Event("bundleStateUpdated"));
-      } catch (err) {}
-
-      let updatedReturnTo = returnTo as string;
-      if (slotIndex === 0) {
-        updatedReturnTo = `/products/${product.handle}`;
+      if (state.packType === "single") {
+        state.packType = "trio";
+        while (state.selections.length < 3) state.selections.push(null);
       }
 
-      let nextEmptySlot = -1;
-      try {
-        const stored = localStorage.getItem("bundleState");
-        if (stored) {
-          const state = JSON.parse(stored);
-          const pCount =
-            state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 1;
-          for (let i = 0; i < pCount; i++) {
-            if (!state.selections[i]) {
-              nextEmptySlot = i;
-              break;
-            }
+      if (isSelectionMode && bundleSlot !== undefined) {
+        const slotIndex = parseInt(bundleSlot as string);
+        state.selections[slotIndex] = product;
+      } else {
+        let pCount =
+          state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 3;
+
+        let filledCount = state.selections.filter(
+          (p: any) => p !== null,
+        ).length;
+        if (filledCount >= 3 && state.packType === "trio") {
+          state.packType = "penta";
+          while (state.selections.length < 5) state.selections.push(null);
+          pCount = 5;
+        }
+
+        let nextEmptySlot = -1;
+        for (let i = 0; i < pCount; i++) {
+          if (!state.selections[i]) {
+            nextEmptySlot = i;
+            break;
           }
         }
-      } catch (e) {}
 
-      if (nextEmptySlot !== -1) {
-        router.push(
-          `/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(updatedReturnTo)}`,
-          undefined,
-          { shallow: true, scroll: false },
-        );
-      } else {
-        const separator = updatedReturnTo.includes("?") ? "&" : "?";
-        router.push(`${updatedReturnTo}${separator}scroll=bundle`);
+        if (nextEmptySlot !== -1) {
+          state.selections[nextEmptySlot] = product;
+        } else if (pCount === 5) {
+          // Reset bundle if they add a 6th item (lose the discount)
+          state.packType = "trio";
+          state.selections = [product, null, null];
+        }
       }
-    } else {
-      handleViewContent();
-    }
+
+      localStorage.setItem("bundleState", JSON.stringify(state));
+      window.dispatchEvent(new Event("bundleStateUpdated"));
+
+      // Auto-checkout when reaching 5 items on the homepage
+      const finalSelections: any[] = state.selections || [];
+      const finalCount = finalSelections.filter((p: any) => p !== null).length;
+      if (finalCount === 5 && !isSelectionMode) {
+        // Pass selections directly to avoid race condition with localStorage
+        await addBundleToCart(finalSelections, state.packType);
+      }
+
+      if (isSelectionMode && returnTo) {
+        let nextEmptySlotAfter = -1;
+        const pCount =
+          state.packType === "trio" ? 3 : state.packType === "penta" ? 5 : 3;
+        for (let i = 0; i < pCount; i++) {
+          if (!state.selections[i]) {
+            nextEmptySlotAfter = i;
+            break;
+          }
+        }
+
+        let updatedReturnTo = returnTo as string;
+        if (bundleSlot === "0") {
+          updatedReturnTo = `/products/${product.handle}`;
+        }
+
+        if (nextEmptySlotAfter !== -1) {
+          router.push(
+            `/?bundleSlot=${nextEmptySlotAfter}&returnTo=${encodeURIComponent(updatedReturnTo)}`,
+            undefined,
+            { shallow: true, scroll: false },
+          );
+        } else {
+          const separator = updatedReturnTo.includes("?") ? "&" : "?";
+          router.push(`${updatedReturnTo}${separator}scroll=bundle`);
+        }
+      }
+    } catch (err) {}
   };
 
   const handleRemoveClick = (e: React.MouseEvent) => {
-    if (!isSelectionMode) return;
     e.preventDefault();
 
     try {
@@ -182,31 +229,85 @@ export default function ProductCardTPS({
             localStorage.setItem("bundleState", JSON.stringify(state));
             window.dispatchEvent(new Event("bundleStateUpdated"));
 
-            let nextEmptySlot = -1;
-            const pCount =
-              state.packType === "trio"
-                ? 3
-                : state.packType === "penta"
-                  ? 5
-                  : 1;
-            for (let i = 0; i < pCount; i++) {
-              if (!state.selections[i]) {
-                nextEmptySlot = i;
-                break;
+            if (isSelectionMode && returnTo) {
+              let nextEmptySlot = -1;
+              const pCount =
+                state.packType === "trio"
+                  ? 3
+                  : state.packType === "penta"
+                    ? 5
+                    : 1;
+              for (let i = 0; i < pCount; i++) {
+                if (!state.selections[i]) {
+                  nextEmptySlot = i;
+                  break;
+                }
               }
-            }
 
-            if (nextEmptySlot !== -1) {
-              router.push(
-                `/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(returnTo as string)}`,
-                undefined,
-                { shallow: true, scroll: false },
-              );
+              if (nextEmptySlot !== -1) {
+                router.push(
+                  `/?bundleSlot=${nextEmptySlot}&returnTo=${encodeURIComponent(returnTo as string)}`,
+                  undefined,
+                  { shallow: true, scroll: false },
+                );
+              }
             }
           }
         }
       }
     } catch (err) {}
+  };
+
+  const addBundleToCart = async (selections: any[], packType: string) => {
+    try {
+      const nonNullSelections = selections.filter((p: any) => p !== null);
+      if (nonNullSelections.length === 0) return;
+
+      let totalPrice = 49.99;
+      if (packType === "penta" || nonNullSelections.length === 5) totalPrice = 99.99;
+      else if (packType === "single") {
+        totalPrice = Number(nonNullSelections[0]?.price?.regular) || 26.0;
+      }
+
+      clearCart();
+
+      const stripeProductMapping = await import("@/data/stripe_product_mapping.json");
+      const productMapping = stripeProductMapping.default as Record<string, { price_id: string }>;
+
+      for (const frag of nonNullSelections) {
+        if (!frag) continue;
+        const stripeId = productMapping[frag.handle]?.price_id || "";
+        const cartItem = {
+          id: frag.id,
+          handle: frag.handle,
+          stripeId,
+          title: frag.title,
+          subtitle: "Eau de Parfum Spray - 100ML",
+          price: totalPrice / nonNullSelections.length,
+          originalPrice: (totalPrice / nonNullSelections.length) * 3,
+          regularPrice: Number(frag.price?.regular) || undefined,
+          image: Array.isArray(frag.images)
+            ? frag.images[0]
+            : (frag.images as any)?.main?.[0] || "/images/placeholder-product.jpg",
+        };
+        addItem(cartItem, 1);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleFinalizarPedido = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      const stored = localStorage.getItem("bundleState");
+      if (!stored) { router.push("/checkout"); return; }
+      const state = JSON.parse(stored);
+      await addBundleToCart(state.selections || [], state.packType);
+    } catch (err) {
+      console.error(err);
+      router.push("/checkout");
+    }
   };
 
   const CardWrapper = isSelectionMode ? "button" : Link;
@@ -274,7 +375,7 @@ export default function ProductCardTPS({
 
           {/* Promotional Banner */}
           <div className="bg-white border border-black text-center font-bold text-xs py-1 px-2 mb-2">
-            Pick any 3 fragrances you love for only £49.99
+            Mix & match any 3 fragrances — £49.99 for all three
           </div>
 
           {/* Badge - Canto superior direito */}
@@ -342,52 +443,46 @@ export default function ProductCardTPS({
 
       {/* CTA Button - sempre na parte inferior */}
       <div className="mt-4 flex flex-col gap-2">
-        {isSelectionMode ? (
-          <div className="flex gap-2">
+        <div className="flex gap-2">
+          <button
+            onClick={handleCardClick}
+            className="flex-1 bg-black border border-solid border-black rounded-[4px] text-white py-3 px-2 text-sm font-bold uppercase tracking-wide hover:bg-gray-900 transition-colors duration-200 text-center"
+          >
+            SELECT
+          </button>
+          {selectionIndices !== "" && (
             <button
-              onClick={handleCardClick}
-              className="flex-1 bg-black rounded-[4px] text-white py-3 px-2 text-sm font-bold uppercase tracking-wide hover:bg-gray-900 transition-colors duration-200 text-center"
+              onClick={handleRemoveClick}
+              className="flex-1 bg-[#d4d4d4] rounded-[4px] text-black py-3 px-2 text-sm font-bold uppercase tracking-wide hover:bg-gray-300 transition-colors duration-200 text-center"
             >
-              SELECT
+              REMOVE
             </button>
-            {selectionIndices !== "" && (
-              <button
-                onClick={handleRemoveClick}
-                className="flex-1 bg-[#d4d4d4] rounded-[4px] text-black py-3 px-2 text-sm font-bold uppercase tracking-wide hover:bg-gray-300 transition-colors duration-200 text-center"
-              >
-                REMOVE
-              </button>
-            )}
-          </div>
-        ) : (
-          <Link
-            href={
-              router.pathname === "/"
-                ? `/products/${product.handle}?reset=true`
-                : `/products/${product.handle}`
-            }
-            className="block w-full bg-black rounded-[4px] text-white py-3 text-x1 font-thin uppercase tracking-wide
-                     hover:bg-gray-900 transition-colors duration-200 text-center"
-            onClick={handleViewContent}
-            suppressHydrationWarning
-          >
-            VIEW Promotion
-          </Link>
-        )}
+          )}
+        </div>
         {!isSelectionMode && (
-          <Link
-            href={
-              router.pathname === "/"
-                ? `/detailsProdutc/${product.handle}?reset=true`
-                : `/detailsProdutc/${product.handle}`
-            }
-            className="block w-full border border-black text-black rounded-[4px] py-3 text-x1 font-thin uppercase tracking-wide
-                       hover:bg-gray-900 transition-colors hover:text-white duration-200 text-center"
-            onClick={handleViewContent}
-            suppressHydrationWarning
-          >
-            details
-          </Link>
+          isBundleEmpty ? (
+            <Link
+              href={
+                router.pathname === "/"
+                  ? `/products/${product.handle}?reset=true`
+                  : `/products/${product.handle}`
+              }
+              className="block w-full bg-white !border !border-solid !border-black rounded-[4px] text-black font-medium py-3 text-x1 uppercase tracking-wide
+                       hover:bg-gray-900 hover:text-white  transition-colors duration-300 text-center"
+              onClick={handleViewContent}
+              suppressHydrationWarning
+            >
+              VIEW Promotion
+            </Link>
+          ) : (
+            <button
+              onClick={handleFinalizarPedido}
+              className="block w-full bg-white !border !border-solid !border-black rounded-[4px] text-black font-medium py-3 text-x1 uppercase tracking-wide
+                       hover:bg-gray-900 hover:text-white  transition-colors duration-300 text-center"
+            >
+              FINALIZAR PEDIDO
+            </button>
+          )
         )}
       </div>
     </div>

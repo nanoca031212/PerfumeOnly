@@ -13,8 +13,7 @@ export default function ShoppingBag({ isOpen, onClose }: ShoppingBagProps) {
   const { items, removeItem, updateQuantity, total, totalOriginal } = useCart()
   const router = useRouter()
 
-  const panelClasses = `fixed bottom-0 left-0 right-0 max-h-[85vh] bg-white shadow-xl rounded-t-2xl transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-y-0' : 'translate-y-full'
-    }`
+  const panelClasses = `fixed bottom-0 left-0 right-0 h-[85vh] bg-white shadow-xl rounded-t-2xl flex flex-col transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-y-0' : 'translate-y-full'}`
 
   const overlayClasses = `fixed inset-0 bg-black transition-opacity duration-300 ${isOpen ? 'bg-opacity-50' : 'bg-opacity-0 pointer-events-none'
     }`
@@ -71,8 +70,8 @@ export default function ShoppingBag({ isOpen, onClose }: ShoppingBagProps) {
           </button>
         </div>
 
-        {/* Cart Items */}
-        <div className="overflow-y-auto max-h-[calc(85vh-180px)] px-4">
+        {/* Cart Items - scrollable */}
+        <div className="flex-1 overflow-y-auto px-4 min-h-0">
           {items.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-gray-500">Your shopping bag is empty</p>
@@ -130,8 +129,8 @@ export default function ShoppingBag({ isOpen, onClose }: ShoppingBagProps) {
           )}
         </div>
 
-        {/* Footer */}
-        <div className="border-t px-4 pb-14 bg-white">
+        {/* Footer - always visible */}
+        <div className="border-t px-4 pb-6 pt-3 bg-white flex-shrink-0">
           <div className="mt-4 space-y-1.5">
             <div className="flex justify-between items-center text-xs text-gray-500">
               <span>Total</span>

@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react"
-import { Button } from "@/components/ui/button"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Trophy, DollarSign } from "lucide-react"
-import Image from "next/image"
-import PriceAnchoring from "@/components/price-anchoring"
-import styles from '@/styles/animations.module.css'
-import { trackQuizStep } from "@/lib/utils"
-import { useRouter } from 'next/router'
-import { useCart } from '@/contexts/CartContext'
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Trophy, DollarSign } from "lucide-react";
+import Image from "next/image";
+import PriceAnchoring from "@/components/price-anchoring";
+import styles from "@/styles/animations.module.css";
+import { trackQuizStep } from "@/lib/utils";
+import { useRouter } from "next/router";
+import { useCart } from "@/contexts/CartContext";
 
 // Add animated border keyframes for progress
 const progressBarStyles = `
@@ -120,7 +120,7 @@ const progressBarStyles = `
     border-radius: 9999px;
     transition: width 0.1s linear;
   }
-`
+`;
 
 // Declare tipos globais para os pixels
 declare global {
@@ -132,92 +132,135 @@ declare global {
 }
 
 interface Question {
-  id: number
-  question: string
-  options: string[]
-  correct: number
-  explanation: string
+  id: number;
+  question: string;
+  options: string[];
+  correct: number;
+  explanation: string;
 }
 
 const questions: Question[] = [
   {
     id: 1,
     question: "When choosing the perfect perfume, what matters most to you?",
-    options: ["The scent / fragrance notes 🌸", "How long it lasts on the skin ⏳", "The brand ✨", "The price 💷"],
+    options: [
+      "The scent / fragrance notes 🌸",
+      "How long it lasts on the skin ⏳",
+      "The brand ✨",
+      "The price 💷",
+    ],
     correct: 0,
     explanation: "The fragrance notes are the heart of any great perfume!",
   },
   {
     id: 2,
     question: "Where do you usually discover new perfumes?",
-    options: ["In physical stores 🏬", "On social media 📱", "Through online ads 💻", "From friends or family 👥"],
+    options: [
+      "In physical stores 🏬",
+      "On social media 📱",
+      "Through online ads 💻",
+      "From friends or family 👥",
+    ],
     correct: 0,
-    explanation: "Physical stores offer the best experience to test and discover new scents!",
+    explanation:
+      "Physical stores offer the best experience to test and discover new scents!",
   },
   {
     id: 3,
     question: "How often do you buy a new perfume?",
-    options: ["Once a year", "Two to three times a year", "Every season (four times a year)", "Monthly or more"],
+    options: [
+      "Once a year",
+      "Two to three times a year",
+      "Every season (four times a year)",
+      "Monthly or more",
+    ],
     correct: 0,
-    explanation: "Taking time to choose the perfect perfume makes each purchase special!",
+    explanation:
+      "Taking time to choose the perfect perfume makes each purchase special!",
   },
   {
     id: 4,
-    question: "What influences your decision the most when buying a new perfume?",
-    options: ["Recommendations from friends or family", "Online reviews", "Testing in store", "Promotions or discounts"],
+    question:
+      "What influences your decision the most when buying a new perfume?",
+    options: [
+      "Recommendations from friends or family",
+      "Online reviews",
+      "Testing in store",
+      "Promotions or discounts",
+    ],
     correct: 0,
-    explanation: "Personal recommendations from trusted people are invaluable when choosing fragrances!",
+    explanation:
+      "Personal recommendations from trusted people are invaluable when choosing fragrances!",
   },
   {
     id: 5,
     question: "Which type of promotion interests you the most?",
-    options: ["Direct discount on price", "Multi-product kits", "Free samples with purchase", "Cashback or loyalty points"],
+    options: [
+      "Direct discount on price",
+      "Multi-product kits",
+      "Free samples with purchase",
+      "Cashback or loyalty points",
+    ],
     correct: 0,
-    explanation: "Direct discounts provide immediate value on your favorite fragrances!",
+    explanation:
+      "Direct discounts provide immediate value on your favorite fragrances!",
   },
   {
     id: 6,
     question: "Do you usually buy perfumes more for yourself or as gifts?",
-    options: ["For myself 🎁", "As a gift 🎀", "Both equally ⚖️", "Depends on the occasion 🗓️"],
+    options: [
+      "For myself 🎁",
+      "As a gift 🎀",
+      "Both equally ⚖️",
+      "Depends on the occasion 🗓️",
+    ],
     correct: 0,
-    explanation: "Treating yourself to a beautiful fragrance is always a wonderful choice!",
+    explanation:
+      "Treating yourself to a beautiful fragrance is always a wonderful choice!",
   },
-]
+];
 
 // Enhanced notification component with better animations
-const SuccessNotification = ({ show, onClose }: { show: boolean; onClose: () => void }) => {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isExiting, setIsExiting] = useState(false)
+const SuccessNotification = ({
+  show,
+  onClose,
+}: {
+  show: boolean;
+  onClose: () => void;
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
     if (show) {
-      setIsVisible(true)
+      setIsVisible(true);
 
       const timer = setTimeout(() => {
-        setIsExiting(true)
+        setIsExiting(true);
         setTimeout(() => {
-          setIsVisible(false)
+          setIsVisible(false);
           setTimeout(() => {
-            onClose()
-            setIsExiting(false)
-          }, 400)
-        }, 200)
-      }, 2500) // Reduced display time to 2.5 seconds
+            onClose();
+            setIsExiting(false);
+          }, 400);
+        }, 200);
+      }, 2500); // Reduced display time to 2.5 seconds
 
       return () => {
-        clearTimeout(timer)
-      }
+        clearTimeout(timer);
+      };
     }
-  }, [show, onClose])
+  }, [show, onClose]);
 
-  if (!show) return null
+  if (!show) return null;
 
   return (
     <div
-      className={`fixed top-4 right-4 z-50 transition-all duration-700 transform ${isVisible && !isExiting
-        ? "translate-x-0 opacity-100 scale-100"
-        : "translate-x-full opacity-0 scale-95"
-        }`}
+      className={`fixed top-4 right-4 z-50 transition-all duration-700 transform ${
+        isVisible && !isExiting
+          ? "translate-x-0 opacity-100 scale-100"
+          : "translate-x-full opacity-0 scale-95"
+      }`}
     >
       <div className="bg-gradient-to-r from-black to-[#303030] text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 border border-gray-500 backdrop-blur-sm">
         <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
@@ -232,14 +275,24 @@ const SuccessNotification = ({ show, onClose }: { show: boolean; onClose: () => 
           className="ml-2 text-white hover:text-gray-200 transition-colors duration-200"
           aria-label="Close notification"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // Falling hearts component
 const FallingHeart = ({ delay }: { delay: number }) => (
@@ -247,43 +300,51 @@ const FallingHeart = ({ delay }: { delay: number }) => (
     className={`absolute text-red-500 text-2xl pointer-events-none ${styles.fall}`}
     style={{
       left: `${Math.random() * 100}%`,
-      top: '-50px',
-      animationDelay: `${delay}ms`
+      top: "-50px",
+      animationDelay: `${delay}ms`,
     }}
   >
     ❤️
   </div>
-)
+);
 
 // Chelsea lion icon component
 const ChelseaLionIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    className="w-8 h-8"
-    fill="currentColor"
-  >
+  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
   </svg>
 );
-
-
 
 // Loading component for better UX
 const LoadingSpinner = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
   const sizeClasses = {
     sm: "w-4 h-4",
     md: "w-6 h-6",
-    lg: "w-8 h-8"
-  }
+    lg: "w-8 h-8",
+  };
 
   return (
-    <div className={`${sizeClasses[size]} animate-spin rounded-full border-2 border-[#f00] border-t-white`}></div>
-  )
-}
+    <div
+      className={`${sizeClasses[size]} animate-spin rounded-full border-2 border-[#f00] border-t-white`}
+    ></div>
+  );
+};
 
 const ImageCarousel = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = ["/per1.png", "/per2.png", "/per3.png", "/per4.png", "/per5.png", "/per6.png", "/per7.png", "/per8.png", "/per9.png", "/per10.png", "/per11.png"];
+  const images = [
+    "/per1.png",
+    "/per2.png",
+    "/per3.png",
+    "/per4.png",
+    "/per5.png",
+    "/per6.png",
+    "/per7.png",
+    "/per8.png",
+    "/per9.png",
+    "/per10.png",
+    "/per11.png",
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -294,7 +355,7 @@ const ImageCarousel = () => {
   }, []);
 
   return (
-    <div className="relative w-full" style={{ paddingBottom: '75%' }}>
+    <div className="relative w-full" style={{ paddingBottom: "75%" }}>
       <div className="absolute inset-0 rounded-xl overflow-hidden">
         {images.map((image, index) => (
           <Image
@@ -302,9 +363,10 @@ const ImageCarousel = () => {
             src={image}
             alt={`Fragrance Collection Image ${index + 1}`}
             fill
-            className={`object-cover transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            style={{ borderRadius: '25px' }}
+            className={`object-cover transition-opacity duration-1000 ${
+              index === currentImageIndex ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ borderRadius: "25px" }}
           />
         ))}
       </div>
@@ -314,17 +376,17 @@ const ImageCarousel = () => {
           <button
             key={index}
             onClick={() => setCurrentImageIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentImageIndex
-              ? 'bg-white shadow-lg'
-              : 'bg-white/50 hover:bg-white/75'
-              }`}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentImageIndex
+                ? "bg-white shadow-lg"
+                : "bg-white/50 hover:bg-white/75"
+            }`}
           />
         ))}
       </div>
     </div>
   );
 };
-
 
 // Componente de vídeo simplificado
 const VideoPlayer = React.memo(({ isReady }: { isReady: boolean }) => {
@@ -350,13 +412,13 @@ const VideoPlayer = React.memo(({ isReady }: { isReady: boolean }) => {
     };
 
     forcePlay();
-    video.addEventListener('canplay', forcePlay);
-    video.addEventListener('loadeddata', forcePlay);
+    video.addEventListener("canplay", forcePlay);
+    video.addEventListener("loadeddata", forcePlay);
     setTimeout(forcePlay, 1000);
 
     return () => {
-      video.removeEventListener('canplay', forcePlay);
-      video.removeEventListener('loadeddata', forcePlay);
+      video.removeEventListener("canplay", forcePlay);
+      video.removeEventListener("loadeddata", forcePlay);
     };
   }, []);
 
@@ -374,17 +436,19 @@ const VideoPlayer = React.memo(({ isReady }: { isReady: boolean }) => {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%' }}>
+    <div
+      style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}
+    >
       <video
         ref={videoRef}
         style={{
-          position: 'absolute',
+          position: "absolute",
           top: 0,
           left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          borderRadius: '25px'
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          borderRadius: "25px",
         }}
         autoPlay
         playsInline
@@ -396,32 +460,50 @@ const VideoPlayer = React.memo(({ isReady }: { isReady: boolean }) => {
         <button
           onClick={toggleMute}
           style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             zIndex: 10,
-            background: 'rgba(0, 0, 0, 0.6)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '80px',
-            height: '80px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            color: 'white',
-            transition: 'opacity 0.3s ease'
+            background: "rgba(0, 0, 0, 0.6)",
+            border: "none",
+            borderRadius: "50%",
+            width: "80px",
+            height: "80px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            color: "white",
+            transition: "opacity 0.3s ease",
           }}
         >
           {isMuted ? (
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
               <line x1="23" y1="9" x2="17" y2="15" />
               <line x1="17" y1="9" x2="23" y2="15" />
             </svg>
           ) : (
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
               <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
             </svg>
@@ -432,7 +514,7 @@ const VideoPlayer = React.memo(({ isReady }: { isReady: boolean }) => {
   );
 });
 
-VideoPlayer.displayName = 'VideoPlayer';
+VideoPlayer.displayName = "VideoPlayer";
 
 // Componente de Layout para os scripts simplificado - removido pois já está no layout global
 // const PixelScripts = () => (
@@ -453,7 +535,11 @@ const usePixelLoader = () => {
 
     // Verifica se os pixels estão carregados (Facebook no layout global)
     const checkPixels = () => {
-      return typeof window.fbq === 'function' && typeof window.ttq !== 'undefined' && window.ttq;
+      return (
+        typeof window.fbq === "function" &&
+        typeof window.ttq !== "undefined" &&
+        window.ttq
+      );
     };
 
     // Função que verifica os pixels
@@ -488,7 +574,7 @@ const usePixelLoader = () => {
 const useTrackVSLView = () => {
   useEffect(() => {
     setTimeout(() => {
-      trackQuizStep('vsl_view'); // Rastrear visualização do vídeo
+      trackQuizStep("vsl_view"); // Rastrear visualização do vídeo
     }, 1000);
   }, []);
 };
@@ -507,13 +593,16 @@ const useAudioSystem = () => {
     const initializeAudio = () => {
       try {
         if (!audioRef.current) {
-          const audio = new Audio("https://cdn.shopify.com/s/files/1/0946/2290/8699/files/notifica_o-venda.mp3?v=1749150271");
+          const audio = new Audio(
+            "https://cdn.shopify.com/s/files/1/0946/2290/8699/files/notifica_o-venda.mp3?v=1749150271",
+          );
           audio.preload = "auto";
           audio.volume = 1;
           audioRef.current = audio;
 
           // Inicializa o contexto de áudio para dispositivos móveis
-          const AudioContext = (window as any).AudioContext || (window as any).webkitAudioContext;
+          const AudioContext =
+            (window as any).AudioContext || (window as any).webkitAudioContext;
           if (AudioContext) {
             const audioContext = new AudioContext();
             if (audioContext.state === "suspended") {
@@ -523,7 +612,7 @@ const useAudioSystem = () => {
           setIsInitialized(true);
         }
       } catch (error) {
-        console.error('Error initializing audio:', error);
+        console.error("Error initializing audio:", error);
       }
     };
 
@@ -535,7 +624,9 @@ const useAudioSystem = () => {
       document.removeEventListener("keydown", handleFirstInteraction);
     };
 
-    document.addEventListener("touchstart", handleFirstInteraction, { passive: true });
+    document.addEventListener("touchstart", handleFirstInteraction, {
+      passive: true,
+    });
     document.addEventListener("click", handleFirstInteraction);
     document.addEventListener("keydown", handleFirstInteraction);
 
@@ -550,12 +641,12 @@ const useAudioSystem = () => {
     try {
       if (audioRef.current && isInitialized) {
         audioRef.current.currentTime = 0;
-        audioRef.current.play().catch(error => {
-          console.error('Error playing sound:', error);
+        audioRef.current.play().catch((error) => {
+          console.error("Error playing sound:", error);
         });
       }
     } catch (error) {
-      console.error('Error playing sound:', error);
+      console.error("Error playing sound:", error);
     }
   }, [isInitialized]);
 
@@ -563,22 +654,40 @@ const useAudioSystem = () => {
 };
 
 // Componente do painel USP - versão minimalista Adidas
-const USPPanel = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  if (!isOpen) return null
+const USPPanel = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black bg-opacity-20 flex items-start justify-center">
       <div className="bg-white w-full max-w-4xl mt-12 mx-4">
         {/* Header */}
         <div className="flex items-center justify-between px-8 py-4">
-          <div className="text-xs font-medium uppercase tracking-[0.25em] text-black">Heritage Fragrances</div>
+          <div className="text-xs font-medium uppercase tracking-[0.25em] text-black">
+            Heritage Fragrances
+          </div>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-50 transition-colors duration-150"
             aria-label="Close"
           >
-            <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-4 h-4 text-black"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -587,51 +696,57 @@ const USPPanel = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void })
         <div className="grid md:grid-cols-3 gap-px bg-gray-100">
           {/* History */}
           <div className="p-12 text-center bg-white">
-            <div className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-6">Since 1968</div>
+            <div className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-6">
+              Since 1968
+            </div>
             <div className="text-sm text-gray-900 mb-2 leading-relaxed">
               Fine Fragrance
             </div>
-            <div className="text-xs text-gray-500">
-              Artisans
-            </div>
+            <div className="text-xs text-gray-500">Artisans</div>
           </div>
 
           {/* Achievements */}
           <div className="p-12 text-center bg-white">
-            <div className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-6">Selection</div>
+            <div className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-6">
+              Selection
+            </div>
             <div className="text-sm text-gray-900 mb-2 leading-relaxed">
               Expertly
             </div>
-            <div className="text-xs text-gray-500">
-              Curated
-            </div>
+            <div className="text-xs text-gray-500">Curated</div>
           </div>
 
           {/* Legacy */}
           <div className="p-12 text-center bg-white">
-            <div className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-6">Collection</div>
+            <div className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-6">
+              Collection
+            </div>
             <div className="text-sm text-gray-900 mb-2 leading-relaxed">
               Luxury
             </div>
-            <div className="text-xs text-gray-500">
-              Heritage
-            </div>
+            <div className="text-xs text-gray-500">Heritage</div>
           </div>
         </div>
 
         {/* Footer */}
         <div className="px-8 py-6 text-center">
-          <div className="text-xs text-gray-400 uppercase tracking-[0.2em]">The Ultimate Fragrance Experience</div>
+          <div className="text-xs text-gray-400 uppercase tracking-[0.2em]">
+            The Ultimate Fragrance Experience
+          </div>
         </div>
       </div>
     </div>
-  )
-}
-
-
+  );
+};
 
 // Componente do ícone de coração moderno
-const HeartIcon = ({ isLiked, onClick }: { isLiked: boolean; onClick: () => void }) => {
+const HeartIcon = ({
+  isLiked,
+  onClick,
+}: {
+  isLiked: boolean;
+  onClick: () => void;
+}) => {
   const [showBurst, setShowBurst] = useState(false);
 
   const handleClick = () => {
@@ -652,8 +767,8 @@ const HeartIcon = ({ isLiked, onClick }: { isLiked: boolean; onClick: () => void
                 key={i}
                 className="absolute w-2 h-2 bg-red-500 rounded-full"
                 style={{
-                  top: '50%',
-                  left: '50%',
+                  top: "50%",
+                  left: "50%",
                   transform: `rotate(${i * 60}deg) translateY(-10px)`,
                 }}
               />
@@ -661,7 +776,6 @@ const HeartIcon = ({ isLiked, onClick }: { isLiked: boolean; onClick: () => void
           </div>
         </div>
       )}
-
     </div>
   );
 };
@@ -670,7 +784,12 @@ const HeartIcon = ({ isLiked, onClick }: { isLiked: boolean; onClick: () => void
 const TrustpilotStars = () => (
   <div className="flex items-center space-x-1">
     {[1, 2, 3, 4, 5].map((star) => (
-      <svg key={star} className="w-4 h-4 text-[#00b67a]" viewBox="0 0 24 24" fill="currentColor">
+      <svg
+        key={star}
+        className="w-4 h-4 text-[#00b67a]"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
       </svg>
     ))}
@@ -682,11 +801,19 @@ const CompleteHeader = ({ onUSPClick }: { onUSPClick: () => void }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <header data-auto-id="header" className="bg-white font-size-12 border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <header
+      data-auto-id="header"
+      className="bg-white font-size-12 border-b border-gray-200 sticky top-0 z-50 shadow-sm"
+    >
       {/* Logo Section - Nova seção no topo */}
       <div className="w-full bg-black border-b border-gray-100 py-3">
         <div className="flex justify-center">
-          <a href="#" aria-label="Homepage" className="flex items-center hover:opacity-80 transition-opacity duration-200" data-auto-id="logo">
+          <a
+            href="#"
+            aria-label="Homepage"
+            className="flex items-center hover:opacity-80 transition-opacity duration-200"
+            data-auto-id="logo"
+          >
             <img src="/logo.avif" alt="Drapeau France" className="w-30 h-10" />
           </a>
         </div>
@@ -706,8 +833,8 @@ const CompleteHeader = ({ onUSPClick }: { onUSPClick: () => void }) => {
 
 // Remover o MinimalHeader e USPHeader antigos e usar apenas o CompleteHeader
 export default function PerfumeQuiz() {
-  const router = useRouter()
-  const { addItem, setIsOpen } = useCart()
+  const router = useRouter();
+  const { addItem, setIsOpen } = useCart();
   const [gameStarted, setGameStarted] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
@@ -729,13 +856,13 @@ export default function PerfumeQuiz() {
     };
   }, []);
 
-  const isPixelsReady = usePixelLoader()
+  const isPixelsReady = usePixelLoader();
   const { playSound, isInitialized: audioInitialized } = useAudioSystem();
 
   // Rastrear visualização da pergunta quando gameStarted está true
   useEffect(() => {
     if (gameStarted && !quizCompleted) {
-      trackQuizStep('question_viewed', currentQuestion + 1);
+      trackQuizStep("question_viewed", currentQuestion + 1);
     }
   }, [currentQuestion, gameStarted, quizCompleted]);
 
@@ -751,87 +878,93 @@ export default function PerfumeQuiz() {
 
   // Debug para verificar o estado
   useEffect(() => {
-    console.log('showUSPPanel state changed:', showUSPPanel)
-  }, [showUSPPanel])
+    console.log("showUSPPanel state changed:", showUSPPanel);
+  }, [showUSPPanel]);
 
   // Usar o hook de delay
-  const delayedElements = useDelayedElements()
+  const delayedElements = useDelayedElements();
 
   // Função para abrir o painel USP
   const handleUSPClick = () => {
-    console.log('handleUSPClick called')
-    setShowUSPPanel(true)
-  }
+    console.log("handleUSPClick called");
+    setShowUSPPanel(true);
+  };
 
   // Função para fechar o painel USP
   const handleUSPClose = () => {
-    console.log('handleUSPClose called')
-    setShowUSPPanel(false)
-  }
+    console.log("handleUSPClose called");
+    setShowUSPPanel(false);
+  };
 
   // Modificar a função de início do quiz com loading e scroll automático
   const handleStartQuiz = () => {
-    setIsLoading(true)
-    trackQuizStep('quiz_start'); // Rastrear início do quiz
+    setIsLoading(true);
+    trackQuizStep("quiz_start"); // Rastrear início do quiz
 
     // Simular um pequeno delay para melhor UX
     setTimeout(() => {
-      setGameStarted(true)
-      setIsLoading(false)
+      setGameStarted(true);
+      setIsLoading(false);
       // Scroll automático para o topo ao iniciar quiz
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 800)
-  }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 800);
+  };
 
   // Função para lidar com o clique no botão de compra
   const handleBuyNowClick = (selectedKit: string) => {
-    trackQuizStep('go_to_store'); // Evento final - ir para a loja
+    trackQuizStep("go_to_store"); // Evento final - ir para a loja
 
     // Redirecionar para a loja, mas apenas se não estivermos nela
-    if (router.asPath !== '/') {
-      router.push('/');
+    if (router.asPath !== "/") {
+      router.push("/");
     } else {
       // Se já estiver na home, apenas rolar para o topo
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }
+  };
 
   // Modificar a função de resposta com loading e scroll automático
   const handleAnswer = () => {
-    if (isSubmitting) return
+    if (isSubmitting) return;
 
     // Verificar se temos uma pergunta válida
     if (currentQuestion < 0 || currentQuestion >= questions.length) {
-      console.error('Current question index out of bounds:', currentQuestion, 'Total questions:', questions.length);
+      console.error(
+        "Current question index out of bounds:",
+        currentQuestion,
+        "Total questions:",
+        questions.length,
+      );
       return;
     }
 
     const currentQuestionData = questions[currentQuestion];
     if (!currentQuestionData) {
-      console.error('Pergunta atual não encontrada');
+      console.error("Pergunta atual não encontrada");
       return;
     }
 
     // Verificar se uma resposta foi selecionada
-    if (selectedAnswer === '' || selectedAnswer === null) {
-      console.warn('No answer selected, skipping...');
+    if (selectedAnswer === "" || selectedAnswer === null) {
+      console.warn("No answer selected, skipping...");
       return;
     }
 
-    setIsSubmitting(true)
-    const isCorrect = Number.parseInt(selectedAnswer) === currentQuestionData.correct
-    const questionNumber = currentQuestion + 1
+    setIsSubmitting(true);
+    const isCorrect =
+      Number.parseInt(selectedAnswer) === currentQuestionData.correct;
+    const questionNumber = currentQuestion + 1;
 
     // Sempre incrementar o contador, independente da resposta estar correta
-    setCorrectAnswers(prev => {
+    setCorrectAnswers((prev) => {
       if (prev >= questions.length) return prev;
       const newValue = prev + 1;
-      console.log('Discount updated:', newValue);
+      console.log("Discount updated:", newValue);
       return newValue;
     });
 
     // Tracking de eventos - rastrear cada pergunta
-    trackQuizStep('question_answered', questionNumber, isCorrect);
+    trackQuizStep("question_answered", questionNumber, isCorrect);
 
     // Sempre mostrar a notificação
     setShowNotification(true);
@@ -840,24 +973,23 @@ export default function PerfumeQuiz() {
     // Avançar diretamente para a próxima pergunta ou finalizar o quiz
     setTimeout(() => {
       if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion((prev) => prev + 1)
-        setSelectedAnswer("")
+        setCurrentQuestion((prev) => prev + 1);
+        setSelectedAnswer("");
         // Scroll automático para o topo ao avançar pergunta
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        setQuizCompleted(true)
-        setSelectedAnswer("") // Clear selection even when finishing
-        trackQuizStep('quiz_completed'); // Rastrear conclusão do quiz
+        setQuizCompleted(true);
+        setSelectedAnswer(""); // Clear selection even when finishing
+        trackQuizStep("quiz_completed"); // Rastrear conclusão do quiz
         // Scroll automático para o topo ao completar quiz
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
-      setIsSubmitting(false)
-    }, 400) // Reduced switch delay to 400ms
-  }
-
+      setIsSubmitting(false);
+    }, 400); // Reduced switch delay to 400ms
+  };
 
   const handleRestart = () => {
-    trackQuizStep('quiz_restart'); // Rastrear reinício do quiz
+    trackQuizStep("quiz_restart"); // Rastrear reinício do quiz
     setGameStarted(false);
     setCurrentQuestion(0);
     setSelectedAnswer("");
@@ -865,19 +997,19 @@ export default function PerfumeQuiz() {
     setQuizCompleted(false);
     setShowNotification(false);
     // Scroll automático para o topo ao reiniciar quiz
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const discount = correctAnswers === 6 ? 120.00 : correctAnswers * 20
-  const originalPrice = 169.99
-  const finalPrice = Math.max(originalPrice - discount, 49.99)
+  const discount = correctAnswers === 6 ? 120.0 : correctAnswers * 20;
+  const originalPrice = 169.99;
+  const finalPrice = Math.max(originalPrice - discount, 49.99);
 
   useTrackVSLView(); // Comentado junto com o VSL
 
   // Rastrear visualização da página final
   useEffect(() => {
     if (quizCompleted) {
-      trackQuizStep('final_page_viewed');
+      trackQuizStep("final_page_viewed");
     }
   }, [quizCompleted]);
 
@@ -891,7 +1023,9 @@ export default function PerfumeQuiz() {
           <div className="flex-grow">
             <div className="container pt-20 gap-10">
               <div className="text-center mb-10 animate-fadeIn">
-                <h1 className="text-4xl font-normal font-product-sans text-gray-900">Message from The Perfume Shop CEO</h1>
+                <h1 className="text-4xl font-normal font-product-sans text-gray-900">
+                  Message from The Perfume Shop CEO
+                </h1>
               </div>
 
               <div className="space-y-14">
@@ -902,7 +1036,8 @@ export default function PerfumeQuiz() {
 
                 <div className="bg-black font-product-sans border-[2px] border-[#f00] p-3 shadow-sm animate-slideIn animated-border">
                   <blockquote className="text-xl md:text-lg text-[#ffffff] text-center leading-relaxed">
-                    "Answer 6 questions about your perfume preferences and get £120.00 off a set of perfumes."
+                    "Answer 6 questions about your perfume preferences and get
+                    £120.00 off a set of perfumes."
                   </blockquote>
                 </div>
 
@@ -941,20 +1076,21 @@ export default function PerfumeQuiz() {
           <div className="flex-grow container mx-auto">
             <div className="space-y-4">
               <div className="transform transition-all duration-500">
-                <PriceAnchoring correctAnswers={correctAnswers} onBuyClick={handleBuyNowClick} />
+                <PriceAnchoring
+                  correctAnswers={correctAnswers}
+                  onBuyClick={handleBuyNowClick}
+                />
               </div>
 
               <div className="flex flex-col gap-4">
                 {/* Discount progress bar */}
                 <DiscountProgressBar correctAnswers={correctAnswers} />
-
               </div>
             </div>
           </div>
-
         </div>
       </>
-    )
+    );
   }
 
   return (
@@ -963,16 +1099,24 @@ export default function PerfumeQuiz() {
         <CompleteHeader onUSPClick={handleUSPClick} />
         <USPPanel isOpen={showUSPPanel} onClose={handleUSPClose} />
         <div className="flex-grow container mx-auto px-1 py-4">
-          <SuccessNotification show={showNotification} onClose={() => setShowNotification(false)} />
+          <SuccessNotification
+            show={showNotification}
+            onClose={() => setShowNotification(false)}
+          />
 
           <div className="w-full max-w-2xl mx-auto space-y-18">
             <div className="animate-fadeIn">
-
               <div className="text-center">
                 <p className="text-xl text-gray-600">Your discount</p>
-                <p className={`text-2xl font-bold text-[#1bca32] transform transition-all duration-500 ${correctAnswers > 0 ? 'scale-125 animate-pulse' : ''
-                  }`}>
-                  £{(correctAnswers === 6 ? 120.00 : correctAnswers * 20).toFixed(2)}
+                <p
+                  className={`text-2xl font-bold text-[#1bca32] transform transition-all duration-500 ${
+                    correctAnswers > 0 ? "scale-125 animate-pulse" : ""
+                  }`}
+                >
+                  £
+                  {(correctAnswers === 6 ? 120.0 : correctAnswers * 20).toFixed(
+                    2,
+                  )}
                 </p>
                 <p className="text-xs text-gray-500">Participation reward</p>
               </div>
@@ -982,27 +1126,41 @@ export default function PerfumeQuiz() {
               <div className="animate-slideIn">
                 {questions[currentQuestion] && (
                   <div className="bg-white shadow-sm transition-all duration-300 mb-4">
-                    <h3 className="text-xl font-semibold mb-4 text-black border-b border-[#f00] pb-2">{questions[currentQuestion].question}</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-black border-b border-[#f00] pb-2">
+                      {questions[currentQuestion].question}
+                    </h3>
 
-                    <RadioGroup value={selectedAnswer} onValueChange={setSelectedAnswer} className="space-y-4">
-                      {questions[currentQuestion].options.map((option: string, index: number) => (
-                        <div
-                          key={index}
-                          className={`flex items-center space-x-3 p-4 transition-all duration-200 cursor-pointer border-2 ${selectedAnswer === index.toString()
-                            ? 'bg-[#e90a0a] border-[#e90a0a] shadow-sm'
-                            : 'bg-gray-50 border-gray-200 hover:border-gray-400 hover:bg-white'
+                    <RadioGroup
+                      value={selectedAnswer}
+                      onValueChange={setSelectedAnswer}
+                      className="space-y-4"
+                    >
+                      {questions[currentQuestion].options.map(
+                        (option: string, index: number) => (
+                          <div
+                            key={index}
+                            className={`flex items-center space-x-3 p-4 transition-all duration-200 cursor-pointer border-2 ${
+                              selectedAnswer === index.toString()
+                                ? "bg-[#e90a0a] border-[#e90a0a] shadow-sm"
+                                : "bg-gray-50 border-gray-200 hover:border-gray-400 hover:bg-white"
                             }`}
-                        >
-                          <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                          <Label htmlFor={`option-${index}`} className={`flex-1 cursor-pointer font-medium text-lg ${selectedAnswer === index.toString() ? 'text-white' : 'text-gray-900'}`}>
-                            {option}
-                          </Label>
-                        </div>
-                      ))}
+                          >
+                            <RadioGroupItem
+                              value={index.toString()}
+                              id={`option-${index}`}
+                            />
+                            <Label
+                              htmlFor={`option-${index}`}
+                              className={`flex-1 cursor-pointer font-medium text-lg ${selectedAnswer === index.toString() ? "text-white" : "text-gray-900"}`}
+                            >
+                              {option}
+                            </Label>
+                          </div>
+                        ),
+                      )}
                     </RadioGroup>
                   </div>
                 )}
-
 
                 {/* Discount progress bar instead of quiz progress */}
                 <DiscountProgressBar correctAnswers={correctAnswers} />
@@ -1012,13 +1170,17 @@ export default function PerfumeQuiz() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 // Discount progress bar component
-const DiscountProgressBar = ({ correctAnswers }: { correctAnswers: number }) => {
-  const discount = correctAnswers === 6 ? 120.00 : correctAnswers * 20;
-  const maxDiscount = 120.00;
+const DiscountProgressBar = ({
+  correctAnswers,
+}: {
+  correctAnswers: number;
+}) => {
+  const discount = correctAnswers === 6 ? 120.0 : correctAnswers * 20;
+  const maxDiscount = 120.0;
   const progressPercentage = (discount / maxDiscount) * 100;
 
   return (
@@ -1027,7 +1189,9 @@ const DiscountProgressBar = ({ correctAnswers }: { correctAnswers: number }) => 
         <span className="text-sm text-gray-600">Discount progress:</span>
         <div>
           <span className="font-semibold">£{discount} /</span>
-          <span className="font-semibold text-red-600">£{maxDiscount.toFixed(2)}</span>
+          <span className="font-semibold text-red-600">
+            £{maxDiscount.toFixed(2)}
+          </span>
         </div>
       </div>
       <div

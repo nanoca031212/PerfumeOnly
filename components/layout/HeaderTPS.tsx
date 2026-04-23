@@ -1,45 +1,56 @@
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { Search, User, ShoppingBag, Heart, Menu, X, MapPin, Gift } from 'lucide-react'
-import SearchBar from '@/components/search/SearchBar'
-import { getAllProducts } from '@/lib/products'
-import { Product } from '@/types/product'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  Search,
+  User,
+  ShoppingBag,
+  Heart,
+  Menu,
+  X,
+  MapPin,
+  Gift,
+} from "lucide-react";
+import SearchBar from "@/components/search/SearchBar";
+import { getAllProducts } from "@/lib/products";
+import { Product } from "@/types/product";
 
 interface HeaderTPSProps {
-  className?: string
-  hidePromoBanner?: boolean
-  hideMagentaBanner?: boolean
-  sticky?: boolean
+  className?: string;
+  hidePromoBanner?: boolean;
+  hideMagentaBanner?: boolean;
+  sticky?: boolean;
 }
 
 export default function HeaderTPS({
-  className = '',
+  className = "",
   hidePromoBanner = false,
   hideMagentaBanner = false,
-  sticky = false
+  sticky = false,
 }: HeaderTPSProps) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [products, setProducts] = useState<Product[]>([])
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    setProducts(getAllProducts())
-  }, [])
+    setProducts(getAllProducts());
+  }, []);
 
   // Navegação principal (tabs rosa)
   const mainNavItems = [
-    { name: 'TRENDING', href: '/trending' },
-    { name: 'BRANDS', href: '/brands' },
-    { name: 'DISCOVERY', href: '/discovery' },
-    { name: 'BOUTIQUE', href: '/boutique' }
-  ]
+    { name: "TRENDING", href: "/trending" },
+    { name: "BRANDS", href: "/brands" },
+    { name: "DISCOVERY", href: "/discovery" },
+    { name: "BOUTIQUE", href: "/boutique" },
+  ];
 
   return (
-    <header className={`${sticky ? 'sticky top-0 z-50' : 'relative'} ${className}`}>
+    <header
+      className={`${sticky ? "sticky top-0 z-50" : "relative"} ${className}`}
+    >
       {/* Promotional Banner */}
       {!hidePromoBanner && (
         <div className="bg-tps-red text-white text-center px-4 py-2 text-[15px] font-normal">
-          Luxury fragrances. Up to 70% off. Limited stock
+          Mix & match any 3 fragrances — £49.99 for all three
         </div>
       )}
 
@@ -47,17 +58,29 @@ export default function HeaderTPS({
       <div className="bg-black text-white">
         <div className="container">
           <div className="flex items-center justify-between h-16 pl-2">
-
             {/* Logo */}
-            <Link href="/" className="flex items-center" suppressHydrationWarning>
-              <img src="/images/logo.avif" alt="Logo" width={210} height={210} />
+            <Link
+              href="/"
+              className="flex items-center"
+              suppressHydrationWarning
+            >
+              <img
+                src="/images/logo.avif"
+                alt="Logo"
+                width={210}
+                height={210}
+              />
             </Link>
 
             {/* Icons direita */}
             <div className="flex items-center space-x-3">
               {/* Currency Icon - sempre visível */}
-              <img src="/images/IconLibra.jpg" alt="GBP" width={30} height={30} />
-
+              <img
+                src="/images/IconLibra.jpg"
+                alt="GBP"
+                width={30}
+                height={30}
+              />
             </div>
           </div>
         </div>
@@ -74,8 +97,10 @@ export default function HeaderTPS({
             >
               Looking for something specific?
             </button>
-            <div className="absolute right-2 top-2 bottom-2 w-12 bg-tps-green text-white
-                         rounded-md flex items-center justify-center">
+            <div
+              className="absolute right-2 top-2 bottom-2 w-12 bg-tps-green text-white
+                         rounded-md flex items-center justify-center"
+            >
               <Search className="h-5 w-5" />
             </div>
           </div>
@@ -89,60 +114,59 @@ export default function HeaderTPS({
         products={products}
       />
 
-
-
       {/* Navigation Tabs - Rosa/Magenta */}
-      {!hideMagentaBanner && <div className="bg-tps-magenta">
-        <div className="container mx-auto">
-          <nav className="flex overflow-x-auto scrollbar-none">
-            {/* Men's Collection */}
-            <Link
-              href="/collections/mens"
-              className="flex-shrink-0 px-6 py-4 text-white text-sm font-medium uppercase tracking-wider
+      {!hideMagentaBanner && (
+        <div className="bg-tps-magenta">
+          <div className="container mx-auto">
+            <nav className="flex overflow-x-auto scrollbar-none">
+              {/* Men's Collection */}
+              <Link
+                href="/collections/mens"
+                className="flex-shrink-0 px-6 py-4 text-white text-sm font-medium uppercase tracking-wider
                        hover:bg-white hover:bg-opacity-10 transition-colors whitespace-nowrap"
-              suppressHydrationWarning
-            >
-              MEN'S
-            </Link>
+                suppressHydrationWarning
+              >
+                MEN'S
+              </Link>
 
-            {/* Women's Collection */}
-            <Link
-              href="/collections/womens"
-              className="flex-shrink-0 px-6 py-4 text-white text-sm font-medium uppercase tracking-wider
+              {/* Women's Collection */}
+              <Link
+                href="/collections/womens"
+                className="flex-shrink-0 px-6 py-4 text-white text-sm font-medium uppercase tracking-wider
                        hover:bg-white hover:bg-opacity-10 transition-colors whitespace-nowrap"
-              suppressHydrationWarning
-            >
-              WOMEN'S
-            </Link>
+                suppressHydrationWarning
+              >
+                WOMEN'S
+              </Link>
 
-            {/* Gift Sets */}
-            <Link
-              href="/collections/gift-sets"
-              className="flex-shrink-0 px-6 py-4 text-white text-sm font-medium uppercase tracking-wider
+              {/* Gift Sets */}
+              <Link
+                href="/collections/gift-sets"
+                className="flex-shrink-0 px-6 py-4 text-white text-sm font-medium uppercase tracking-wider
                        hover:bg-white hover:bg-opacity-10 transition-colors whitespace-nowrap"
-              suppressHydrationWarning
-            >
-              GIFT SETS
-            </Link>
+                suppressHydrationWarning
+              >
+                GIFT SETS
+              </Link>
 
-            {/* Special Offers */}
-            <Link
-              href="/"
-              className="flex-shrink-0 px-6 py-4 text-white text-sm font-medium uppercase tracking-wider
+              {/* Special Offers */}
+              <Link
+                href="/"
+                className="flex-shrink-0 px-6 py-4 text-white text-sm font-medium uppercase tracking-wider
                        hover:bg-white hover:bg-opacity-10 transition-colors whitespace-nowrap"
-              suppressHydrationWarning
-            >
-              SPECIAL OFFERS
-            </Link>
-          </nav>
+                suppressHydrationWarning
+              >
+                SPECIAL OFFERS
+              </Link>
+            </nav>
+          </div>
         </div>
-      </div>}
+      )}
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[120px] bg-white z-50 overflow-y-auto">
           <nav className="container mx-auto px-4 py-6">
-
             {/* Main Navigation */}
             <div className="space-y-1 mb-8">
               {mainNavItems.map((item) => (
@@ -199,5 +223,5 @@ export default function HeaderTPS({
         </div>
       )}
     </header>
-  )
+  );
 }
