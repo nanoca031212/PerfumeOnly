@@ -373,11 +373,11 @@ export default function BaseCollection({
             <Info className="h-5 w-5" />
             <h5 className="mb-1 font-semibold leading-none tracking-tight text-sm">
               {selectedCount === 5
-                ? "🎉 Desconto Máximo Atingido!"
+                ? "🎉 Maximum Discount Achieved!"
                 : selectedCount === 4
                   ? "Continue adicionando!"
                   : selectedCount === 3
-                    ? "🎉 Desconto Desbloqueado!"
+                    ? "🎉 Discount Unlocked!"
                     : "Mix & match — 3 perfumes por £49.99"}
             </h5>
             <div className="text-sm text-gray-500 mt-1">
