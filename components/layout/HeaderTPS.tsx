@@ -49,7 +49,7 @@ export default function HeaderTPS({
     >
       {/* Promotional Banner */}
       {!hidePromoBanner && (
-        <div className="bg-tps-red text-white text-center px-4 py-2 text-[15px] font-normal">
+        <div className="bg-tps-white text-black text-center px-4 py-2 text-[15px] font-normal">
           Mix & match any 3 fragrances — £49.99 for all three
         </div>
       )}
@@ -59,18 +59,10 @@ export default function HeaderTPS({
         <div className="container">
           <div className="flex items-center justify-between h-16 pl-2">
             {/* Logo */}
-            <Link
-              href="/?reset=true"
-              className="flex items-center"
-              suppressHydrationWarning
-            >
-              <img
-                src="/images/logo.avif"
-                alt="Logo"
-                width={210}
-                height={210}
-              />
-            </Link>
+            <div className="border-[3px] border-white uppercase font-light px-8 py-[5px]">
+              <h1 className="text-xs tracking-[0.3em]">Only fragrances</h1>
+            </div>
+   
 
             {/* Icons direita */}
             <div className="flex items-center space-x-3">
@@ -116,7 +108,7 @@ export default function HeaderTPS({
 
       {/* Navigation Tabs - Rosa/Magenta */}
       {!hideMagentaBanner && (
-        <div className="bg-tps-magenta">
+        <div className="bg-black">
           <div className="container mx-auto">
             <nav className="flex overflow-x-auto scrollbar-none">
               {/* Men's Collection */}
