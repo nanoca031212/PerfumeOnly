@@ -111,9 +111,29 @@ export default function BaseCollection({
             setIsCollapsed(true);
           }, 3000);
         }
+      } else {
+        // Reset state if localStorage is empty
+        setRemaining(0);
+        setSelectedCount(0);
+        setSelectedImages([]);
+        setShowAlert(false);
       }
     } catch (e) {}
   };
+
+  // Handle reset query parameter
+  useEffect(() => {
+    if (router.query.reset === "true") {
+      try {
+        localStorage.removeItem("bundleState");
+        window.dispatchEvent(new Event("bundleStateUpdated"));
+        
+        // Clean up the URL parameter
+        const { reset, ...rest } = router.query;
+        router.replace({ pathname: router.pathname, query: rest }, undefined, { shallow: true });
+      } catch (e) {}
+    }
+  }, [router.query.reset, router]);
 
   useEffect(() => {
     calculateRemaining();

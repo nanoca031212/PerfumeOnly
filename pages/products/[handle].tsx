@@ -29,7 +29,7 @@ export default function ProductPage({
   relatedProducts,
   allProducts,
 }: ProductPageProps) {
-  const { addItem } = useCart();
+  const { addItem, clearCart, setIsOpen } = useCart();
   const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -88,6 +88,7 @@ export default function ProductPage({
 
   const handleBundleAddToCart = async (selection: BundleSelection) => {
     try {
+      clearCart();
       const stripeProductMapping =
         await import("@/data/stripe_product_mapping.json");
       const productMapping = stripeProductMapping.default as Record<
@@ -114,6 +115,7 @@ export default function ProductPage({
         };
         addItem(cartItem, 1);
       }
+      setIsOpen(true);
     } catch (error) {
       console.error("Error adding bundle to cart:", error);
     }
@@ -150,14 +152,14 @@ export default function ProductPage({
         <div className="flex justify-center w-full">
           <nav className="flex items-center text-sm text-gray-600 overflow-x-auto py-4 max-w-[1440px] w-full px-4">
             <Link
-              href="/"
+              href="/?reset=true"
               className="hover:text-gray-900 underline flex-shrink-0"
             >
               Fragrances
             </Link>
             <span className="mx-2 flex-shrink-0">|</span>
             <Link
-              href="/womens"
+              href="/collections/womens?reset=true"
               className="hover:text-gray-900 underline flex-shrink-0"
             >
               All Fragrances

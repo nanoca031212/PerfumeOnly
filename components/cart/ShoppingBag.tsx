@@ -94,8 +94,8 @@ export default function ShoppingBag({ isOpen, onClose }: ShoppingBagProps) {
                   <h3 className="text-sm font-medium truncate">{item.title}</h3>
                   <p className="text-xs text-gray-500 truncate">{item.subtitle}</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <p className="text-sm font-bold text-black">£{item.price.toFixed(2)}</p>
-                    <span className="text-xs line-through text-gray-400">£{(item.originalPrice || 169.99).toFixed(2)}</span>
+                    <p className="text-sm font-bold text-black">£{(item.price * item.quantity).toFixed(2)}</p>
+                    <span className="text-xs line-through text-gray-400">£{((item.originalPrice || 169.99) * item.quantity).toFixed(2)}</span>
                   </div>
 
                   {/* Quantity Controls */}

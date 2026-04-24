@@ -89,42 +89,63 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
     setItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === itemWithStripeId.id)
+      let updatedItems;
 
       if (existingItem) {
-        // Atualizar quantidade
-        return prevItems.map(item =>
+        updatedItems = prevItems.map(item =>
           item.id === itemWithStripeId.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
-        )
+        );
+      } else {
+        updatedItems = [...prevItems, { ...itemWithStripeId, quantity }];
       }
 
-      // Adicionar novo item
-      return [...prevItems, { ...itemWithStripeId, quantity }]
+      return recalculateBundlePrices(updatedItems);
     })
   }
 
   const recalculateBundlePrices = (items: CartItem[]): CartItem[] => {
-    const count = items.length;
-    return items.map((item, i) => {
-      const regularPrice = item.regularPrice || item.price;
-      let newPrice: number;
-      if (count <= 2) {
-        newPrice = regularPrice;
-      } else if (count === 3) {
-        newPrice = 49.99 / 3;
-      } else if (count === 4) {
-        newPrice = i < 3 ? 49.99 / 3 : regularPrice;
-      } else {
-        newPrice = 99.99 / 5;
-      }
-      return { ...item, price: newPrice };
-    });
+    const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+    const promo3 = 49.99 / 3;
+    const promo5 = 99.99 / 5;
+
+    if (totalQuantity <= 2) {
+      return items.map(item => ({ ...item, price: item.regularPrice || item.price }));
+    }
+    
+    if (totalQuantity === 3) {
+      return items.map(item => ({ ...item, price: promo3 }));
+    }
+    
+    if (totalQuantity === 4) {
+      // Regra de 4: 3 unidades em promo3, 1 unidade em preço cheio.
+      // Tentamos identificar qual item deve ser o "extra".
+      // Se viemos de um estado de 4 itens, um deles já terá um preço médio superior a promo3.
+      let extraItemIndex = items.findIndex(item => item.price > promo3 + 0.1);
+      // Se não encontrarmos (ex: vindo de 5 itens onde todos eram promo5), usamos o último item.
+      if (extraItemIndex === -1) extraItemIndex = items.length - 1;
+
+      return items.map((item, idx) => {
+        const regularPrice = item.regularPrice || item.price;
+        if (idx === extraItemIndex) {
+          const newPrice = ((item.quantity - 1) * promo3 + regularPrice) / item.quantity;
+          return { ...item, price: newPrice };
+        }
+        return { ...item, price: promo3 };
+      });
+    }
+
+    if (totalQuantity >= 5) {
+      return items.map(item => ({ ...item, price: promo5 }));
+    }
+
+    return items;
   };
 
   const removeItem = (id: number) => {
-    setItems(items => {
-      const filtered = items.filter(item => item.id !== id);
+    setItems(prevItems => {
+      const filtered = prevItems.filter(item => item.id !== id);
       return recalculateBundlePrices(filtered);
     });
   }
@@ -132,23 +153,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const updateQuantity = (id: number, delta: number) => {
     setItems(prevItems => {
       const itemToUpdate = prevItems.find(item => item.id === id);
+      if (!itemToUpdate) return prevItems;
 
-      if (itemToUpdate && itemToUpdate.quantity + delta <= 0) {
+      const newQuantity = Math.max(0, Math.min(10, itemToUpdate.quantity + delta));
+      if (newQuantity <= 0) {
         const filtered = prevItems.filter(item => item.id !== id);
         return recalculateBundlePrices(filtered);
       }
 
-      return prevItems.map(item => {
+      const updatedItems = prevItems.map(item => {
         if (item.id === id) {
-          return { 
-            ...item, 
-            quantity: Math.max(0, Math.min(10, item.quantity + delta)),
-            price: item.regularPrice || item.price 
-          };
+          return { ...item, quantity: newQuantity };
         }
-        // Qualquer modificação de quantidade no carrinho quebra as regras do pacote
-        return { ...item, price: item.regularPrice || item.price };
+        return item;
       });
+
+      return recalculateBundlePrices(updatedItems);
     });
   }
 
